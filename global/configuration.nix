@@ -36,8 +36,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     home-manager
-    git
-    gh
+    git gh
     firefox
   ];
 
