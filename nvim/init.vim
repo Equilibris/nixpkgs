@@ -1,32 +1,43 @@
+set exrc
+set hidden noswapfile nobackup undofile undodir=~/.vim/undodir
 set rnu nu
+set incsearch
 set clipboard^=unnamed,unnamedplus
 set scrolloff=10
 set laststatus=3
+set signcolumn=yes colorcolumn=80
+
 set nowrap
+
+set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smartindent
+
 
 call plug#begin()
 
-Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'shaunsingh/nord.nvim'
+Plug 'nvim-treesitter/nvim-treesitter'
 
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 Plug 'akinsho/toggleterm.nvim', { 'tag' : 'v1.*' }
 
 Plug 'LnL7/vim-nix'
+Plug 'neovim/nvim-lspconfig'
 
 Plug 'nvim-lualine/lualine.nvim'
-
-Plug 'kyazdani42/nvim-web-devicons'
 Plug 'kyazdani42/nvim-tree.lua'
+Plug 'kyazdani42/nvim-web-devicons'
+
 
 Plug 'andweeb/presence.nvim'
 
-Plug 'neovim/nvim-lspconfig'
-
 call plug#end()
+colorscheme nord
+
+let mapleader = ' '
 
 imap <C-BS> <C-W>
 imap <C-H> <C-W>
-
 
 nnoremap <C-B> :NvimTreeToggle<CR>
 inoremap <C-B> <C-C>:NvimTreeToggle<CR>
@@ -38,7 +49,17 @@ inoremap <A-k> <Esc>:m .-2<CR>==gi
 vnoremap <A-j> :m '>+1<CR>gv=gv
 vnoremap <A-k> :m '<-2<CR>gv=gv
 
-colorscheme nord
+nnoremap <C-p> <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <C-F> <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
+nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
+
+augroup WILLIAM_SØRENSEN
+    autocmd!
+
+    autocmd BufWritePost *.vim :so %
+    autocmd BufWritePost *.nix :! home-manager switch
+augroup END
 
 lua << EOF
 
