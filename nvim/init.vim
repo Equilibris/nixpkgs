@@ -2,24 +2,118 @@ set rnu nu
 set clipboard^=unnamed,unnamedplus
 set scrolloff=10
 set laststatus=3
+set nowrap
 
 call plug#begin()
 
 Plug 'nvim-treesitter/nvim-treesitter'
-Plug 'rafamadriz/neon'
+Plug 'shaunsingh/nord.nvim'
+
 Plug 'akinsho/toggleterm.nvim', { 'tag' : 'v1.*' }
+
 Plug 'LnL7/vim-nix'
+
+Plug 'nvim-lualine/lualine.nvim'
+
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'kyazdani42/nvim-tree.lua'
+
+Plug 'andweeb/presence.nvim'
+Plug 'nvim-lualine/lualine.nvim'
 
 call plug#end()
 
-colorscheme neon
+imap <C-BS> <C-W>
+imap <C-H> <C-W>
+
+
+nnoremap <C-B> :NvimTreeToggle<CR>
+inoremap <C-B> <C-C>:NvimTreeToggle<CR>
+
+nnoremap <A-j> :m .+1<CR>==
+nnoremap <A-k> :m .-2<CR>==
+inoremap <A-j> <Esc>:m .+1<CR>==gi
+inoremap <A-k> <Esc>:m .-2<CR>==gi
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
+
+colorscheme nord
 
 lua << EOF
 
 require("toggleterm").setup {
   open_mapping = [[<C-t>]],
-  direction = 'float'
+  direction = 'float',
+  shell = 'zsh',
 }
 
+require("nvim-tree").setup {
+  sort_by = "case_sensitive",
+  view = {
+    adaptive_size = true,
+    mappings = {
+      list = {
+        { key = "u", action = "dir_up" },
+      },
+    },
+  },
+  renderer = {
+    group_empty = true,
+  },
+  filters = {
+    dotfiles = true,
+  },
+}
+
+require("presence"):setup({
+    -- General options
+    auto_update         = true,                       -- Update activity based on autocmd events (if `false`, map or manually execute `:lua package.loaded.presence:update()`)
+    neovim_image_text   = "LoL RIP VSC",              -- Text displayed when hovered over the Neovim image
+    main_image          = "neovim",                   -- Main image display (either "neovim" or "file")
+    log_level           = nil,                        -- Log messages at or above this level (one of the following: "debug", "info", "warn", "error")
+    debounce_timeout    = 10,                         -- Number of seconds to debounce events (or calls to `:lua package.loaded.presence:update(<filename>, true)`)
+    enable_line_number  = false,                      -- Displays the current line number instead of the current project
+    blacklist           = {},                         -- A list of strings or Lua patterns that disable Rich Presence if the current file name, path, or workspace matches
+    buttons             = true,                       -- Configure Rich Presence button(s), either a boolean to enable/disable, a static table (`{{ label = "<label>", url = "<url>" }, ...}`, or a function(buffer: string, repo_url: string|nil): table)
+    file_assets         = {},                         -- Custom file asset definitions keyed by file names and extensions (see default config at `lua/presence/file_assets.lua` for reference)
+
+    -- Rich Presence text options
+    editing_text        = "So sad %s died of ligma",  -- Format string rendered when an editable file is loaded in the buffer (either string or function(filename: string): string)
+    file_explorer_text  = "Browsing %s",              -- Format string rendered when browsing a file explorer (either string or function(file_explorer_name: string): string)
+    git_commit_text     = "Committing changes",       -- Format string rendered when committing changes in git (either string or function(filename: string): string)
+    -- plugin_manager_text = "Managing plugins",         -- Format string rendered when managing plugins (either string or function(plugin_manager_name: string): string)
+    reading_text        = "Reading %s",               -- Format string rendered when a read-only or unmodifiable file is loaded in the buffer (either string or function(filename: string): string)
+    workspace_text      = "Working on %s",            -- Format string rendered when in a git repository (either string or function(project_name: string|nil, filename: string): string)
+    line_number_text    = "L%s/%s",        -- Format string rendered when `enable_line_number` is set to true (either string or function(line_number: number, line_count: number): string)
+})
+
+require('lualine').setup {
+  options = {
+    icons_enabled = true,
+    theme = 'auto',
+    component_separators = { left = '', right = ''},
+    section_separators = { left = '', right = ''},
+    disabled_filetypes = {},
+    always_divide_middle = true,
+    globalstatus = false,
+  },
+  sections = {
+    lualine_a = {'mode'},
+    lualine_b = {'branch', 'diff', 'diagnostics'},
+    lualine_c = {'filename'},
+    lualine_x = {},
+    lualine_y = {'encoding', 'filetype'},
+    lualine_z = {'progress','location'}
+  },
+  inactive_sections = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {'filename'},
+    lualine_y = {'location'},
+    lualine_z = {}
+  },
+  tabline = {},
+  extensions = {}
+}
 EOF
 
