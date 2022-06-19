@@ -28,6 +28,7 @@ Plug 'nvim-lualine/lualine.nvim'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'kyazdani42/nvim-web-devicons'
 
+Plug 'lewis6991/gitsigns.nvim'
 
 Plug 'andweeb/presence.nvim'
 
@@ -62,6 +63,7 @@ augroup WILLIAM_SØRENSEN
 augroup END
 
 lua << EOF
+require('gitsigns').setup()
 
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
