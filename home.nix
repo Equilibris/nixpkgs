@@ -17,7 +17,7 @@
     (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; })
   ];
 
-  home.sessionPath = [ "$HOME/.npm-global/bin" ];
+  # home.sessionPath = [ "$HOME/.npm-global/bin" ];
 
   # environment.variables.EDITOR = "nvim";
   nixpkgs.overlays = [
@@ -66,6 +66,8 @@
     # ];
     initExtra = ''
       npm set prefix ~/.npm-global
+
+      export PATH=$PATH:~/.npm-global/bin
 
       eval "$(~/.config/nixpkgs/tmp/oh-my-posh init zsh)"
     '';
@@ -139,7 +141,7 @@
           cyan = "#6d96a5";
           white = "#aeb3bb";
         };
-}      ;
+      };
     };
   };
 
