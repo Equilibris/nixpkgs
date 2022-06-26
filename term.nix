@@ -23,14 +23,24 @@
     oh-my-zsh = {
       enable = true;
       plugins = [
-        "git" "sudo" "nix-zsh-completions" "rust" "home-manager"
+        "git" "sudo" "rust"
       ];
       theme = "robbyrussell";
     };
   };
 
-  programs.alacritty = {
+  programs.kitty = {
     enable = true;
+    font.name = "FiraCode Nerd Font";
+
+    extraConfig = builtins.readFile "${pkgs.fetchurl {
+        url = "https://raw.githubusercontent.com/connorholyday/nord-kitty/master/nord.conf";
+        sha256 = "4R5wNmrP2JkIW9t603AmJEcHJUQ/RYw7NwuvmrJhdrk=";
+    }}";
+  };
+
+  programs.alacritty = {
+    enable = false;
 
     settings = {
       font.family = "FiraCode Nerd Font";
