@@ -7,9 +7,11 @@
     htop
     vscode neovim
     discord
+    spotify
     google-chrome
     git gh
     clang libcxx libcxxabi 
+    xclip
 
     nodejs
     rustup
@@ -31,8 +33,11 @@
   gtk = {
     enable = true;
 
-    theme.name = "Orchis";
-    theme.package = pkgs.orchis-theme;
+    theme.name = "Nordic";
+    theme.package = pkgs.nordic;
+
+    gtk3.extraConfig.gtk-application-prefer-dark-theme = 1;
+    gtk4.extraConfig.gtk-application-prefer-dark-theme = true;
   };
 
   programs.git = {
@@ -52,29 +57,19 @@
     enable = true;
 
     enableCompletion = true;
-    # plugins = [
-    #   {
-    #     name = "zsh-nix-shell";
-    #     file = "nix-shell.plugin.zsh";
-    #     src = pkgs.fetchFromGitHub {
-    #       owner = "chisui";
-    #       repo = "zsh-nix-shell";
-    #       rev = "v0.5.0";
-    #       sha256 = "0za4aiwwrlawnia4f29msk822rj9bgcygw6a8a6iikiwzjjz0g91";
-    #     };
-    #   }
-    # ];
     initExtra = ''
       npm set prefix ~/.npm-global
 
       export PATH=$PATH:~/.npm-global/bin
 
-      eval "$(~/.config/nixpkgs/tmp/oh-my-posh init zsh)"
+      eval "$(~/bin/oh-my-posh init zsh)"
     '';
 
     oh-my-zsh = {
       enable = true;
-      plugins = [ "git" ];
+      plugins = [
+        "git" "sudo" "nix-zsh-completions" "rust" "home-manager"
+      ];
       theme = "robbyrussell";
     };
   };
@@ -146,12 +141,35 @@
   };
 
   home.file = {
+    "bin/oh-my-posh" = {
+      source = pkgs.fetchurl {
+        url = "https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64";
+        sha256 = "tebha4qAG3/J9LCISIdXa2r1Wr7yYRZsLT5m8Q7QbFc=";
+      };
+      executable = true;
+    };
     ".config/nvim" = {
       source = ./nvim;
       recursive = true;
     };
     ".local/share/nvim/site/autoload/plug.vim" = {
-      source = ./tmp/plug.vim;
+      source = "${
+        pkgs.fetchFromGitHub {
+          owner = "junegunn";
+          repo = "vim-plug";
+          rev = "8fdabfba0b5a1b0616977a32d9e04b4b98a6016a";
+          sha256 = "jAr/xyQAYM9a1Heh1nw1Rsf2dKGRhlXs0Z4ETTAT0hA=";
+        }
+      }/plug.vim";
+    };
+    ".oh-my-zsh/custom/plugins/nix-zsh-completions" = {
+      source = pkgs.fetchFromGitHub {
+        owner = "spwhitt";
+        repo = "nix-zsh-completions";
+        rev = "468d8cf752a62b877eba1a196fbbebb4ce4ebb6f";
+        sha256 = "TWgo56l+FBXssOYWlAfJ5j4pOHNmontOEolcGdihIJs=";
+      };
+      recursive = true;
     };
   };
 }

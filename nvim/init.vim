@@ -35,8 +35,9 @@ Plug 'andweeb/presence.nvim'
 call plug#end()
 colorscheme nord
 
-let mapleader = ' '
+" let mapleader = ' '
 
+nnoremap <C-o> <C-d>
 imap <C-BS> <C-W>
 imap <C-H> <C-W>
 
@@ -59,7 +60,7 @@ augroup WILLIAM_SØRENSEN
     autocmd!
 
     autocmd BufWritePost *.vim :so %
-    autocmd BufWritePost *.nix :! home-manager switch
+    autocmd BufWritePost home.nix :! home-manager switch
 augroup END
 
 lua << EOF
@@ -96,7 +97,7 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
   vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-  vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
+  vim.keymap.set('n', '<A-F>', vim.lsp.buf.formatting, bufopts)
 end
 
 local lsp_flags = {
@@ -118,14 +119,14 @@ require('lspconfig').jsonls.setup {
 --     on_attach = on_attach,
 --     flags = lsp_flags,
 -- }
--- require('lspconfig')['rust_analyzer'].setup{
---     on_attach = on_attach,
---     flags = lsp_flags,
---     -- Server-specific settings...
---     settings = {
---       ["rust-analyzer"] = {}
---     }
--- }
+require('lspconfig')['rust_analyzer'].setup{
+    on_attach = on_attach,
+    flags = lsp_flags,
+    -- Server-specific settings...
+    settings = {
+      ["rust-analyzer"] = {}
+    }
+}
 
 require("toggleterm").setup {
   open_mapping = [[<C-t>]],
