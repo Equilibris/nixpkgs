@@ -2,7 +2,7 @@ set exrc
 set hidden noswapfile nobackup undofile undodir=~/.vim/undodir
 set rnu nu
 set incsearch
-set clipboard^=unnamed,unnamedplus
+set clipboard+=unnamedplus
 set scrolloff=10
 set laststatus=3
 set signcolumn=yes colorcolumn=80
@@ -55,6 +55,8 @@ nnoremap <C-p> <cmd>lua require('telescope.builtin').find_files()<cr>
 nnoremap <C-F> <cmd>lua require('telescope.builtin').live_grep()<cr>
 nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
 nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
+
+command HomeRebuild :! home-manager switch
 
 augroup WILLIAM_SØRENSEN
     autocmd!
