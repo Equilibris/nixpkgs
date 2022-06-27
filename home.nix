@@ -1,21 +1,18 @@
 { config, pkgs, ... }:
 
 {
-  imports = [ ./term.nix ];
+  imports = [ ./term.nix ./lang.nix ];
   nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
     thefuck
     htop
     vscode neovim
-    discord
+    discord betterdiscordctl
     spotify
     google-chrome
     git gh
     clang libcxx libcxxabi 
     xclip
-
-    nodejs
-    rustup
 
     (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; })
   ];
@@ -61,6 +58,12 @@
           sha256 = "jAr/xyQAYM9a1Heh1nw1Rsf2dKGRhlXs0Z4ETTAT0hA=";
         }
       }/plug.vim";
+    };
+    ".config/BetterDiscord/themes/nordic.theme.css" = {
+      source = pkgs.fetchurl {
+        url = "https://betterdiscord.app/Download?id=33";
+        sha256 = "hazRQ45BSkOZ4YnqDw/xTzcXowBgG762vP8zhNrnEZ4=";
+      };
     };
   };
 }

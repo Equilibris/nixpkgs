@@ -11,7 +11,6 @@ set nowrap
 
 set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smartindent
 
-
 call plug#begin()
 
 Plug 'shaunsingh/nord.nvim'
@@ -44,6 +43,8 @@ imap <C-H> <C-W>
 nnoremap <C-B> :NvimTreeToggle<CR>
 inoremap <C-B> <C-C>:NvimTreeToggle<CR>
 
+tnoremap <Esc> <C-\><C-n>
+
 nnoremap <A-j> :m .+1<CR>==
 nnoremap <A-k> :m .-2<CR>==
 inoremap <A-j> <Esc>:m .+1<CR>==gi
@@ -56,13 +57,13 @@ nnoremap <C-F> <cmd>lua require('telescope.builtin').live_grep()<cr>
 nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
 nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 
-command HomeRebuild :! home-manager switch
+command HMSwitch :! home-manager switch
 
 augroup WILLIAM_SØRENSEN
     autocmd!
 
     autocmd BufWritePost *.vim :so %
-    autocmd BufWritePost home.nix :! home-manager switch
+    autocmd BufWritePost home.nix :HMSwitch
 augroup END
 
 lua << EOF
