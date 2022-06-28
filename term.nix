@@ -17,6 +17,7 @@
 
       export PATH=$PATH:~/.npm-global/bin
 
+      eval $(thefuck --alias)
       eval "$(~/bin/oh-my-posh init zsh)"
     '';
 
