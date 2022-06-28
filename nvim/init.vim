@@ -27,6 +27,8 @@ Plug 'nvim-lualine/lualine.nvim'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'kyazdani42/nvim-web-devicons'
 
+Plug 'nvim-lua/plenary.nvim'
+Plug 'sindrets/diffview.nvim'
 Plug 'lewis6991/gitsigns.nvim'
 
 Plug 'andweeb/presence.nvim'
@@ -57,7 +59,7 @@ nnoremap <C-F> <cmd>lua require('telescope.builtin').live_grep()<cr>
 nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
 nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 
-command HMSwitch :! home-manager switch
+command! HMSwitch :! home-manager switch
 
 augroup WILLIAM_SØRENSEN
     autocmd!
@@ -67,6 +69,7 @@ augroup WILLIAM_SØRENSEN
 augroup END
 
 lua << EOF
+require("diffview").setup()
 require('gitsigns').setup()
 
 -- Mappings.

@@ -10,7 +10,7 @@
     discord betterdiscordctl
     spotify
     google-chrome
-    git gh
+    git gh git-secret
     clang libcxx libcxxabi 
     xclip
 
@@ -38,6 +38,9 @@
     gtk4.extraConfig.gtk-application-prefer-dark-theme = true;
   };
 
+  programs.gpg = {
+    enable = true;
+  };
   programs.git = {
     enable = true;
     userName = "William Sørensen";

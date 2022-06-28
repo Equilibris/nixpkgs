@@ -27,6 +27,9 @@
     { from = 18999; to = 19003; }
   ];
 
+  services.gpg-agent.enable = true;
+  services.pcscd.enable = true;
+
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";

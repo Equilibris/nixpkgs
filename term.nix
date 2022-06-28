@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
-{
+let
+  codeArtifactLogin = false;
+in {
   programs.bash = {
     enable = true;
     bashrcExtra = ''
@@ -13,13 +15,18 @@
 
     enableCompletion = true;
     initExtra = ''
+      alias ca="export CODEARTIFACT_AUTH_TOKEN=$(aws codeartifact get-authorization-token --domain powercatch --domain-owner 232639570454 --query authorizationToken --output text) \
+        && aws codeartifact login --tool npm --domain powercatch --domain-owner 232639570454 --repository npm-store"
+
       npm set prefix ~/.npm-global
 
       export PATH=$PATH:~/.npm-global/bin
 
       eval $(thefuck --alias)
       eval "$(~/bin/oh-my-posh init zsh)"
-    '';
+
+      ${if codeArtifactLogin then "\nca\n" else ""}
+      '';
 
     oh-my-zsh = {
       enable = true;
