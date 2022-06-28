@@ -22,7 +22,8 @@
   users.users.williams = {
     isNormalUser = true;
     description = "William Sørensen";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
   };
+  virtualisation.docker.enable = true;
 }
 
