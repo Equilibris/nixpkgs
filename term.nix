@@ -1,8 +1,6 @@
 { config, pkgs, lib, ... }:
 
-let
-  codeArtifactLogin = false;
-in {
+{
   programs.bash = {
     enable = true;
     bashrcExtra = ''
@@ -15,9 +13,6 @@ in {
 
     enableCompletion = true;
     initExtra = ''
-      alias ca="export CODEARTIFACT_AUTH_TOKEN=$(aws codeartifact get-authorization-token --domain powercatch --domain-owner 232639570454 --query authorizationToken --output text) \
-        && aws codeartifact login --tool npm --domain powercatch --domain-owner 232639570454 --repository npm-store"
-
       npm set prefix ~/.npm-global
 
       export PATH=$PATH:~/.npm-global/bin
@@ -25,7 +20,12 @@ in {
       eval $(thefuck --alias)
       eval "$(~/bin/oh-my-posh init zsh)"
 
-      ${if codeArtifactLogin then "\nca\n" else ""}
+      alias findPorts="nix-shell -p lsof --run \"sudo lsof -i -P -n | grep LISTEN\""
+      alias fp=findPorts
+
+      killPort() {
+        fp | grep $1 | echo
+      }
       '';
 
     oh-my-zsh = {

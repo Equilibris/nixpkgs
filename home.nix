@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 
 {
-  imports = [ ./term.nix ./lang.nix ];
+  imports = [ ./term.nix ./lang.nix ./work.nix ];
   nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
     thefuck
