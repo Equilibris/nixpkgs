@@ -17,14 +17,14 @@ in
     home.packages = [ python-with-deps ];
 
     programs.zsh.initExtra = ''
-      export AWS_PROFILE=mfa
-
       alias ca="export CODEARTIFACT_AUTH_TOKEN=$(aws codeartifact get-authorization-token --domain powercatch --domain-owner 232639570454 --query authorizationToken --output text --profile mfa) \
         && aws codeartifact login --tool npm --domain powercatch --domain-owner 232639570454 --repository npm-store --profile mfa"
 
       alias assumepowercatchdev="python3 ~/bin/aws-cli-helper.py assume-role powercatch-dev"
       alias assumepowercatchstaging="python3 ~/bin/aws-cli-helper.py assume-role powercatch-staging"
       alias assumepowercatchprod="python3 ~/bin/aws-cli-helper.py assume-role powercatch-prod"
+
+      alias awshelper="python3 ~/bin/aws-cli-helper.py"
 
       ca
       '';
