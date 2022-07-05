@@ -18,7 +18,7 @@
       export PATH=$PATH:~/.npm-global/bin
 
       eval $(thefuck --alias)
-      eval "$(~/bin/oh-my-posh init zsh)"
+      eval "$(~/bin/oh-my-posh init zsh --config ~/.config/nixpkgs/posh.config.json)"
 
       alias findPorts="nix-shell -p lsof --run \"sudo lsof -i -P -n | grep LISTEN\""
       alias fp=findPorts
@@ -117,7 +117,7 @@
     "bin/oh-my-posh" = {
       source = pkgs.fetchurl {
         url = "https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64";
-        sha256 = "tebha4qAG3/J9LCISIdXa2r1Wr7yYRZsLT5m8Q7QbFc=";
+        sha256 = "sha256-lCbhF1i29S1WthE121EmvSgGk5l4DFIywdk0jitvvSk=";
       };
       executable = true;
     };

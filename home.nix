@@ -11,7 +11,7 @@
     spotify
     google-chrome
     git gh git-secret
-    clang libcxx libcxxabi 
+    clang libcxx libcxxabi clang.bintools clang.bintools
     xclip
 
     (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; })
@@ -52,15 +52,15 @@
       source = ./nvim;
       recursive = true;
     };
-    ".local/share/nvim/site/autoload/plug.vim" = {
-      source = "${
+    ".local/share/nvim/site/pack/packer/start/packer.nvim" = {
+      source = 
         pkgs.fetchFromGitHub {
-          owner = "junegunn";
-          repo = "vim-plug";
-          rev = "8fdabfba0b5a1b0616977a32d9e04b4b98a6016a";
-          sha256 = "jAr/xyQAYM9a1Heh1nw1Rsf2dKGRhlXs0Z4ETTAT0hA=";
-        }
-      }/plug.vim";
+          owner = "wbthomason";
+          repo = "packer.nvim";
+          rev = "d268d2e083ca0abd95a57dfbcc5d5637a615e219";
+          sha256 = "sha256-zgfJEVXWPA93SAbZUA1nivPrJAGznfOfPX5uI0Ipwas=";
+        };
+      recursive = true;
     };
   } // lib.lists.fold (curr: acc: acc // {
     ".config/BetterDiscord/${curr.name}" = {
