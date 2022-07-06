@@ -1,12 +1,12 @@
 { config, pkgs, lib, ... }:
 
 {
-  imports = [ ./term.nix ./lang.nix ./work.nix ];
+  imports = [ ./term.nix ./lang.nix ./work.nix ./nvim.nix ];
   nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
     thefuck
     htop
-    vscode neovim
+    vscode
     discord betterdiscordctl
     spotify
     google-chrome
@@ -19,12 +19,6 @@
 
   # home.sessionPath = [ "$HOME/.npm-global/bin" ];
 
-  # environment.variables.EDITOR = "nvim";
-  nixpkgs.overlays = [
-    (self: super: {
-      neovim = super.neovim.override { vimAlias = true; viAlias = true; };
-    })
-  ];
 
   fonts.fontconfig.enable = true;
 
@@ -47,22 +41,7 @@
     userEmail = "47296141+Equilibris@users.noreply.github.com";
   };
 
-  home.file = {
-    ".config/nvim" = {
-      source = ./nvim;
-      recursive = true;
-    };
-    ".local/share/nvim/site/pack/packer/start/packer.nvim" = {
-      source = 
-        pkgs.fetchFromGitHub {
-          owner = "wbthomason";
-          repo = "packer.nvim";
-          rev = "d268d2e083ca0abd95a57dfbcc5d5637a615e219";
-          sha256 = "sha256-zgfJEVXWPA93SAbZUA1nivPrJAGznfOfPX5uI0Ipwas=";
-        };
-      recursive = true;
-    };
-  } // lib.lists.fold (curr: acc: acc // {
+  home.file = lib.lists.fold (curr: acc: acc // {
     ".config/BetterDiscord/${curr.name}" = {
       source = pkgs.fetchurl {
         url = "http://betterdiscord.app/Download?id=${toString curr.id}";

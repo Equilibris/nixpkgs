@@ -22,6 +22,7 @@
 
       alias findPorts="nix-shell -p lsof --run \"sudo lsof -i -P -n | grep LISTEN\""
       alias fp=findPorts
+      alias cfg="cd ~/.config/nixpkgs"
 
       killPort() {
         fp | grep $1 | echo

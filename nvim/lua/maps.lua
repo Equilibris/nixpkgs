@@ -13,8 +13,8 @@ vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', nore)
 
 vim.api.nvim_set_keymap('n', '<A-j>', ':m .+1<CR>==', nore)
 vim.api.nvim_set_keymap('n', "<A-k>", ":m .-2<CR>==", nore)
-vim.api.nvim_set_keymap('i', "<A-j>", "<Esc>:m .+1<CR>==gi", nore)
-vim.api.nvim_set_keymap('i', "<A-k>", "<Esc>:m .-2<CR>==gi", nore)
+-- vim.api.nvim_set_keymap('i', "<A-j>", "<Esc>:m .+1<CR>==gi", nore)
+-- vim.api.nvim_set_keymap('i', "<A-k>", "<Esc>:m .-2<CR>==gi", nore)
 vim.api.nvim_set_keymap('v', "<A-j>", ":m '>+1<CR>gv=gv", nore)
 vim.api.nvim_set_keymap('v', "<A-k>", ":m '<-2<CR>gv=gv", nore)
 
