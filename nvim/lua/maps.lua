@@ -1,6 +1,6 @@
 local nore = { noremap = true }
 
-vim.g.mapleader = " " 
+vim.g.mapleader = " "
 
 vim.api.nvim_set_keymap('n', '<C-o>', '<C-d>', nore)
 vim.api.nvim_set_keymap("i", "<C-BS>", "<C-W>", {})
@@ -23,7 +23,14 @@ vim.api.nvim_set_keymap('n', "<C-F>", "<cmd>lua require('telescope.builtin').liv
 vim.api.nvim_set_keymap('n', "<leader>bf", "<cmd>lua require('telescope.builtin').buffers()<cr>", nore)
 vim.api.nvim_set_keymap('n', "<leader>hf", "<cmd>lua require('telescope.builtin').help_tags()<cr>", nore)
 
-vim.api.nvim_set_keymap('n', "<Leader>f","<Plug>(cokeline-pick-focus)", nore)
-vim.api.nvim_set_keymap('n', "<Leader>F","<Plug>(cokeline-pick-close)", nore)
+vim.api.nvim_set_keymap('n', "<Leader>f", "<Plug>(cokeline-pick-focus)", nore)
+vim.api.nvim_set_keymap('n', "<Leader>F", "<Plug>(cokeline-pick-close)", nore)
 
+vim.api.nvim_set_keymap('n', "<C-ø>", ":CodeActionMenu", nore)
+vim.api.nvim_set_keymap('i', "<C-ø>", ":CodeActionMenu", nore)
 
+vim.api.nvim_set_keymap("n", "<C-s>", "<cmd>vsplit<cr>", nore)
+vim.api.nvim_set_keymap("i", "<C-s>", "<cmd>vsplit<cr>", nore)
+
+vim.api.nvim_set_keymap("n", "<A-F>", "<cmd>Format<cr>", nore)
+vim.api.nvim_set_keymap("i", "<A-F>", "<cmd>Format<cr>", nore)

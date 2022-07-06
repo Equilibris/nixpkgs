@@ -31,4 +31,3 @@ vim.opt.mouse = "a"
 
 
 vim.cmd [[ colorscheme nord ]]
-

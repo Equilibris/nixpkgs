@@ -15,16 +15,18 @@ require 'lsp.init'
 vim.cmd [[packadd packer.nvim]]
 
 require('packer').startup(function()
-	use 'shaunsingh/nord.nvim'
-	use 'nvim-treesitter/nvim-treesitter'
+    use 'shaunsingh/nord.nvim'
+    use 'nvim-treesitter/nvim-treesitter'
 
-	use 'nvim-lua/plenary.nvim'
-	use 'nvim-telescope/telescope.nvim'
-	use {'akinsho/toggleterm.nvim', tag = 'v1.*' }
+    use 'nvim-lua/plenary.nvim'
+    use 'nvim-telescope/telescope.nvim'
+    use { 'akinsho/toggleterm.nvim', tag = 'v1.*' }
 
     use "kylechui/nvim-surround"
 
-	use 'LnL7/vim-nix'
+    use 'LnL7/vim-nix'
+    use 'weilbith/nvim-code-action-menu'
+    use "lukas-reineke/lsp-format.nvim"
     use 'neovim/nvim-lspconfig'
     use 'L3MON4D3/LuaSnip'
     use 'hrsh7th/cmp-nvim-lsp'
@@ -34,14 +36,13 @@ require('packer').startup(function()
     use 'hrsh7th/nvim-cmp'
 
     use 'noib3/nvim-cokeline'
-	use 'nvim-lualine/lualine.nvim'
-	use 'kyazdani42/nvim-tree.lua'
-	use 'kyazdani42/nvim-web-devicons'
+    use 'nvim-lualine/lualine.nvim'
+    use 'kyazdani42/nvim-tree.lua'
+    use 'kyazdani42/nvim-web-devicons'
 
-	use 'nvim-lua/plenary.nvim'
-	use 'sindrets/diffview.nvim'
-	use 'lewis6991/gitsigns.nvim'
+    use 'nvim-lua/plenary.nvim'
+    use 'sindrets/diffview.nvim'
+    use 'lewis6991/gitsigns.nvim'
 
-	use 'andweeb/presence.nvim'
+    use 'andweeb/presence.nvim'
 end)
-
