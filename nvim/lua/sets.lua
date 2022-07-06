@@ -25,6 +25,8 @@ vim.opt.smartindent = true
 
 vim.opt.list = true
 
+vim.opt.mouse = "a"
+
 -- vim.opt.listchars = "eol:¬,tab:->,trail:~,extends:>,precedes:<,space:⋅⋅"
 
 
