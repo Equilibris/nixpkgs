@@ -1,5 +1,7 @@
 local nore = { noremap = true }
 
+vim.g.mapleader = " " 
+
 vim.api.nvim_set_keymap('n', '<C-o>', '<C-d>', nore)
 vim.api.nvim_set_keymap("i", "<C-BS>", "<C-W>", {})
 vim.api.nvim_set_keymap("i", "<C-H>", "<C-W>", {})
@@ -18,6 +20,10 @@ vim.api.nvim_set_keymap('v', "<A-k>", ":m '<-2<CR>gv=gv", nore)
 
 vim.api.nvim_set_keymap('n', "<C-p>", "<cmd>lua require('telescope.builtin').find_files()<cr>", nore)
 vim.api.nvim_set_keymap('n', "<C-F>", "<cmd>lua require('telescope.builtin').live_grep()<cr>", nore)
-vim.api.nvim_set_keymap('n', "<leader>fb", "<cmd>lua require('telescope.builtin').buffers()<cr>", nore)
-vim.api.nvim_set_keymap('n', "<leader>fh", "<cmd>lua require('telescope.builtin').help_tags()<cr>", nore)
+vim.api.nvim_set_keymap('n', "<leader>bf", "<cmd>lua require('telescope.builtin').buffers()<cr>", nore)
+vim.api.nvim_set_keymap('n', "<leader>hf", "<cmd>lua require('telescope.builtin').help_tags()<cr>", nore)
+
+vim.api.nvim_set_keymap('n', "<Leader>f","<Plug>(cokeline-pick-focus)", nore)
+vim.api.nvim_set_keymap('n', "<Leader>F","<Plug>(cokeline-pick-close)", nore)
+
 
