@@ -21,7 +21,12 @@ require('packer').startup(function()
 	use {'akinsho/toggleterm.nvim', tag = 'v1.*' }
 
 	use 'LnL7/vim-nix'
-	use 'neovim/nvim-lspconfig'
+    use 'neovim/nvim-lspconfig'
+    use 'hrsh7th/cmp-nvim-lsp'
+    use 'hrsh7th/cmp-buffer'
+    use 'hrsh7th/cmp-path'
+    use 'hrsh7th/cmp-cmdline'
+    use 'hrsh7th/nvim-cmp'
 
 	use 'nvim-lualine/lualine.nvim'
 	use 'kyazdani42/nvim-tree.lua'
