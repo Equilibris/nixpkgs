@@ -17,8 +17,10 @@ cmp.setup({
     -- documentation = cmp.config.window.bordered(),
   },
   mapping = cmp.mapping.preset.insert({
-    ['<A-j>'] = cmp.mapping.scroll_docs(-4),
-    ['<A-k>'] = cmp.mapping.scroll_docs(4),
+    ['<Down>'] = cmp.mapping.select_next_item(),
+    ['<Up>'] = cmp.mapping.select_prev_item(),
+    ['<A-Down>'] = cmp.mapping.scroll_docs(8),
+    ['<A-Up>'] = cmp.mapping.scroll_docs(-8),
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.abort(),
     ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
