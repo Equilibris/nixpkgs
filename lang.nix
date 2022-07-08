@@ -1,13 +1,13 @@
 { config, pkgs, lib, fetchurl, ... }:
 
 let 
-  java = true;
+  java = false;
   rust = true;
   js   = true;
 
   docker = true;
 
-  aws = true;
+  aws = false;
 in 
   {
     home.packages = with pkgs;

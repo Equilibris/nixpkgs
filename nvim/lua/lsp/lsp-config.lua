@@ -21,14 +21,15 @@ local on_attach = function(client, bufnr)
     vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
     vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
     vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
-    vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
-    vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
-    vim.keymap.set('n', '<space>wl', function()
+    vim.keymap.set('n', '<Leader>wa', vim.lsp.buf.add_workspace_folder, bufopts)
+    vim.keymap.set('n', '<Leader>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
+    vim.keymap.set('n', '<Leader>wl', function()
         print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
     end, bufopts)
-    vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
-    vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
-    vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
+    vim.keymap.set('n', '<Leader>D', vim.lsp.buf.type_definition, bufopts)
+    vim.keymap.set('n', '<Leader>rn', vim.lsp.buf.rename, bufopts)
+    vim.keymap.set('n', '<F2>', vim.lsp.buf.rename, bufopts)
+    vim.keymap.set('n', '<Leader>ca', vim.lsp.buf.code_action, bufopts)
     vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
     vim.keymap.set('n', '<A-F>', vim.lsp.buf.formatting, bufopts)
 end
@@ -87,11 +88,19 @@ require('lspconfig').sumneko_lua.setup {
 --     on_attach = on_attach,
 --     flags = lsp_flags,
 -- }
-require('lspconfig')['rust_analyzer'].setup {
+require('lspconfig').rust_analyzer.setup {
     on_attach = on_attach,
     flags = lsp_flags,
     -- Server-specific settings...
     settings = {
-        ["rust-analyzer"] = {}
+        ["rust-analyzer"] = {
+            ["inlayHints.typeHints.enable"] = true,
+            ["assist.importGranularity"] = "module",
+            ["assist.importPrefix"] = "module",
+            ["cargo.loadOutDirsFromCheck"] = true,
+            ["cargo.buildScripts.enable"] = true,
+            ["procMacro.attributes.enable"] = true,
+            ["procMacro.enable"] = true,
+        }
     }
 }

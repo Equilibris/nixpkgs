@@ -47,7 +47,7 @@ let
     '';
   };
 in {
-  home.packages = [ pkgs.neovim luaLsp ];
+  home.packages = [ pkgs.neovim luaLsp pkgs.rust-analyzer ];
 
   # environment.variables.EDITOR = "nvim";
   nixpkgs.overlays = [

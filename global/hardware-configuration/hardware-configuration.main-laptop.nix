@@ -3,39 +3,46 @@
 # to /etc/nixos/configuration.nix instead.
 { config, lib, pkgs, modulesPath, ... }:
 
-{
-  imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
-    ];
+let 
+  options = import ./options.nix;
+in with options;
+  {
+    imports =
+      [ (modulesPath + "/installer/scan/not-detected.nix")
+      ];
 
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-amd" ];
-  boot.extraModulePackages = [ ];
+    boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
+    boot.initrd.kernelModules = [ ];
+    boot.kernelModules = [ "kvm-amd" ];
+    boot.extraModulePackages = [ ];
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/d9cce47b-a8dc-47e6-9c76-2fb209ce6e66";
-      fsType = "ext4";
-    };
+    fileSystems."/" =
+      { device = "/dev/disk/by-uuid/d9cce47b-a8dc-47e6-9c76-2fb209ce6e66";
+        fsType = "ext4";
+      };
 
-  fileSystems."/boot/efi" =
-    { device = "/dev/disk/by-uuid/D88B-B897";
-      fsType = "vfat";
-    };
-  fileSystems."/mnt/win" = 
-    { device  = "/dev/nvme0n1p3";
-      fsType = "ntfs";
-    };
+    fileSystems."/boot/efi" =
+      { device = "/dev/disk/by-uuid/D88B-B897";
+        fsType = "vfat";
+      };
+    fileSystems."/mnt/win" = 
+      { device  = "/dev/nvme0n1p3";
+        fsType = "ntfs";
+      };
 
-  swapDevices = [ { device = "/dev/nvme0n1p6"; size = 16384; } ];
+    # services.xserver.videoDrivers = lib.optionals useXorg [ "nvidia" "amd" ];
+    # hardware.opengl.enable = true;
+    # hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
 
-  # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
-  # (the default) this is the recommended approach. When using systemd-networkd it's
-  # still possible to use this option, but it's recommended to use it in conjunction
-  # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-  networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.eno1.useDHCP = lib.mkDefault true;
-  # networking.interfaces.wlp4s0.useDHCP = lib.mkDefault true;
+    swapDevices = [ { device = "/dev/nvme0n1p6"; size = 16384; } ];
 
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-}
+    # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
+    # (the default) this is the recommended approach. When using systemd-networkd it's
+    # still possible to use this option, but it's recommended to use it in conjunction
+    # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
+    networking.useDHCP = lib.mkDefault true;
+    # networking.interfaces.eno1.useDHCP = lib.mkDefault true;
+    # networking.interfaces.wlp4s0.useDHCP = lib.mkDefault true;
+
+    hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  }

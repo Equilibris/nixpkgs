@@ -10,6 +10,8 @@ require 'plugins.presence'
 require 'plugins.gitsigns'
 require 'plugins.diffview'
 require 'plugins.surround'
+require 'plugins.telescope'
+require 'plugins.hop'
 require 'lsp.init'
 
 vim.cmd [[packadd packer.nvim]]
@@ -22,7 +24,8 @@ require('packer').startup(function()
     use 'nvim-telescope/telescope.nvim'
     use { 'akinsho/toggleterm.nvim', tag = 'v1.*' }
 
-    use "kylechui/nvim-surround"
+    use 'kylechui/nvim-surround'
+    use 'phaazon/hop.nvim'
 
     use 'LnL7/vim-nix'
     use 'weilbith/nvim-code-action-menu'
@@ -34,6 +37,7 @@ require('packer').startup(function()
     use 'hrsh7th/cmp-path'
     use 'hrsh7th/cmp-cmdline'
     use 'hrsh7th/nvim-cmp'
+    use 'ray-x/lsp_signature.nvim'
 
     use 'noib3/nvim-cokeline'
     use 'nvim-lualine/lualine.nvim'

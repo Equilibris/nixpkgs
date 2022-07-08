@@ -27,7 +27,7 @@
     { from = 18999; to = 19003; }
   ];
 
-  services.gpg-agent.enable = true;
+  # services.gpg-agent.enable = true;
   services.pcscd.enable = true;
 
 
@@ -47,6 +47,7 @@
     home-manager
     git gh
     firefox
+    kitty neovim
   ];
 
   environment.variables.EDITOR = "nvim";

@@ -26,11 +26,18 @@ vim.api.nvim_set_keymap('n', "<leader>hf", "<cmd>lua require('telescope.builtin'
 vim.api.nvim_set_keymap('n', "<Leader>f", "<Plug>(cokeline-pick-focus)", nore)
 vim.api.nvim_set_keymap('n', "<Leader>F", "<Plug>(cokeline-pick-close)", nore)
 
-vim.api.nvim_set_keymap('n', "<C-ø>", ":CodeActionMenu", nore)
-vim.api.nvim_set_keymap('i', "<C-ø>", ":CodeActionMenu", nore)
+vim.api.nvim_set_keymap('n', "<C-c>", "<cmd>CodeActionMenu<cr>", nore)
+vim.api.nvim_set_keymap('i', "<C-c>", "<cmd>CodeActionMenu<cr>", nore)
 
 vim.api.nvim_set_keymap("n", "<C-s>", "<cmd>vsplit<cr>", nore)
 vim.api.nvim_set_keymap("i", "<C-s>", "<cmd>vsplit<cr>", nore)
 
 vim.api.nvim_set_keymap("n", "<A-F>", "<cmd>Format<cr>", nore)
 vim.api.nvim_set_keymap("i", "<A-F>", "<cmd>Format<cr>", nore)
+
+vim.api.nvim_set_keymap('n', 'f', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>", nore)
+vim.api.nvim_set_keymap('n', 'F', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>", nore)
+vim.api.nvim_set_keymap('n', 't', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })<cr>", nore)
+vim.api.nvim_set_keymap('n', 'T', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })<cr>", nore)
+
+vim.api.nvim_set_keymap('n', 'h', "<cmd>HopWord<cr>", nore)
