@@ -6,7 +6,7 @@
   home.packages = with pkgs; [
     thefuck
     htop
-    vscode
+    vscode insomnia
     discord betterdiscordctl
     spotify
     google-chrome

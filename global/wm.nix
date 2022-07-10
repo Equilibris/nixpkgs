@@ -90,12 +90,6 @@ in with options;
         glib # gsettings
         nordic # gtk theme
         gnome3.adwaita-icon-theme  # default gnome cursors
-        swaylock
-        swayidle
-        grim # screenshot functionality
-        slurp # screenshot functionality
-        wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
-        bemenu # wayland clone of dmenu
         mako # notification system developed by swaywm maintainer
       ];
 

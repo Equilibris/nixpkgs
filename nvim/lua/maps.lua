@@ -40,4 +40,4 @@ vim.api.nvim_set_keymap('n', 'F', "<cmd>lua require'hop'.hint_char1({ direction 
 vim.api.nvim_set_keymap('n', 't', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })<cr>", nore)
 vim.api.nvim_set_keymap('n', 'T', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })<cr>", nore)
 
-vim.api.nvim_set_keymap('n', 'h', "<cmd>HopWord<cr>", nore)
+vim.api.nvim_set_keymap('n', 'H', "<cmd>HopWord<cr>", nore)

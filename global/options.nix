@@ -1,6 +1,6 @@
 rec {
-  manager.gnome = true;
-  manager.sway  = false;
+  manager.gnome = false;
+  manager.sway  = true;
 
   useXorg = manager.gnome;
   useWayland = manager.sway;

@@ -28,6 +28,8 @@ require('packer').startup(function()
     use 'phaazon/hop.nvim'
 
     use 'LnL7/vim-nix'
+    use 'elkowar/yuck.vim'
+
     use 'weilbith/nvim-code-action-menu'
     use "lukas-reineke/lsp-format.nvim"
     use 'neovim/nvim-lspconfig'
