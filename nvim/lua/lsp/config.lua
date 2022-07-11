@@ -1,5 +1,4 @@
--- Mappings.
--- See `:help vim.diagnostic.*` for documentation on any of the below functions
+
 local opts = { noremap = true, silent = true }
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
@@ -43,64 +42,8 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-require('lspconfig').jsonls.setup {
+return {
     on_attach = on_attach,
+    lsp_flags = lsp_flags,
     capabilities = capabilities,
-}
-require('lspconfig').sumneko_lua.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    -- You will have to adjust your values according to your system
-    settings = {
-        Lua = {
-            diagnostics = {
-                globals = { 'vim', 'use' }
-            },
-            runtime = {
-                version = 'Lua 5.3',
-                path = {
-                    '?.lua',
-                    '?/init.lua',
-                    vim.fn.expand '~/.luarocks/share/lua/5.3/?.lua',
-                    vim.fn.expand '~/.luarocks/share/lua/5.3/?/init.lua',
-                    vim.fn.expand '~/.config/nvim/lua',
-                    '/usr/share/5.3/?.lua',
-                    '/usr/share/lua/5.3/?/init.lua'
-                }
-            },
-            workspace = {
-                library = {
-                    [vim.fn.expand('$VIMRUNTIME/lua')] = true,
-                    [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
-                    [vim.fn.expand('/usr/share/awesome/lib')] = true
-                    --vim.fn.expand'~/.luarocks/share/lua/5.3',
-                    --'/usr/share/lua/5.3'
-                }
-            }
-        }
-    }
-}
--- require('lspconfig')['pyright'].setup{
---     on_attach = on_attach,
---     flags = lsp_flags,
--- }
--- require('lspconfig')['tsserver'].setup{
---     on_attach = on_attach,
---     flags = lsp_flags,
--- }
-require('lspconfig').rust_analyzer.setup {
-    on_attach = on_attach,
-    flags = lsp_flags,
-    -- Server-specific settings...
-    settings = {
-        ["rust-analyzer"] = {
-            ["inlayHints.typeHints.enable"] = true,
-            ["assist.importGranularity"] = "module",
-            ["assist.importPrefix"] = "module",
-            ["cargo.loadOutDirsFromCheck"] = true,
-            ["cargo.buildScripts.enable"] = true,
-            ["procMacro.attributes.enable"] = true,
-            ["procMacro.enable"] = true,
-        }
-    }
 }

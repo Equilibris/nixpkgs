@@ -32,6 +32,8 @@ require('packer').startup(function()
 
     use 'weilbith/nvim-code-action-menu'
     use "lukas-reineke/lsp-format.nvim"
+
+    use "williamboman/nvim-lsp-installer"
     use 'neovim/nvim-lspconfig'
     use 'L3MON4D3/LuaSnip'
     use 'hrsh7th/cmp-nvim-lsp'
