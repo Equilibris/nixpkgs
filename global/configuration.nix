@@ -65,7 +65,7 @@
   security.sudo.extraRules = [
     { users = [ "williams" ]; runAs = "root";
       commands =
-        [ { command = ''${pkgs.light}''; options = [ "SETENV" ]; } ]; }
+        [ { command = "/run/current-system/sw/bin/light"; options = [ "NOPASSWD" ]; } ]; }
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
