@@ -1,0 +1,7 @@
+#!bash
+if [ $(sudo light -s sysfs/leds/platform::kbd_backlight) = "100.00" ]; 
+then
+    sudo light -s sysfs/leds/platform::kbd_backlight -S 0
+else
+    sudo light -s sysfs/leds/platform::kbd_backlight -S 100.00
+fi

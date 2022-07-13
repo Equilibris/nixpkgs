@@ -16,6 +16,7 @@
       npm set prefix ~/.npm-global
 
       export PATH=$PATH:~/.npm-global/bin
+      export PATH=$PATH:~/bin
 
       eval $(thefuck --alias)
       eval "$(~/bin/oh-my-posh init zsh --config ~/.config/nixpkgs/posh.config.json)"
@@ -23,6 +24,9 @@
       alias findPorts="nix-shell -p lsof --run \"sudo lsof -i -P -n | grep LISTEN\""
       alias fp=findPorts
       alias cfg="cd ~/.config/nixpkgs"
+
+      alias cfile="xclip -sel c <"
+      alias cls=clear
 
       killPort() {
         fp | grep $1 | echo
@@ -115,6 +119,10 @@
   };
 
   home.file = {
+    "bin" = {
+      source = ./scripts;
+      recursive = true;
+    };
     "bin/oh-my-posh" = {
       source = pkgs.fetchurl {
         url = "https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64";

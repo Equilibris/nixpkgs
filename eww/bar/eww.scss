@@ -1,0 +1,24 @@
+@import "./nord.scss";
+
+$bar-bg: $draw-700;
+
+* {
+    font-family: "FiraCode Nerd Font";
+}
+.base {
+
+    background-color: $bar-bg;
+
+    color: black;
+    padding: 10px 0px;
+}
+
+.bat {
+    background-color: red;
+
+}
+.time {
+    font-size: 2em;
+    font-weight: bold;
+}
+

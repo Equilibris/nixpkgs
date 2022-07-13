@@ -6,13 +6,12 @@
   home.packages = with pkgs; [
     thefuck
     htop
-    vscode insomnia
+    insomnia
     discord betterdiscordctl
     spotify
     google-chrome
     git gh git-secret
     clang libcxx libcxxabi clang.bintools clang.bintools
-    xclip
 
     (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; })
   ];

@@ -1,0 +1,50 @@
+(defpoll clock_hour   :interval "5m" "date +\%H")
+(defpoll clock_minute :interval "5s" "date +\%M")
+
+(defpoll bat_percent :interval "1m" "get-batery Percent")
+(defpoll bat_icon :interval "1m" "get-batery Icon")
+
+(defwidget time []
+  (box
+    :class "time"
+    :orientation "v"
+    (box 
+      clock_hour)
+    (box 
+      clock_minute)))
+
+(defwidget bat []
+  (box
+    :class "bat"
+    :orientation "v"
+    :valign "end"
+
+  (circular-progress :class "thingy"
+                   :value {round(EWW_CPU.avg, 0)}
+                   :thickness 5
+                   :clockwise true
+                   :start-at 30
+    )))
+
+(defwindow bar
+  :monitor 0
+  :geometry (geometry :x "0%"
+            :y "20px"
+            :width "50px"
+            :height "100%"
+            :anchor "left center")
+  :stacking "fg"
+  :windowtype "dock"
+  :wm-ignore false
+  :exclusive true
+  (centerbox 
+    :orientation "v"
+    :class "base"
+     (box)
+     (box)
+     (box
+      :orientation "v"
+      :valign "end"
+      (bat)
+      (time) 
+      )))
