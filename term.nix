@@ -25,7 +25,7 @@
       alias fp=findPorts
       alias cfg="cd ~/.config/nixpkgs"
 
-      alias cfile="xclip -sel c <"
+      alias cfile="copyq copy <"
       alias cls=clear
 
       killPort() {
@@ -119,14 +119,11 @@
   };
 
   home.file = {
-    "bin" = {
-      source = ./scripts;
-      recursive = true;
-    };
+    ".config/nix/nix.conf" = { source = ./nix.conf; };
     "bin/oh-my-posh" = {
       source = pkgs.fetchurl {
-        url = "https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64";
-        sha256 = "sha256-lCbhF1i29S1WthE121EmvSgGk5l4DFIywdk0jitvvSk=";
+        url = "https://github.com/JanDeDobbeleer/oh-my-posh/releases/download/v8.17.0/posh-linux-amd64";
+        sha256 = "sha256-8krnWajeEclA677yk+8b72vlIsxWDdPF6cI361RrFoo=";
       };
       executable = true;
     };
@@ -139,6 +136,17 @@
       };
       recursive = true;
     };
-  };
+  } // 
+    lib.lists.fold 
+      (curr: acc: acc // {
+        "bin/${curr.name}" = {
+          source = curr.src;
+          executable = true;
+        };
+      }) {} [
+        { name = "get-battery"; src = ./scripts/get-batery; }
+        { name = "toggle_kbd";  src = ./scripts/toggle_kbd; }
+        { name = "eww";         src = ./scripts/eww; }
+      ];
 }
 
