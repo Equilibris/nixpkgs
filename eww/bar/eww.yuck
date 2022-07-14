@@ -5,6 +5,8 @@
 (defpoll bat_icon    :interval "1m" "get-battery Icon")
 (defpoll light_level :interval "1m" "sudo light")
 
+(defvar show_light_ctrl true)
+
 (defwidget time []
   (box
     :class "time"
@@ -20,12 +22,44 @@
     :orientation "v"
     :valign "end"
     (metric :value bat_percent :name "battery")))
+(defwidget light []
+  (eventbox
+    :onclick "${EWW_CMD} update show_light_ctrl true"
+    :onhoverlost "${EWW_CMD} update show_light_ctrl false"
+    (box
+      :class "light"
+      :valign "end"
+      :vexpand true
+      :orientation "v"
+      :space-evenly false
+      :spacing 8
+
+      (revealer
+        :reveal show_light_ctrl
+        :visable show_light_ctrl
+        (box
+          :orientation "v"
+          :space-evenly false
+          (scale 
+            :value light_level
+            :onchange "${EWW_CMD} update light_level={} && sudo light -S {}"
+            :orientation "v"
+            :flipped true
+            :height 100)
+          (box :halign "center" :orientation "v" "KBD" 
+            (checkbox
+              :onchecked "sudo light -s sysfs/leds/platform::kbd_backlight -S 100"
+              :onunchecked "sudo light -s sysfs/leds/platform::kbd_backlight -S 0"
+              ))))
+      (box
+        :orientation "v"
+        (metric :value "${round(light_level, 0) + 1}" :name "backlight")))))
 
 (defwidget metric [? value name]
   (circular-progress 
     :height 40
     :width 40
-    :value bat_percent
+    :value value
     :thickness 5
     :clockwise true
     :tooltip "The ${name} is at ${value}%"
@@ -34,23 +68,30 @@
 
 (defwindow bar
   :monitor 0
-  :geometry (geometry :x "0%"
+  :geometry (geometry 
+            :x "0%"
             :y "20px"
-            :width "50px"
+            :width "60px"
             :height "100%"
             :anchor "left center")
   :stacking "fg"
   :windowtype "dock"
   :wm-ignore false
   :exclusive true
-  (centerbox 
+  (box
     :orientation "v"
     :class "base"
-     (box)
-     (box)
-     (box
+    (box :valign "start" "hello")
+    (box 
+      :space-evenly false
       :orientation "v"
+      :spacing 8
       :valign "end"
-      :spacing 10
-      (bat)
+      (box
+        :orientation "v"
+        :space-evenly false
+        :spacing 8
+        :class "metrics"
+        (light)
+        (bat))
       (time))))
