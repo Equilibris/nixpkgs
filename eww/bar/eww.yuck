@@ -1,8 +1,9 @@
 (defpoll clock_hour   :interval "5m" "date +\%H")
 (defpoll clock_minute :interval "5s" "date +\%M")
 
-(defpoll bat_percent :interval "1m" "get-batery Percent")
-(defpoll bat_icon :interval "1m" "get-batery Icon")
+(defpoll bat_percent :interval "1m" "get-battery Percent")
+(defpoll bat_icon    :interval "1m" "get-battery Icon")
+(defpoll light_level :interval "1m" "sudo light")
 
 (defwidget time []
   (box
@@ -18,13 +19,18 @@
     :class "bat"
     :orientation "v"
     :valign "end"
+    (metric :value bat_percent :name "battery")))
 
-  (circular-progress :class "thingy"
-                   :value {round(EWW_CPU.avg, 0)}
-                   :thickness 5
-                   :clockwise true
-                   :start-at 30
-    )))
+(defwidget metric [? value name]
+  (circular-progress 
+    :height 40
+    :width 40
+    :value bat_percent
+    :thickness 5
+    :clockwise true
+    :tooltip "The ${name} is at ${value}%"
+    :start-at 30
+    (label :text value)))
 
 (defwindow bar
   :monitor 0
@@ -45,6 +51,6 @@
      (box
       :orientation "v"
       :valign "end"
+      :spacing 10
       (bat)
-      (time) 
-      )))
+      (time))))
