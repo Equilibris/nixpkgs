@@ -21,7 +21,7 @@ vim.api.nvim_set_keymap('v', "<A-k>", ":m '<-2<CR>gv=gv", nore)
 vim.api.nvim_set_keymap('n', "<C-p>", "<cmd>lua require('telescope.builtin').find_files()<cr>", nore)
 vim.api.nvim_set_keymap('n', "<C-F>", "<cmd>lua require('telescope.builtin').live_grep()<cr>", nore)
 vim.api.nvim_set_keymap('n', "<leader>bf", "<cmd>lua require('telescope.builtin').buffers()<cr>", nore)
-vim.api.nvim_set_keymap('n', "<leader>hf", "<cmd>lua require('telescope.builtin').help_tags()<cr>", nore)
+vim.api.nvim_set_keymap('n', "<F1>", "<cmd>lua require('telescope.builtin').help_tags()<cr>", nore)
 
 vim.api.nvim_set_keymap('n', "<Leader>f", "<Plug>(cokeline-pick-focus)", nore)
 vim.api.nvim_set_keymap('n', "<Leader>F", "<Plug>(cokeline-pick-close)", nore)
@@ -42,3 +42,6 @@ vim.api.nvim_set_keymap('n', 't', "<cmd>lua require'hop'.hint_char1({ direction 
 vim.api.nvim_set_keymap('n', 'T', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })<cr>", nore)
 
 vim.api.nvim_set_keymap('n', 'H', "<cmd>HopWord<cr>", nore)
+
+vim.keymap.set('n', 'K', require('hover').hover, { desc = 'hover.nvim' })
+vim.keymap.set('n', 'gK', require('hover').hover_select, { desc = 'hover.nvim (select)' })

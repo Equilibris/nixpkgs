@@ -34,6 +34,7 @@ require('packer').startup(function()
     use 'weilbith/nvim-code-action-menu'
     use 'jose-elias-alvarez/null-ls.nvim'
 
+    use 'lewis6991/hover.nvim'
     use 'williamboman/nvim-lsp-installer'
     use 'b0o/schemastore.nvim'
     use 'simrat39/rust-tools.nvim'

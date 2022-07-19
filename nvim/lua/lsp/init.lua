@@ -1,5 +1,6 @@
 require 'lsp.cmp'
-require 'lsp.format'
 require 'lsp.signature'
 require 'lsp.auto-install'
 require 'lsp.langs.init'
+require 'lsp.null'
+require 'lsp.hover'
