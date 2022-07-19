@@ -10,7 +10,7 @@
 (defvar lightctrl "false")
 (defvar soundctrl "false")
 
-(defvar eww "eww -c $HOME/.config/nixpkgs/eww/bar")
+(defvar eww "~/bin/eww")
 
 (defwidget time []
   (box
@@ -47,7 +47,7 @@
         (box
           :orientation "v"
           :space-evenly false
-          (scale 
+          (scale
             :value volume
             :onchange "${EWW_CMD} update volume={} && amixer sset Master {}%"
             :orientation "v"

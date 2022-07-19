@@ -1,6 +1,11 @@
 { config, pkgs, lib, ... }:
 
 {
+  home.packages = with pkgs; [
+    thefuck
+    (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; })
+    jq
+  ];
   programs.bash = {
     enable = true;
     bashrcExtra = ''
@@ -13,6 +18,7 @@
 
     enableCompletion = true;
     initExtra = ''
+      source ~/.oh-my-zsh/custom/plugins/nx-completion/nx-completion.plugin.zsh
       npm set prefix ~/.npm-global
 
       export PATH=$PATH:~/.npm-global/bin
@@ -126,6 +132,15 @@
         sha256 = "sha256-8krnWajeEclA677yk+8b72vlIsxWDdPF6cI361RrFoo=";
       };
       executable = true;
+    };
+    ".oh-my-zsh/custom/plugins/nx-completion" = {
+      source = pkgs.fetchFromGitHub {
+        owner = "jscutlery";
+        repo = "nx-completion";
+        rev = "84386914d55b2e73285069c8f156348255da4a60";
+        sha256 = "sha256-deYpsbnWDBk/uRzJetuHg+LSt6O9U1fOMBEv1GHBrPo=";
+      };
+      recursive = true;
     };
     ".oh-my-zsh/custom/plugins/nix-zsh-completions" = {
       source = pkgs.fetchFromGitHub {

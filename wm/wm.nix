@@ -12,6 +12,10 @@
   ]);
 
   home.file = {
+    ".config/eww" = {
+      source = ../eww/bar;
+      recursive = true;
+    };
     ".config/sway/config" = {
       source = config.lib.file.mkOutOfStoreSymlink ./sway.config;
     };

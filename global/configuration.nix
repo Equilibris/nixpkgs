@@ -68,6 +68,12 @@
         [ { command = "/run/current-system/sw/bin/light"; options = [ "NOPASSWD" ]; } ]; }
   ];
 
+  # console = {
+  #   earlySetup = true;
+  #   font = "FiraCode Nerd Font";
+  #   packages = [ (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; }) ];
+  # };
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;

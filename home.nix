@@ -6,7 +6,7 @@
   home.packages = with pkgs; [
     thefuck
     htop
-    insomnia
+    insomnia vscode
     discord betterdiscordctl
     spotify
     google-chrome
@@ -38,6 +38,7 @@
     enable = true;
     userName = "William Sørensen";
     userEmail = "47296141+Equilibris@users.noreply.github.com";
+    # init.defaultBranchName = "main";
   };
 
   home.file = lib.lists.fold (curr: acc: acc // {
