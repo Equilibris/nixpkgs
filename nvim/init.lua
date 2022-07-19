@@ -12,6 +12,7 @@ require 'plugins.diffview'
 require 'plugins.surround'
 require 'plugins.telescope'
 require 'plugins.hop'
+require 'plugins.comment'
 require 'lsp.init'
 
 vim.cmd [[packadd packer.nvim]]
@@ -31,9 +32,11 @@ require('packer').startup(function()
     use 'elkowar/yuck.vim'
 
     use 'weilbith/nvim-code-action-menu'
-    use "lukas-reineke/lsp-format.nvim"
+    use 'jose-elias-alvarez/null-ls.nvim'
 
-    use "williamboman/nvim-lsp-installer"
+    use 'williamboman/nvim-lsp-installer'
+    use 'b0o/schemastore.nvim'
+    use 'simrat39/rust-tools.nvim'
     use 'neovim/nvim-lspconfig'
     use 'L3MON4D3/LuaSnip'
     use 'hrsh7th/cmp-nvim-lsp'
@@ -42,6 +45,7 @@ require('packer').startup(function()
     use 'hrsh7th/cmp-cmdline'
     use 'hrsh7th/nvim-cmp'
     use 'ray-x/lsp_signature.nvim'
+    use 'terrortylor/nvim-comment'
 
     use 'noib3/nvim-cokeline'
     use 'nvim-lualine/lualine.nvim'

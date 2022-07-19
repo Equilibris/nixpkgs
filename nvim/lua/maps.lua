@@ -30,7 +30,8 @@ vim.api.nvim_set_keymap('n', "<C-c>", "<cmd>CodeActionMenu<cr>", nore)
 vim.api.nvim_set_keymap('i', "<C-c>", "<cmd>CodeActionMenu<cr>", nore)
 
 vim.api.nvim_set_keymap("n", "<C-s>", "<cmd>vsplit<cr>", nore)
-vim.api.nvim_set_keymap("i", "<C-s>", "<cmd>vsplit<cr>", nore)
+vim.api.nvim_set_keymap("i", "<C-s>", "<cmd>w<cr>", nore)
+vim.api.nvim_set_keymap("n", "<Leader><Space>", "<cmd>w<cr>", nore)
 
 vim.api.nvim_set_keymap("n", "<A-F>", "<cmd>Format<cr>", nore)
 vim.api.nvim_set_keymap("i", "<A-F>", "<cmd>Format<cr>", nore)
