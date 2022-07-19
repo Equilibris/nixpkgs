@@ -4,6 +4,7 @@ $bar-bg: $draw-300;
 $metrics-bg: $draw-100;
 $bat-colour: $aurora-yellow;
 $light-colour: $frost-a;
+$sound-colour: $aurora-pink;
 
 * {
     font-family: "FiraCode Nerd Font";
@@ -18,10 +19,13 @@ $light-colour: $frost-a;
     background-color: $metrics-bg;
 
     margin: 5px;
-    padding: 8px;
+    padding: 0px 8px 8px 8px;
 
     border-radius: 8px;
 
+    .sound {
+        color: $sound-colour;
+    }
     .bat {
         color: $bat-colour;
     }
