@@ -3,21 +3,24 @@ require 'sets'
 require 'maps'
 require 'commands'
 require 'plugins.toggleterm'
+require 'plugins.treesitter'
 require 'plugins.nvim-tree'
-require 'plugins.lualine'
+require 'plugins.telescope'
 require 'plugins.cokeline'
 require 'plugins.presence'
 require 'plugins.gitsigns'
 require 'plugins.diffview'
 require 'plugins.surround'
-require 'plugins.telescope'
-require 'plugins.hop'
 require 'plugins.comment'
+require 'plugins.lualine'
+require 'plugins.hop'
 require 'lsp.init'
 
 vim.cmd [[packadd packer.nvim]]
 
 require('packer').startup(function()
+    use 'wbthomason/packer.nvim'
+
     use 'shaunsingh/nord.nvim'
     use 'nvim-treesitter/nvim-treesitter'
 
@@ -31,8 +34,12 @@ require('packer').startup(function()
     use 'LnL7/vim-nix'
     use 'elkowar/yuck.vim'
 
+    use 'gpanders/editorconfig.nvim'
+
     use 'weilbith/nvim-code-action-menu'
     use 'jose-elias-alvarez/null-ls.nvim'
+
+    use { 'saecki/crates.nvim', tag = 'v0.2.1' }
 
     use 'lewis6991/hover.nvim'
     use 'williamboman/nvim-lsp-installer'

@@ -4,7 +4,7 @@ require('hover').setup {
         require('hover.providers.lsp')
         require('hover.providers.gh')
         require('hover.providers.man')
-        require('hover.providers.dictionary')
+        -- require('hover.providers.dictionary')
     end,
     preview_opts = {
         border = nil
