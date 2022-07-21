@@ -16,10 +16,8 @@
   (box
     :class "time"
     :orientation "v"
-    (box 
-      clock_hour)
-    (box 
-      clock_minute)))
+    (box clock_hour)
+    (box clock_minute)))
 
 (defwidget bat []
   (box
@@ -97,6 +95,32 @@
       (box
         :orientation "v"
         (metric :value "${round(100 * light_level / 99, 0)}" :name "backlight")))))
+(defwidget system_resources []
+  (eventbox
+    (circular-progress
+      :class "resource"
+      :height 40
+      :width 40
+      :thickness 5
+      :clockwise true
+      :start-at 30
+      :value "${ EWW_DISK["/"].used_perc }"
+      (circular-progress
+        :class "resource"
+        :height 30
+        :width 30
+        :thickness 5
+        :clockwise true
+        :start-at 40
+        :value "${ EWW_RAM.used_mem_perc }"
+        (circular-progress
+          :class "resource"
+          :height 20
+          :width 20
+          :thickness 5
+          :clockwise true
+          :start-at 50 
+          :value "${ EWW_CPU.avg }")))))
 
 (defwidget metric_with_label [? value name label]
   (circular-progress 
@@ -139,5 +163,6 @@
         :class "metrics"
         (sound)
         (light)
-        (bat))
-      (time))))
+        (bat)
+        (system_resources))
+        (time))))

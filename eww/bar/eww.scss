@@ -32,6 +32,18 @@ $sound-colour: $aurora-pink;
     .light {
         color: $light-colour;
     }
+
+    .resource {
+        color: $frost-b;
+        .resource {
+            margin: 5px;
+            color: $frost-c;
+            .resource {
+                margin: 10px;
+                color: $frost-d;
+            }
+        }
+    }
 }
 
 .time {

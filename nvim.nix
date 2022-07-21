@@ -64,16 +64,16 @@ in {
       source = ./nvim;
       recursive = true;
     };
-    ".local/share/nvim/site/pack/packer/start/packer.nvim" = {
-      source = 
-        pkgs.fetchFromGitHub {
-          owner = "wbthomason";
-          repo = "packer.nvim";
-          rev = "d268d2e083ca0abd95a57dfbcc5d5637a615e219";
-          sha256 = "sha256-zgfJEVXWPA93SAbZUA1nivPrJAGznfOfPX5uI0Ipwas=";
-        };
-      recursive = true;
-    };
+    # ".local/share/nvim/site/pack/packer/start/packer.nvim" = {
+    #   source = 
+    #     pkgs.fetchFromGitHub {
+    #       owner = "wbthomason";
+    #       repo = "packer.nvim";
+    #       rev = "d268d2e083ca0abd95a57dfbcc5d5637a615e219";
+    #       sha256 = "sha256-zgfJEVXWPA93SAbZUA1nivPrJAGznfOfPX5uI0Ipwas=";
+    #     };
+    #   recursive = true;
+    # };
   };
 }
 

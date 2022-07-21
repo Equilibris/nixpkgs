@@ -13,7 +13,7 @@
 
   home.file = {
     ".config/eww" = {
-      source = ../eww/bar;
+      source = ../eww;
       recursive = true;
     };
     ".config/sway/config" = {

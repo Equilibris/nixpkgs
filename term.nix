@@ -29,10 +29,17 @@
 
       alias findPorts="nix-shell -p lsof --run \"sudo lsof -i -P -n | grep LISTEN\""
       alias fp=findPorts
+      alias get-local-ip="ip route get 1.2.3.4 | awk '{print $3}'"
+
       alias cfg="cd ~/.config/nixpkgs"
+
+      alias gp="git push"
+      alias gs="git status"
 
       alias cfile="copyq copy <"
       alias cls=clear
+
+      alias :q=exit
 
       killPort() {
         fp | grep $1 | echo
