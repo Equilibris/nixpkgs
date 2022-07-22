@@ -1,6 +1,5 @@
-require("toggleterm").setup {
-  open_mapping = [[<C-t>]],
-  direction = 'float',
-  shell = 'zsh',
+require('toggleterm').setup {
+	open_mapping = [[<C-t>]],
+	direction = 'float',
+	shell = 'zsh',
 }
-

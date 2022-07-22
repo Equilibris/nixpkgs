@@ -1,3 +1,3 @@
-require "telescope".setup {
-    defaults = { file_ignore_patterns = { "target" } }
+require('telescope').setup {
+	defaults = { file_ignore_patterns = { 'target' } },
 }

@@ -4,7 +4,7 @@ local lsp_flags = config.lsp_flags
 local capabilities = config.capabilities
 
 require('lspconfig').tsserver.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    settings = {},
+	on_attach = on_attach,
+	capabilities = capabilities,
+	settings = {},
 }
