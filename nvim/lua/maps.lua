@@ -2,12 +2,17 @@ local nore = { noremap = true }
 
 vim.g.mapleader = ' '
 
-vim.api.nvim_set_keymap('n', '<C-o>', '<C-d>', nore)
 vim.api.nvim_set_keymap('i', '<C-BS>', '<C-W>', {})
 vim.api.nvim_set_keymap('i', '<C-H>', '<C-W>', {})
 
-vim.api.nvim_set_keymap('n', '<C-B>', ':NvimTreeToggle<CR>', nore)
-vim.api.nvim_set_keymap('i', '<C-B>', '<C-C>:NvimTreeToggle<CR>', nore)
+vim.api.nvim_set_keymap('n', '<C-B>', '<cmd>silent NvimTreeToggle<CR>', nore)
+vim.api.nvim_set_keymap('i', '<C-B>', '<cmd>silent NvimTreeToggle<CR>', nore)
+
+vim.api.nvim_set_keymap('i', '<C-N>', '<cmd>silent TroubleToggle<CR>', nore)
+vim.api.nvim_set_keymap('n', '<C-N>', '<cmd>silent TroubleToggle<CR>', nore)
+
+-- vim.api.nvim_set_keymap('n', '<C-B>', '<cmd>silent TroubleToggle<CR>', nore)
+-- vim.api.nvim_set_keymap('i', '<C-B>', '<cmd>silent TroubleToggle<CR>', nore)
 
 vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', nore)
 
@@ -47,11 +52,13 @@ vim.api.nvim_set_keymap('n', '<Leader>f', '<Plug>(cokeline-pick-focus)', nore)
 vim.api.nvim_set_keymap('n', '<Leader>F', '<Plug>(cokeline-pick-close)', nore)
 
 vim.api.nvim_set_keymap('n', '<C-c>', '<cmd>CodeActionMenu<cr>', nore)
-vim.api.nvim_set_keymap('i', '<C-c>', '<cmd>CodeActionMenu<cr>', nore)
+-- vim.api.nvim_set_keymap('i', '<C-c>', '<cmd>CodeActionMenu<cr>', nore)
 
-vim.api.nvim_set_keymap('n', '<C-s>', '<cmd>vsplit<cr>', nore)
+vim.api.nvim_set_keymap('n', '<C-s>', '<cmd>vsplit<cr><C-w>l', nore)
 vim.api.nvim_set_keymap('i', '<C-s>', '<cmd>w<cr>', nore)
 vim.api.nvim_set_keymap('n', '<Leader><Space>', '<cmd>w<cr>', nore)
+vim.api.nvim_set_keymap('n', 'Q', '<cmd>q<cr>', nore)
+vim.api.nvim_set_keymap('n', '<C-Q>', '<cmd>q!<cr>', nore)
 
 vim.api.nvim_set_keymap('n', '<A-F>', '<cmd>Format<cr>', nore)
 vim.api.nvim_set_keymap('i', '<A-F>', '<cmd>Format<cr>', nore)
@@ -83,10 +90,7 @@ vim.api.nvim_set_keymap(
 
 vim.api.nvim_set_keymap('n', 'H', '<cmd>HopWord<cr>', nore)
 
-vim.keymap.set('n', 'K', require('hover').hover, { desc = 'hover.nvim' })
-vim.keymap.set(
-	'n',
-	'gK',
-	require('hover').hover_select,
-	{ desc = 'hover.nvim (select)' }
-)
+local hover = require 'hover'
+
+vim.keymap.set('n', 'K', hover.hover, { desc = 'hover.nvim' })
+vim.keymap.set('n', 'gK', hover.hover_select, { desc = 'hover.nvim (select)' })

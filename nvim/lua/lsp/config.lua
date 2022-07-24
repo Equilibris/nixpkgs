@@ -39,6 +39,13 @@ local on_attach = function(client, bufnr)
 	vim.keymap.set('n', '<A-F>', vim.lsp.buf.formatting, bufopts)
 end
 
+local create_on_attach_effect = function(effect)
+	return function(client, bufnr)
+		effect(client, bufnr)
+		on_attach(client, bufnr)
+	end
+end
+
 local lsp_flags = {
 	-- This is the default in Nvim 0.7+
 	debounce_text_changes = 150,
@@ -52,4 +59,5 @@ return {
 	on_attach = on_attach,
 	lsp_flags = lsp_flags,
 	capabilities = capabilities,
+	create_on_attach_effect = create_on_attach_effect,
 }

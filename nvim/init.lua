@@ -6,6 +6,7 @@ require 'plugins.toggleterm'
 require 'plugins.treesitter'
 require 'plugins.nvim-tree'
 require 'plugins.telescope'
+require 'plugins.trouble'
 require 'plugins.cokeline'
 require 'plugins.presence'
 require 'plugins.gitsigns'
@@ -13,6 +14,7 @@ require 'plugins.diffview'
 require 'plugins.surround'
 require 'plugins.comment'
 require 'plugins.lualine'
+require 'plugins.project'
 require 'plugins.hop'
 require 'lsp.init'
 
@@ -28,6 +30,7 @@ require('packer').startup(function()
 
 	use 'nvim-lua/plenary.nvim'
 	use 'nvim-telescope/telescope.nvim'
+	use 'folke/trouble.nvim'
 	use { 'akinsho/toggleterm.nvim', tag = 'v1.*' }
 
 	use 'kylechui/nvim-surround'
@@ -49,6 +52,12 @@ require('packer').startup(function()
 	use 'simrat39/rust-tools.nvim'
 	use 'neovim/nvim-lspconfig'
 	use 'L3MON4D3/LuaSnip'
+	use {
+		'saadparwaiz1/cmp_luasnip',
+		-- TODO: Auto install with choice cmp option
+		-- installer = require('lsp.snip.self-merging-installer').installer,
+		-- updater = require('lsp.snip.self-merging-installer').updater,
+	}
 	use 'hrsh7th/cmp-nvim-lsp'
 	use 'hrsh7th/cmp-buffer'
 	use 'hrsh7th/cmp-path'

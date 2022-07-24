@@ -1,5 +1,15 @@
 vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
 
+local has_words_before = function()
+	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+	return col ~= 0
+		and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]
+				:sub(col, col)
+				:match '%s'
+			== nil
+end
+
+local luasnip = require 'luasnip'
 local cmp = require 'cmp'
 
 cmp.setup {
@@ -17,19 +27,51 @@ cmp.setup {
 		-- documentation = cmp.config.window.bordered(),
 	},
 	mapping = cmp.mapping.preset.insert {
-		['<Down>'] = cmp.mapping.select_next_item(),
-		['<Up>'] = cmp.mapping.select_prev_item(),
 		['<A-Down>'] = cmp.mapping.scroll_docs(8),
 		['<A-Up>'] = cmp.mapping.scroll_docs(-8),
 		['<C-Space>'] = cmp.mapping.complete(),
+		['<C-c>'] = cmp.mapping.complete(),
 		['<C-e>'] = cmp.mapping.abort(),
-		['<CR>'] = cmp.mapping.confirm { select = true }, -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-		['<Tab>'] = cmp.mapping.confirm { select = true }, -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+		['<A-k>'] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				cmp.select_prev_item()
+			else
+				fallback()
+			end
+		end),
+		['<A-j>'] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				cmp.select_next_item()
+			else
+				fallback()
+			end
+		end),
+
+		['<Tab>'] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				cmp.confirm { select = true }
+			elseif luasnip.expand_or_jumpable() then
+				luasnip.expand_or_jump()
+			else
+				fallback()
+			end
+		end, { 'i', 's' }),
+		['<S-Tab>'] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				cmp.confirm { select = true }
+			elseif luasnip.jumpable(-1) then
+				luasnip.jump(-1)
+			else
+				fallback()
+			end
+		end, { 'i', 's' }),
+		--cmp.mapping.confirm { select = true }, -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
 	},
 	sources = cmp.config.sources({
 		{ name = 'nvim_lsp' },
-		-- { name = 'vsnip' }, -- For vsnip users.
 		{ name = 'luasnip' }, -- For luasnip users.
+		{ name = 'luasnip_choice' },
+		-- { name = 'vsnip' }, -- For vsnip users.
 		-- { name = 'ultisnips' }, -- For ultisnips users.
 		-- { name = 'snippy' }, -- For snippy users.
 	}, {

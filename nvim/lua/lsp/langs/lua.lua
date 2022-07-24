@@ -1,10 +1,15 @@
 local config = require 'lsp.config'
-local on_attach = config.on_attach
 local lsp_flags = config.lsp_flags
 local capabilities = config.capabilities
 
 require('lspconfig').sumneko_lua.setup {
-	on_attach = on_attach,
+	on_attach = config.create_on_attach_effect(function(client, bufnr)
+		vim.api.nvim_buf_set_option(bufnr, 'tabstop', 2)
+		vim.api.nvim_buf_set_option(bufnr, 'softtabstop', 2)
+		vim.api.nvim_buf_set_option(bufnr, 'shiftwidth', 2)
+		vim.api.nvim_buf_set_option(bufnr, 'expandtab', false)
+		vim.api.nvim_buf_set_option(bufnr, 'smartindent', true)
+	end),
 	capabilities = capabilities,
 	-- You will have to adjust your values according to your system
 	settings = {

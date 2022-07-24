@@ -1,5 +1,5 @@
 vim.api.nvim_create_user_command('HMSwitch', '! home-manager switch', {})
-vim.api.nvim_create_user_command('EwwBar', '! eww open bar', {})
+vim.api.nvim_create_user_command('Problems', 'Telescope diagnostics', {})
 
 local group = vim.api.nvim_create_augroup('WilliamS', {
 	clear = true,
@@ -16,10 +16,18 @@ vim.api.nvim_create_autocmd(
 
 vim.api.nvim_create_autocmd(
 	'CursorHold',
-	{ command = "lua require('hover').hover()", group = group }
+	{ command = "silent lua require('hover').hover()", group = group }
 )
 
 vim.api.nvim_create_autocmd(
 	'BufWritePre',
-	{ command = 'lua vim.lsp.buf.formatting_sync()', group = group }
+	{ command = 'silent lua vim.lsp.buf.formatting_sync()', group = group }
 )
+
+vim.api.nvim_create_autocmd('User', {
+	pattern = 'LuasnipChoiceNodeEnter',
+	callback = function()
+		-- vim.ui.select()
+	end,
+	group = group,
+})
