@@ -1,5 +1,9 @@
 { config, pkgs, lib, ... }:
 
+
+# let 
+#   spicetify = fetchTarball https://github.com/pietdevries94/spicetify-nix/archive/master.tar.gz;
+# in
 {
   imports = [ ./term.nix ./lang.nix ./work.nix ./nvim.nix ./wm/wm.nix ];
   nixpkgs.config.allowUnfree = true;
@@ -8,10 +12,20 @@
     htop
     insomnia vscode steam
     discord betterdiscordctl
-    spotify
     google-chrome
     git gh git-secret
     clang libcxx libcxxabi clang.bintools clang.bintools
+
+    # (import ./pkgs/spotify.nix {})
+
+    # (pkgs.callPackage (import "${spicetify}/package.nix") {
+    #   inherit pkgs;
+    #   theme = "Dribbblish";
+    #   colorScheme = "horizon";
+    #   enabledCustomApps = ["reddit"];
+    #   enabledExtensions = ["newRelease.js" "autoVolume.js"];
+    #   thirdParyExtensions = {};
+    # })
 
     (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; })
   ];

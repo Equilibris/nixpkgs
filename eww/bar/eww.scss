@@ -7,47 +7,46 @@ $light-colour: $frost-a;
 $sound-colour: $aurora-pink;
 
 * {
-    font-family: "FiraCode Nerd Font";
+  font-family: "FiraCode Nerd Font";
 }
 .base {
-    background-color: $bar-bg;
+  background-color: $bar-bg;
 
-    padding: 8px 0px;
+  padding: 8px 0px;
 }
 
 .metrics {
-    background-color: $metrics-bg;
+  background-color: $metrics-bg;
 
-    margin: 5px;
-    padding: 0px 8px 8px 8px;
+  margin: 5px;
+  padding: 0px 8px 8px 8px;
 
-    border-radius: 8px;
+  border-radius: 8px;
 
-    .sound {
-        color: $sound-colour;
-    }
-    .bat {
-        color: $bat-colour;
-    }
-    .light {
-        color: $light-colour;
-    }
+  .sound {
+    color: $sound-colour;
+  }
+  .bat {
+    color: $bat-colour;
+  }
+  .light {
+    color: $light-colour;
+  }
 
+  .resource {
+    color: $frost-b;
     .resource {
-        color: $frost-b;
-        .resource {
-            margin: 5px;
-            color: $frost-c;
-            .resource {
-                margin: 10px;
-                color: $frost-d;
-            }
-        }
+      margin: 5px;
+      color: $frost-c;
+      .resource {
+        margin: 10px;
+        color: $frost-d;
+      }
     }
+  }
 }
 
 .time {
-    font-size: 2em;
-    font-weight: bold;
+  font-size: 2em;
+  font-weight: bold;
 }
-

@@ -47,9 +47,10 @@ let
     '';
   };
 in {
-  home.packages = [
-    pkgs.neovim 
-    luaLsp pkgs.rust-analyzer pkgs.statix
+  home.packages = with pkgs; [
+    neovim 
+    luaLsp rust-analyzer statix stylua 
+    ripgrep proselint wget
   ];
 
   # environment.variables.EDITOR = "nvim";

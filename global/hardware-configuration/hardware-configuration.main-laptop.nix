@@ -34,7 +34,7 @@ in with options;
     # hardware.opengl.enable = true;
     # hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
 
-    swapDevices = [ { device = "/dev/nvme0n1p6"; size = 16384; } ];
+    # swapDevices = [ { device = "/dev/nvme0n1p6"; size = 16384; } ];
 
     # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
     # (the default) this is the recommended approach. When using systemd-networkd it's
