@@ -4,6 +4,9 @@ local capabilities = config.capabilities
 
 require('lspconfig').sumneko_lua.setup {
 	on_attach = config.create_on_attach_effect(function(client, bufnr)
+		client.resolved_capabilities.document_formatting = false
+		client.resolved_capabilities.document_range_formatting = false
+
 		vim.api.nvim_buf_set_option(bufnr, 'tabstop', 2)
 		vim.api.nvim_buf_set_option(bufnr, 'softtabstop', 2)
 		vim.api.nvim_buf_set_option(bufnr, 'shiftwidth', 2)
