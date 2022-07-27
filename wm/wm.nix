@@ -9,6 +9,7 @@
     wl-clipboard copyq
     tmux
     fnott libnotify
+    (import ../pkgs/eww.nix {})
   ]);
 
   home.file = {
