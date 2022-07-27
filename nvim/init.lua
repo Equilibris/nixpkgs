@@ -11,6 +11,8 @@ require('packer').startup(function(use)
     end
 	use 'wbthomason/packer.nvim'
 
+	use { 'smithbm2316/centerpad.nvim' }
+
 	use 'ahmedkhalf/project.nvim'
 
 	use 'shaunsingh/nord.nvim'

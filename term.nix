@@ -40,6 +40,8 @@
       alias cls=clear
 
       alias :q=exit
+      alias hms="home-manager switch"
+      alias :hms=hms
 
       killPort() {
         fp | grep $1 | echo
