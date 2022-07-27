@@ -10,7 +10,7 @@
 (defvar lightctrl "false")
 (defvar soundctrl "false")
 
-(defvar eww "~/bin/eww")
+(defvar eww "/home/williams/.nix-profile/bin/eww")
 
 (defwidget time []
   (box
