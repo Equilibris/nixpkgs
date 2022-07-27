@@ -63,17 +63,17 @@
       };
     };
   }) {} [ 
-    {
-      name = "themes/nordic.theme.css"; id = 33; 
-      sha256 = "hazRQ45BSkOZ4YnqDw/xTzcXowBgG762vP8zhNrnEZ4=";
-    }
-    {
-      name = "themes/ClearVision.theme.css"; id = 23;
-      sha256 = "3YgErNGy1Q7tTPrQ1R9U/2b9GY2DdhxjbAF/P2aZXyA=";
-    }
-    {
-      name = "plugins/ShowHiddenChannels.plugin.js"; id = 103;
-      sha256 = "DZmbmc7JFR38o9dHeZLhJkQc/jjkNbUxCj6n6ibXxgs=";
-    }
+#     {
+#       name = "themes/nordic.theme.css"; id = 33; 
+#       sha256 = "hazRQ45BSkOZ4YnqDw/xTzcXowBgG762vP8zhNrnEZ4=";
+#     }
+#     {
+#       name = "themes/ClearVision.theme.css"; id = 23;
+#       sha256 = "3YgErNGy1Q7tTPrQ1R9U/2b9GY2DdhxjbAF/P2aZXyA=";
+#     }
+#     {
+#       name = "plugins/ShowHiddenChannels.plugin.js"; id = 103;
+#       sha256 = "DZmbmc7JFR38o9dHeZLhJkQc/jjkNbUxCj6n6ibXxgs=";
+#     }
   ];
 }

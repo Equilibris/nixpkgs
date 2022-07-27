@@ -1,26 +1,14 @@
--- https://github.com/nanotee/nvim-lua-guide
-require 'sets'
-require 'maps'
-require 'commands'
-require 'plugins.toggleterm'
-require 'plugins.treesitter'
-require 'plugins.nvim-tree'
-require 'plugins.telescope'
-require 'plugins.trouble'
-require 'plugins.cokeline'
-require 'plugins.presence'
-require 'plugins.gitsigns'
-require 'plugins.diffview'
-require 'plugins.surround'
-require 'plugins.comment'
-require 'plugins.lualine'
-require 'plugins.project'
-require 'plugins.hop'
-require 'lsp.init'
+local fn = vim.fn
+local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+if fn.empty(fn.glob(install_path)) > 0 then
+  packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+  vim.cmd [[packadd packer.nvim]]
+end
 
-vim.cmd [[packadd packer.nvim]]
-
-require('packer').startup(function()
+require('packer').startup(function(use)
+    if packer_bootstrap then
+        require('packer').sync()
+    end
 	use 'wbthomason/packer.nvim'
 
 	use 'ahmedkhalf/project.nvim'
@@ -77,3 +65,23 @@ require('packer').startup(function()
 
 	use 'andweeb/presence.nvim'
 end)
+
+-- https://github.com/nanotee/nvim-lua-guide
+require 'sets'
+require 'maps'
+require 'commands'
+require 'plugins.toggleterm'
+require 'plugins.treesitter'
+require 'plugins.nvim-tree'
+require 'plugins.telescope'
+require 'plugins.trouble'
+require 'plugins.cokeline'
+require 'plugins.presence'
+require 'plugins.gitsigns'
+require 'plugins.diffview'
+require 'plugins.surround'
+require 'plugins.comment'
+require 'plugins.lualine'
+require 'plugins.project'
+require 'plugins.hop'
+require 'lsp.init'
