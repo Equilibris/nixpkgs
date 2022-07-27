@@ -158,7 +158,7 @@
       };
       recursive = true;
     };
-  } // 
+  } //
     lib.lists.fold 
       (curr: acc: acc // {
         "bin/${curr.name}" = {

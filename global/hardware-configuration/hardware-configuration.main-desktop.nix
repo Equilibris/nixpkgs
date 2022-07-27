@@ -23,6 +23,27 @@
       fsType = "vfat";
     };
 
+  sound.extraConfig = 
+    ''
+      @hooks [
+          {
+              func load
+              files [
+                  "~/.asoundrc"
+              ]
+              errors false
+          }
+      ]
+      pcm.!default {
+        type hw
+        card "Wireless"
+      }
+      ctl.!default {
+        type hw
+        card "Wireless"
+      }
+    '';
+
   swapDevices = [ ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
