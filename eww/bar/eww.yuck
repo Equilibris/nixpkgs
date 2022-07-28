@@ -43,7 +43,7 @@
           :spacing 8
 
           (eventbox
-            :halign "center" :height 20 :width 20 :class "lock" :onclick "pixel-lock")
+            :halign "center" :height 20 :width 20 :class "lock" :onclick "tmux new 'pixel-lock > ~/locklog'")
           (eventbox
             :halign "center" :height 20 :width 20 :class "exit" :onclick "swaymsg exit")
           (eventbox

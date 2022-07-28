@@ -1,4 +1,5 @@
-#!/usr/bin/env bash
+#! /usr/bin/env nix-shell
+#! nix-shell -i bash -p imagemagick grim
 
 # based on
 # https://github.com/JacobErnst98/i3-Pixel-Lock/blob/master/lock
