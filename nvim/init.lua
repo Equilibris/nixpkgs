@@ -1,14 +1,21 @@
 local fn = vim.fn
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+local install_path = fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
-  packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-  vim.cmd [[packadd packer.nvim]]
+	packer_bootstrap = fn.system {
+		'git',
+		'clone',
+		'--depth',
+		'1',
+		'https://github.com/wbthomason/packer.nvim',
+		install_path,
+	}
+	vim.cmd [[packadd packer.nvim]]
 end
 
 require('packer').startup(function(use)
-    if packer_bootstrap then
-        require('packer').sync()
-    end
+	if packer_bootstrap then
+		require('packer').sync()
+	end
 	use 'wbthomason/packer.nvim'
 
 	use { 'smithbm2316/centerpad.nvim' }
@@ -64,6 +71,7 @@ require('packer').startup(function(use)
 	use 'nvim-lua/plenary.nvim'
 	use 'sindrets/diffview.nvim'
 	use 'lewis6991/gitsigns.nvim'
+	use 'TimUntersberger/neogit'
 
 	use 'andweeb/presence.nvim'
 end)
@@ -79,8 +87,7 @@ require 'plugins.telescope'
 require 'plugins.trouble'
 require 'plugins.cokeline'
 require 'plugins.presence'
-require 'plugins.gitsigns'
-require 'plugins.diffview'
+require 'plugins.git'
 require 'plugins.surround'
 require 'plugins.comment'
 require 'plugins.lualine'
