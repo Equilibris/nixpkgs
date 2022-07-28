@@ -1,6 +1,7 @@
 (defpoll clock_hour   :interval "5s" "date +\%H")
 (defpoll clock_minute :interval "5s" "date +\%M")
 
+(defpoll has_bat     :interval "10h" "test -f /sys/class/power/BAT0 && echo true || echo false")
 (defpoll bat_percent :interval "10s" "get-battery Percent")
 (defpoll bat_icon    :interval "10s" "get-battery Icon")
 (defpoll light_level :interval "10h" "sudo light")
@@ -163,6 +164,6 @@
         :class "metrics"
         (sound)
         (light)
-        (bat)
+        (literal :content { has_bat ? "(bat)" : "(box)" })
         (system_resources))
         (time))))
