@@ -2,6 +2,7 @@
 
 {
   home.packages = with pkgs; [
+    fzf
     thefuck
     (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; })
     jq
@@ -29,6 +30,7 @@
 
       alias findPorts="nix-shell -p lsof --run \"sudo lsof -i -P -n | grep LISTEN\""
       alias fp=findPorts
+      alias ls-bins="compgen -c"
       alias get-local-ip="ip route get 1.2.3.4 | awk '{print $3}'"
 
       alias cfg="cd ~/.config/nixpkgs"
@@ -42,6 +44,8 @@
       alias :q=exit
       alias hms="home-manager switch"
       alias :hms=hms
+
+      # xhost +SI:localuser:root > /dev/null
 
       killPort() {
         fp | grep $1 | echo
