@@ -174,6 +174,7 @@
       }) {} [
         { name = "get-battery"; src = ./scripts/get-batery; }
         { name = "toggle_kbd";  src = ./scripts/toggle_kbd; }
+        { name = "pixel-lock";  src = ./scripts/pixel-lock; }
       ];
 }
 
