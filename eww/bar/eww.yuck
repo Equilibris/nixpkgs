@@ -10,8 +10,47 @@
 
 (defvar lightctrl "false")
 (defvar soundctrl "false")
+(defvar powermenu "false")
 
-(defvar eww "/home/williams/.nix-profile/bin/eww")
+(defvar eww "eww")
+
+(defwidget pmenu []
+  (eventbox
+    :onhover "${eww} update powermenu=true"
+    :onhoverlost "${eww} update powermenu=false"
+    :duration "650ms"
+    (box
+      :orientation "v" 
+      :class "power"
+      :valign "end"
+      :vexpand true
+      :halign "center"
+      :orientation "v"
+      :space-evenly false
+      :spacing 8
+
+      (box 
+        :class "main"
+        :hexpand false
+        :height 40
+        :width 40)
+      (revealer
+        :transition "slidedown"
+        :reveal powermenu
+        :visable powermenu 
+        (box
+          :orientation "v"
+          :spacing 8
+
+          (eventbox
+            :halign "center" :height 20 :width 20 :class "lock" :onclick "pixel-lock")
+          (eventbox
+            :halign "center" :height 20 :width 20 :class "exit" :onclick "swaymsg exit")
+          (eventbox
+            :halign "center" :height 20 :width 20 :class "restart" :onclick "shutdown -r 0")
+          (eventbox
+            :halign "center" :height 20 :width 20 :class "shutdown" :onclick "shutdown 0")
+          )))))
 
 (defwidget time []
   (box
@@ -151,7 +190,7 @@
   (box
     :orientation "v"
     :class "base"
-    (box :valign "start" "hello")
+    (box :valign "start" (pmenu))
     (box 
       :space-evenly false
       :orientation "v"

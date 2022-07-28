@@ -6,6 +6,12 @@ $bat-colour: $aurora-yellow;
 $light-colour: $frost-a;
 $sound-colour: $aurora-pink;
 
+$power-colour: $aurora-red;
+$shutdown-colour: $aurora-red;
+$lock-colour: $frost-a;
+$restart-colour: $aurora-yellow;
+$exit-colour: $aurora-pink;
+
 * {
   font-family: "FiraCode Nerd Font";
 }
@@ -13,6 +19,29 @@ $sound-colour: $aurora-pink;
   background-color: $bar-bg;
 
   padding: 8px 0px;
+}
+
+.power {
+    * {
+        border-radius: 50%;
+    }
+
+    .main {
+        background-color: $power-colour;
+    }
+
+    .shutdown {
+        background-color: $shutdown-colour;
+    }
+    .restart {
+        background-color: $restart-colour;
+    }
+    .exit {
+        background-color: $exit-colour;
+    }
+    .lock {
+        background-color: $lock-colour;
+    }
 }
 
 .metrics {
