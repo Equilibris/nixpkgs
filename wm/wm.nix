@@ -4,6 +4,8 @@
 , ... }:
 {
   home.packages = (with pkgs; [ 
+    xorg.xhost polkit
+
     rofi
     slurp grim
     wl-clipboard copyq
