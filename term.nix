@@ -172,7 +172,7 @@
           executable = true;
         };
       }) {} [
-        { name = "get-battery"; src = ./scripts/get-batery; }
+        { name = "get-battery"; src = ./scripts/get-battery; }
         { name = "toggle_kbd";  src = ./scripts/toggle_kbd; }
         { name = "pixel-lock";  src = ./scripts/pixel-lock; }
       ];

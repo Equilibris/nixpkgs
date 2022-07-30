@@ -22,6 +22,9 @@
     ".config/sway/config" = {
       source = config.lib.file.mkOutOfStoreSymlink ./sway.config;
     };
+    ".swaylock/config" = {
+      source = config.lib.file.mkOutOfStoreSymlink ./swaylock.config;
+    };
     ".config/fnott/fnott.ini" = {
       source = config.lib.file.mkOutOfStoreSymlink ./fnott.ini;
     };
