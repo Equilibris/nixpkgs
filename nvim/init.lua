@@ -32,6 +32,7 @@ require('packer').startup(function(use)
 
 	use 'kylechui/nvim-surround'
 	use 'phaazon/hop.nvim'
+	use 'declancm/cinnamon.nvim'
 
 	use 'LnL7/vim-nix'
 	use 'elkowar/yuck.vim'
@@ -74,6 +75,8 @@ require('packer').startup(function(use)
 	use 'TimUntersberger/neogit'
 
 	use 'andweeb/presence.nvim'
+
+	use '~/Dev/MicroProjects/nx.nvim'
 end)
 
 -- https://github.com/nanotee/nvim-lua-guide
@@ -84,13 +87,14 @@ require 'plugins.toggleterm'
 require 'plugins.treesitter'
 require 'plugins.nvim-tree'
 require 'plugins.telescope'
+require 'plugins.cinnamon'
 require 'plugins.trouble'
 require 'plugins.cokeline'
 require 'plugins.presence'
-require 'plugins.git'
 require 'plugins.surround'
 require 'plugins.comment'
 require 'plugins.lualine'
 require 'plugins.project'
+require 'plugins.git'
 require 'plugins.hop'
 require 'lsp.init'
