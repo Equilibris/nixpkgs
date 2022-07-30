@@ -1,7 +1,7 @@
 (defpoll clock_hour   :interval "5s" "date +\%H")
 (defpoll clock_minute :interval "5s" "date +\%M")
 
-(defpoll has_bat     :interval "10h" "test -f /sys/class/power/BAT0 && echo true || echo false")
+(defpoll has_bat     :interval "10h" "stat /sys/class/power_supply/BAT0 > /dev/null && echo true || echo false")
 (defpoll bat_percent :interval "10s" "get-battery Percent")
 (defpoll bat_icon    :interval "10s" "get-battery Icon")
 (defpoll light_level :interval "10h" "sudo light")
@@ -64,7 +64,7 @@
     :class "bat"
     :orientation "v"
     :valign "end"
-    (metric :value bat_percent :name "battery")))
+    (metric :value { has_bat ? bat_percent : 100 } :name "battery")))
 (defwidget sound []
   (eventbox
     :onhover "${eww} update soundctrl=true"
@@ -203,6 +203,7 @@
         :class "metrics"
         (sound)
         (light)
-        (literal :content { has_bat ? "(bat)" : "(box)" })
+        (bat)
+        ; (literal :content )
         (system_resources))
         (time))))
