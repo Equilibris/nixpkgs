@@ -7,7 +7,12 @@
   imports =
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
-  environment.systemPackages = [(import ./crate-randr.nix "wlr-randr --output DP-1 --pos 1920,0 --output HDMI-A-1 --pos 0,0" {})];
+  environment.systemPackages = [
+    (import 
+      ./create-randr.nix 
+      "wlr-randr --output DP-1 --pos 1920,0 --output HDMI-A-1 --pos 0,0" 
+      {})
+  ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
