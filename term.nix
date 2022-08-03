@@ -45,6 +45,8 @@
       alias hms="home-manager switch"
       alias :hms=hms
 
+      screenshot () { grim  -g "$(slurp)" /tmp/$(date +'%H:%M:%S.png') }
+
       # xhost +SI:localuser:root > /dev/null
 
       killPort() {
