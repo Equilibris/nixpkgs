@@ -36,6 +36,7 @@
       alias cfg="cd ~/.config/nixpkgs"
 
       alias gp="git push"
+      alias gP="git pull"
       alias gs="git status"
 
       alias cfile="copyq copy <"
