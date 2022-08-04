@@ -1,6 +1,6 @@
 require('nvim-surround').setup {
 	keymaps = { -- vim-surround style keymaps
-		insert = 'ys',
+		-- insert = 'ys',
 		visual = 'S',
 		delete = 'ds',
 		change = 'cs',
@@ -33,3 +33,7 @@ require('nvim-surround').setup {
 		},
 	},
 }
+
+-- Hack to remove insertmode mappings
+vim.api.nvim_set_keymap('i', 'ys', 'ys', { noremap = true })
+vim.api.nvim_del_keymap('i', 'ys')
