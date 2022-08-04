@@ -11,6 +11,7 @@ end
 
 local luasnip = require 'luasnip'
 local cmp = require 'cmp'
+local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
 
 cmp.setup {
 	snippet = {
@@ -105,3 +106,5 @@ cmp.setup.cmdline(':', {
 		{ name = 'cmdline' },
 	}),
 })
+
+cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())

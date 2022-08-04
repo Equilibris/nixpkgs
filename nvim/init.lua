@@ -31,6 +31,7 @@ require('packer').startup(function(use)
 	use { 'akinsho/toggleterm.nvim', tag = 'v1.*' }
 
 	use 'kylechui/nvim-surround'
+	use 	"windwp/nvim-autopairs"
 	use 'phaazon/hop.nvim'
 	use 'declancm/cinnamon.nvim'
 
