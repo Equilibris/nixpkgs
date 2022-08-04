@@ -19,10 +19,11 @@ vim.api.nvim_create_autocmd(
 	{ command = "silent lua require('hover').hover()", group = group }
 )
 
-vim.api.nvim_create_autocmd(
-	'BufWritePre',
-	{ command = 'silent lua vim.lsp.buf.formatting_sync()', group = group }
-)
+vim.cmd [[cabbrev wq execute "Format sync" <bar> wq]]
+-- vim.api.nvim_create_autocmd(
+-- 	'BufWritePre',
+-- 	{ command = 'silent lua vim.lsp.buf.formatting_sync()', group = group }
+-- )
 
 vim.api.nvim_create_autocmd('User', {
 	pattern = 'LuasnipChoiceNodeEnter',

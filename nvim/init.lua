@@ -46,6 +46,7 @@ require('packer').startup(function(use)
 
 	use 'lewis6991/hover.nvim'
 	use 'williamboman/nvim-lsp-installer'
+	use 'lukas-reineke/lsp-format.nvim'
 	use 'b0o/schemastore.nvim'
 	use 'simrat39/rust-tools.nvim'
 	use 'neovim/nvim-lspconfig'
