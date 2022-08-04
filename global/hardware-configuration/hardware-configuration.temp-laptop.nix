@@ -7,6 +7,7 @@
   imports =
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
+  environment.systemPackagess = [ (import ./create-randr.nix [] {}); ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];

@@ -10,7 +10,8 @@ in with options;
     imports =
       [ (modulesPath + "/installer/scan/not-detected.nix")
       ];
-    environment.systemPackages = [(import ./crate-randr.nix "" {})];
+
+    environment.systemPackagess = [ (import ./create-randr.nix [] {}); ];
 
     boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
     boot.initrd.kernelModules = [ ];
