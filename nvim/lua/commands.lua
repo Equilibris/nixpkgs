@@ -1,6 +1,8 @@
 vim.api.nvim_create_user_command('HMSwitch', '! home-manager switch', {})
 vim.api.nvim_create_user_command('Problems', 'Telescope diagnostics', {})
-vim.api.nvim_create_user_command('Gc', 'Neogit commit', {})
+vim.api.nvim_create_user_command('GC', 'GitCommit', {})
+vim.api.nvim_create_user_command('GitCommit', 'Neogit commit', {})
+vim.api.nvim_create_user_command('GAS', 'GitAddSelf', {})
 vim.api.nvim_create_user_command('GitAddSelf', '! git add %', {})
 
 local group = vim.api.nvim_create_augroup('WilliamS', {
