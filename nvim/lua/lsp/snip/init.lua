@@ -39,6 +39,18 @@ ls.add_snippets('all', {
 	-- 	})
 	-- ),
 })
+ls.add_snippets('toml', {
+	postfix('.feat', {
+		f(function(_, parent)
+			return '{ version = '
+				.. parent.snippet.env.POSTFIX_MATCH
+				.. ', features = [ '
+		end),
+		i(1),
+		t ' ] }',
+		i(0),
+	}),
+})
 -- hellohelloWill be appended to text from
 -- Ugh boring, a text node
 -- Ugh boring, a text node
