@@ -57,7 +57,7 @@ cmp.setup {
 				fallback()
 			end
 		end),
-		['<Space>'] = complete_mapping,
+		-- ['<Space>'] = complete_mapping,
 		['<Tab>'] = complete_mapping,
 		['<S-Tab>'] = cmp.mapping(function(fallback)
 			if cmp.visible() then
