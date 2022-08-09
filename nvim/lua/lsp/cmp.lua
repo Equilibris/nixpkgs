@@ -13,6 +13,16 @@ local luasnip = require 'luasnip'
 local cmp = require 'cmp'
 local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
 
+local complete_mapping = cmp.mapping(function(fallback)
+	if cmp.visible() then
+		cmp.confirm { select = true }
+	elseif luasnip.expand_or_jumpable() then
+		luasnip.expand_or_jump()
+	else
+		fallback()
+	end
+end, { 'i', 's' })
+
 cmp.setup {
 	snippet = {
 		-- REQUIRED - you must specify a snippet engine
@@ -47,16 +57,8 @@ cmp.setup {
 				fallback()
 			end
 		end),
-
-		['<Tab>'] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.confirm { select = true }
-			elseif luasnip.expand_or_jumpable() then
-				luasnip.expand_or_jump()
-			else
-				fallback()
-			end
-		end, { 'i', 's' }),
+		['<Space>'] = complete_mapping,
+		['<Tab>'] = complete_mapping,
 		['<S-Tab>'] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.confirm { select = true }
