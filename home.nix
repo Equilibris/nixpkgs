@@ -13,7 +13,7 @@
     thefuck
     htop
     insomnia vscode steam
-    discord betterdiscordctl
+    discord
     google-chrome
     git gh git-secret
     clang libcxx libcxxabi clang.bintools clang.bintools
