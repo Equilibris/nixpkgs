@@ -17,7 +17,7 @@ require('nvim-lsp-installer').setup {
 	--   - true: All servers set up via lspconfig are automatically installed.
 	--   - { exclude: string[] }: All servers set up via lspconfig, except the ones provided in the list, are automatically installed.
 	--       Example: automatic_installation = { exclude = { "rust_analyzer", "solargraph" } }
-	automatic_installation = false,
+	automatic_installation = true,
 
 	ui = {
 		-- Whether to automatically check for outdated servers when opening the UI window.
@@ -28,11 +28,11 @@ require('nvim-lsp-installer').setup {
 
 		icons = {
 			-- The list icon to use for installed servers.
-			server_installed = '◍',
+			server_installed = '✓',
 			-- The list icon to use for servers that are pending installation.
-			server_pending = '◍',
+			server_pending = '➜',
 			-- The list icon to use for servers that are not installed.
-			server_uninstalled = '◍',
+			server_uninstalled = '✗',
 		},
 		keymaps = {
 			-- Keymap to expand a server in the UI
@@ -69,7 +69,7 @@ require('nvim-lsp-installer').setup {
 
 	-- Limit for the maximum amount of servers to be installed at the same time. Once this limit is reached, any further
 	-- servers that are requested to be installed will be put in a queue.
-	max_concurrent_installers = 4,
+	max_concurrent_installers = 16,
 
 	github = {
 		-- The template URL to use when downloading assets from GitHub.

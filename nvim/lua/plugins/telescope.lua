@@ -2,7 +2,7 @@ local actions = require 'telescope.actions'
 
 local global_mappings = {
 	['<A-j>'] = actions.move_selection_next,
-	['<A-k>'] = actions.move_selection_next,
+	['<A-k>'] = actions.move_selection_previous,
 }
 
 require('telescope').setup {

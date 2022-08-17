@@ -109,7 +109,7 @@ require('nvim-tree').setup {
 				},
 				{ key = '-', action = 'dir_up' },
 				{
-					key = 'f',
+					key = '/',
 					action = 'live_filter',
 				},
 				{
@@ -150,10 +150,14 @@ require('nvim-tree').setup {
 			},
 		},
 	},
+	live_filter = {
+		prefix = '[/]: ',
+		always_show_folders = true,
+	},
 	renderer = {
 		group_empty = true,
 	},
 	filters = {
-		dotfiles = true,
+		dotfiles = false,
 	},
 }
