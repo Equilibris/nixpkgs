@@ -15,7 +15,7 @@
       y = 0;
     }
     {
-      output = "HDMI-A-1";
+      output = "HDMI-1";
       x = 3840;
       y = 0;
     }

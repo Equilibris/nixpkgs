@@ -4,7 +4,7 @@ let
   textContent = pkgs.lib.lists.fold (
     curr: acc: "${acc} --output ${curr.output} --pos ${
       builtins.toString curr.x
-    },${
+    }x${
       builtins.toString curr.y
     }"
     ) "" config;
@@ -18,7 +18,7 @@ let
       #! nix-shell -i bash -p wlr-randr xorg.xhost
 
       xhost +SI:localuser:root > /dev/null
-      wlr-randr ${textContent}
+      xrandr ${textContent}
     '';
   };
 in pkgs.stdenv.mkDerivation rec {
@@ -29,7 +29,7 @@ in pkgs.stdenv.mkDerivation rec {
   # derivation.
   #
   buildInputs = [ myScript ];
-  nativeBuildInputs = [ pkgs.wlr-randr ];
+  nativeBuildInputs = [ pkgs.xorg.xrandr ];
   builder = pkgs.writeTextFile {
     name = "builder.sh";
     text = ''

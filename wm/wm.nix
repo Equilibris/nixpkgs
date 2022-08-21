@@ -19,7 +19,7 @@
       source = ../eww;
       recursive = true;
     };
-    ".config/sway/config" = {
+    ".config/i3/config" = {
       source = config.lib.file.mkOutOfStoreSymlink ./sway.config;
     };
     ".swaylock/config" = {

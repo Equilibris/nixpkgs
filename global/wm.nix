@@ -2,6 +2,12 @@
 
 let 
   options = import ./options.nix;
+
+  deless-pkgs = with pkgs; [
+    glib # gsettings
+    nordic # gtk theme
+    gnome3.adwaita-icon-theme  # default gnome cursors
+  ];
 in with options;
   (lib.attrsets.optionalAttrs manager.gnome
   {
@@ -40,6 +46,29 @@ in with options;
       hitori # sudoku game
       atomix # puzzle game
     ]);
+  })//
+  (lib.attrsets.optionalAttrs manager.i3 {
+    services.xserver = {
+      enable = true;
+
+      desktopManager = {
+        xterm.enable = false;
+      };
+     
+      displayManager = {
+          defaultSession = "none+i3";
+      };
+
+      windowManager.i3 = {
+        enable = true;
+        package = pkgs.i3-gaps;
+        extraPackages = deless-pkgs ++ (with pkgs; [
+          i3lock #default i3 screen locker
+       ]);
+      };
+    };
+    
+    programs.dconf.enable = true;
   })//
   (lib.attrsets.optionalAttrs manager.sway
     (let
@@ -82,16 +111,13 @@ in with options;
       };
     in
     {
-      environment.systemPackages = with pkgs; [
-        sway
-        dbus-sway-environment
+      environment.systemPackages = deless-pkgs ++ (with pkgs; [
         configure-gtk
         wayland
-        glib # gsettings
-        nordic # gtk theme
-        gnome3.adwaita-icon-theme  # default gnome cursors
+        sway
+        dbus-sway-environment
         mako # notification system developed by swaywm maintainer
-      ];
+      ]);
 
       # xdg-desktop-portal works by exposing a series of D-Bus interfaces
       # known as portals under a well-known name
