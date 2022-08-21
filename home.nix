@@ -18,6 +18,8 @@
     git gh git-secret
     clang libcxx libcxxabi clang.bintools clang.bintools
 
+    obsidian
+
     # (import ./pkgs/spotify.nix {})
 
     # (pkgs.callPackage (import "${spicetify}/package.nix") {
