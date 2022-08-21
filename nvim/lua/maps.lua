@@ -26,7 +26,14 @@ vim.api.nvim_set_keymap('v', '<A-k>', ":m '<-2<CR>gv=gv", nore)
 vim.api.nvim_set_keymap(
 	'n',
 	'<C-p>',
-	"<cmd>lua require('telescope.builtin').find_files()<cr>",
+
+	[[:lua << EOF
+	require('telescope.builtin').find_files {
+		hidden = true,
+		cwd = vim.fn.systemlist('git rev-parse --show-toplevel')[1],
+	}
+EOF
+]],
 	nore
 )
 vim.api.nvim_set_keymap(

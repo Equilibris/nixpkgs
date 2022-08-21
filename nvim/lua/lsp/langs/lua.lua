@@ -4,6 +4,8 @@ local capabilities = config.capabilities
 
 require('lspconfig').sumneko_lua.setup {
 	on_attach = config.create_on_attach_effect(function(client, bufnr)
+		vim.opt.spell = false
+
 		client.resolved_capabilities.document_formatting = false
 		client.resolved_capabilities.document_range_formatting = false
 

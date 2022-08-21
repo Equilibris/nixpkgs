@@ -11,8 +11,6 @@ in with options;
       [ (modulesPath + "/installer/scan/not-detected.nix")
       ];
 
-    environment.systemPackagess = [ (import ./create-randr.nix [] {}); ];
-
     boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
     boot.initrd.kernelModules = [ ];
     boot.kernelModules = [ "kvm-amd" ];
@@ -30,6 +28,11 @@ in with options;
     fileSystems."/mnt/win" = 
       { device  = "/dev/nvme0n1p3";
         fsType = "ntfs";
+      };
+    fileSystems."/home/williams/ext" = 
+      { device = "/dev/nvme0n1p7";
+        fsType = "ext4";
+        options = [ "rw" "suid" "dev" "exec" "auto" "user" "async"];
       };
 
     # services.xserver.videoDrivers = lib.optionals useXorg [ "nvidia" "amd" ];
