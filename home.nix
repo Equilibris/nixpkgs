@@ -6,7 +6,8 @@
 # in
 {
   imports = [ 
-    ./spotify.nix ./term.nix ./lang.nix ./work.nix ./nvim.nix ./wm/wm.nix
+    ./spotify.nix ./term.nix ./lang.nix ./nvim.nix ./wm/wm.nix
+    ./work.nix ./school.nix
   ];
   nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
