@@ -7,7 +7,7 @@ let
 
   docker = true;
 
-  aws = false;
+  aws = true;
 in 
   {
     home.packages = with pkgs;

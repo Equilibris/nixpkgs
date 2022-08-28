@@ -9,6 +9,10 @@ local group = vim.api.nvim_create_augroup('WilliamS', {
 	clear = true,
 })
 
+-- vim.api.nvim_create_autocmd('BufRead,BufNewFile', {
+-- 	command = 'silent luafile init.lua',
+-- })
+
 vim.api.nvim_create_autocmd(
 	'BufWritePost',
 	{ pattern = '*.lua', command = 'silent luafile %', group = group }

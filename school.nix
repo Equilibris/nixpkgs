@@ -5,5 +5,5 @@ let
   school = true;
 in
   if school then {
-    home.packages = [ pkgs.teams ];
+    home.packages = [ pkgs.teams pkgs.openscad ];
   } else {}

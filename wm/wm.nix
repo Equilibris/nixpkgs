@@ -2,11 +2,12 @@
 , pkgs
 , lib
 , ... }:
+let rofi-themes = import ../pkgs/rofi-themes.nix {}; in
 {
   home.packages = (with pkgs; [ 
     xorg.xhost polkit
 
-    rofi
+    rofi rofi-themes
     slurp grim
     wl-clipboard copyq
     tmux
@@ -28,6 +29,10 @@
     ".config/fnott/fnott.ini" = {
       source = config.lib.file.mkOutOfStoreSymlink ./fnott.ini;
     };
+    # ".config/rofi" = {
+    #   source = rofi-themes;
+    #   recursive = true;
+    # };
     "walls/nordic/nixos.png" = {
       source = pkgs.fetchurl {
         url = "https://raw.githubusercontent.com/linuxdotexe/nordic-wallpapers/master/wallpapers/nixos.png";
