@@ -53,7 +53,7 @@
       # export PATH=$PATH:~/.npm-global/bin
       # export PATH=$PATH:~/bin
 
-      # eval $(thefuck --alias)
+      thefuck --alias | source
       # eval "$(~/bin/oh-my-posh init zsh --config ~/.config/nixpkgs/posh.config.json)"
 
       # xhost +SI:localuser:root > /dev/null
