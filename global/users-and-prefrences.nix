@@ -16,7 +16,7 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
-  users.defaultUserShell = pkgs.zsh;
+  users.defaultUserShell = pkgs.fish;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.williams = {

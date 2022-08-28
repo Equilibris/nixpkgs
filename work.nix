@@ -16,7 +16,7 @@ in
   if work then {
     home.packages = [ python-with-deps ];
 
-    programs.zsh.initExtra = ''
+    programs.fish.shellInit = ''
       alias ca="export CODEARTIFACT_AUTH_TOKEN=$(aws codeartifact get-authorization-token --domain powercatch --domain-owner 232639570454 --query authorizationToken --output text --profile mfa) \
         && aws codeartifact login --tool npm --domain powercatch --domain-owner 232639570454 --repository npm-store --profile mfa"
 

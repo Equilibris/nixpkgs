@@ -6,6 +6,7 @@
     thefuck
     (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; })
     jq
+    coreutils
   ];
   programs.bash = {
     enable = true;
@@ -14,54 +15,68 @@
     '';
   };
 
-  programs.zsh = {
+  programs.fish = {
     enable = true;
 
-    enableCompletion = true;
-    initExtra = ''
-      source ~/.oh-my-zsh/custom/plugins/nx-completion/nx-completion.plugin.zsh
-      npm set prefix ~/.npm-global
+    shellAbbrs = {
+      cls = "clear";
+      cfile = "copyq copy <";
+      hms = "home-manager switch";
+      ":hms" = "hms";
+      ":q" = "exit";
 
-      export PATH=$PATH:~/.npm-global/bin
-      export PATH=$PATH:~/bin
+      gp = "git push";
+      gP = "git pull";
+      gs = "git status";
 
-      eval $(thefuck --alias)
-      eval "$(~/bin/oh-my-posh init zsh --config ~/.config/nixpkgs/posh.config.json)"
+      cfg = "cd ~/.config/nixpkgs";
 
-      alias findPorts="nix-shell -p lsof --run \"sudo lsof -i -P -n | grep LISTEN\""
-      alias fp=findPorts
-      alias ls-bins="compgen -c"
-      alias get-local-ip="ip route get 1.2.3.4 | awk '{print $3}'"
+      "get-local-ip" = "ip route get 1.2.3.4 | awk '{print $3}'";
+      "ls-bins" = "compgen -c";
 
-      alias cfg="cd ~/.config/nixpkgs"
+      "find-ports" = "nix-shell -p lsof --run \"sudo lsof -i -P -n | grep LISTEN\"";
+      fp = "find-ports";
+    };
 
-      alias gp="git push"
-      alias gP="git pull"
-      alias gs="git status"
+    shellInit = ''
+      # for p in /run/current-system/sw/bin
+      #   if not contains $p $fish_user_paths
+      #     set -g fish_user_paths $p $fish_user_paths
+      #   end
+      # end
+      source ~/bin/fisher
 
-      alias cfile="copyq copy <"
-      alias cls=clear
+      fish_add_path --move --prepend --path $HOME/.nix-profile/bin /run/wrappers/bin /etc/profiles/per-user/$USER/bin /nix/var/nix/profiles/default/bin /run/current-system/sw/bin
+      # source ~/.oh-my-zsh/custom/plugins/nx-completion/nx-completion.plugin.zsh
+      # npm set prefix ~/.npm-global
 
-      alias :q=exit
-      alias hms="home-manager switch"
-      alias :hms=hms
+      # export PATH=$PATH:~/.npm-global/bin
+      # export PATH=$PATH:~/bin
 
-      screenshot () { grim  -g "$(slurp)" /tmp/$(date +'%H:%M:%S.png') }
+      # eval $(thefuck --alias)
+      # eval "$(~/bin/oh-my-posh init zsh --config ~/.config/nixpkgs/posh.config.json)"
 
       # xhost +SI:localuser:root > /dev/null
 
-      killPort() {
+      function screenshot 
+        grim  -g "$(slurp)" /tmp/$(date +'%H:%M:%S.png')
+      end
+      function killPort
         fp | grep $1 | echo
-      }
+      end
       '';
 
-    oh-my-zsh = {
-      enable = true;
       plugins = [
-        "git" "sudo" "rust"
+        # {
+        #   name = "Tide";
+        #   src = pkgs.fetchFromGitHub {
+        #     owner = "IlanCosman";
+        #     repo = "tide";
+        #     rev = "13fa55ef109009e04e6e5fabda0d0e662b4e6315";
+        #     sha256 = "sha256-+6LdcFLqDzUcCmBoKO4LDH5+5odqVqUb1NmEVNMEMjs=";
+        #   };
+        # }
       ];
-      theme = "robbyrussell";
-    };
   };
 
   programs.kitty = {
@@ -74,98 +89,27 @@
     }}";
   };
 
-  programs.alacritty = {
-    enable = false;
-
-    settings = {
-      font.family = "FiraCode Nerd Font";
-
-      colors = {
-        primary = {
-          background = "#2e3440";
-          foreground = "#d8dee9";
-          dim_foreground = "#a5abb6";
-        };
-        cursor = {
-          text = "#2e3440";
-          cursor = "#d8dee9";
-        };
-        vi_mode_cursor = {
-          text = "#2e3440";
-          cursor = "#d8dee9";
-        };
-        selection = {
-          background = "#4c566a";
-        };
-        search = {
-          matches = {
-            background = "#88c0d0";
-          };
-          bar = {
-            background = "#434c5e";
-            foreground = "#d8dee9";
-          };
-        };
-        normal = {
-          black = "#3b4252";
-          red = "#bf616a";
-          green = "#a3be8c";
-          yellow = "#ebcb8b";
-          blue = "#81a1c1";
-          magenta = "#b48ead";
-          cyan = "#88c0d0";
-          white = "#e5e9f0";
-        };
-        bright = {
-          black = "#4c566a";
-          red = "#bf616a";
-          green = "#a3be8c";
-          yellow = "#ebcb8b";
-          blue = "#81a1c1";
-          magenta = "#b48ead";
-          cyan = "#8fbcbb";
-          white = "#eceff4";
-        };
-        dim = {
-          black = "#373e4d";
-          red = "#94545d";
-          green = "#809575";
-          yellow = "#b29e75";
-          blue = "#68809a";
-          magenta = "#8c738c";
-          cyan = "#6d96a5";
-          white = "#aeb3bb";
-        };
-      };
-    };
-  };
-
   home.file = {
     ".config/nix/nix.conf" = { source = ./nix.conf; };
+    "bin/fisher" = {
+      source = pkgs.fetchurl {
+        url = "https://git.io/fisher";
+        sha256 = "sha256-j6rgDiyFG4StG9WV2szKVeTAfW3oei1p27PqtIt9ONk=";
+      };
+      executable = true;
+    };
+    ".config/fish/fish_plugins" = {
+      text = ''
+        jorgebucaran/fisher
+        ilancosman/tide
+      '';
+    };
     "bin/oh-my-posh" = {
       source = pkgs.fetchurl {
         url = "https://github.com/JanDeDobbeleer/oh-my-posh/releases/download/v8.17.0/posh-linux-amd64";
         sha256 = "sha256-8krnWajeEclA677yk+8b72vlIsxWDdPF6cI361RrFoo=";
       };
       executable = true;
-    };
-    ".oh-my-zsh/custom/plugins/nx-completion" = {
-      source = pkgs.fetchFromGitHub {
-        owner = "jscutlery";
-        repo = "nx-completion";
-        rev = "84386914d55b2e73285069c8f156348255da4a60";
-        sha256 = "sha256-deYpsbnWDBk/uRzJetuHg+LSt6O9U1fOMBEv1GHBrPo=";
-      };
-      recursive = true;
-    };
-    ".oh-my-zsh/custom/plugins/nix-zsh-completions" = {
-      source = pkgs.fetchFromGitHub {
-        owner = "spwhitt";
-        repo = "nix-zsh-completions";
-        rev = "468d8cf752a62b877eba1a196fbbebb4ce4ebb6f";
-        sha256 = "TWgo56l+FBXssOYWlAfJ5j4pOHNmontOEolcGdihIJs=";
-      };
-      recursive = true;
     };
   } //
     lib.lists.fold 
