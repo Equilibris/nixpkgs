@@ -1,5 +1,8 @@
 { config, pkgs, lib, ... }:
 
+let
+  unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
+in
 {
   home.packages = with pkgs; [
     fzf
@@ -17,6 +20,7 @@
 
   programs.fish = {
     enable = true;
+    package = unstable.fish;
 
     shellAbbrs = {
       cls = "clear";
@@ -28,6 +32,7 @@
       gp = "git push";
       gP = "git pull";
       gs = "git status";
+      ga = "git add";
 
       cfg = "cd ~/.config/nixpkgs";
 
@@ -48,8 +53,8 @@
 
       fish_add_path --move --prepend --path $HOME/.nix-profile/bin /run/wrappers/bin /etc/profiles/per-user/$USER/bin /nix/var/nix/profiles/default/bin /run/current-system/sw/bin
       # source ~/.oh-my-zsh/custom/plugins/nx-completion/nx-completion.plugin.zsh
-      # npm set prefix ~/.npm-global
 
+      # npm set prefix ~/.npm-global
       # export PATH=$PATH:~/.npm-global/bin
       # export PATH=$PATH:~/bin
 
@@ -100,7 +105,7 @@
     };
     ".config/fish/fish_plugins" = {
       text = ''
-        jorgebucaran/fisher
+        jorgebucaran/fisher@4
         ilancosman/tide
       '';
     };
