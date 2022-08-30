@@ -10,6 +10,7 @@ in
     (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; })
     jq
     coreutils
+    exa
   ];
   programs.bash = {
     enable = true;
@@ -34,6 +35,8 @@ in
       gs = "git status";
       ga = "git add";
 
+      gc = "git commit";
+
       cfg = "cd ~/.config/nixpkgs";
 
       "get-local-ip" = "ip route get 1.2.3.4 | awk '{print $3}'";
@@ -41,6 +44,7 @@ in
 
       "find-ports" = "nix-shell -p lsof --run \"sudo lsof -i -P -n | grep LISTEN\"";
       fp = "find-ports";
+      l = "exa -al --icons";
     };
 
     shellInit = ''
@@ -54,11 +58,10 @@ in
       fish_add_path --move --prepend --path $HOME/.nix-profile/bin /run/wrappers/bin /etc/profiles/per-user/$USER/bin /nix/var/nix/profiles/default/bin /run/current-system/sw/bin
       # source ~/.oh-my-zsh/custom/plugins/nx-completion/nx-completion.plugin.zsh
 
-      # npm set prefix ~/.npm-global
-      # export PATH=$PATH:~/.npm-global/bin
-      # export PATH=$PATH:~/bin
+      npm set prefix ~/.npm-global
+      fish_add_path $HOME/.npm-global/bin
+      fish_add_path $HOME/bin
 
-      thefuck --alias | source
       # eval "$(~/bin/oh-my-posh init zsh --config ~/.config/nixpkgs/posh.config.json)"
 
       # xhost +SI:localuser:root > /dev/null
@@ -104,10 +107,7 @@ in
       executable = true;
     };
     ".config/fish/fish_plugins" = {
-      text = ''
-        jorgebucaran/fisher@4
-        ilancosman/tide
-      '';
+      source = config.lib.file.mkOutOfStoreSymlink ./fish/plugins.list;
     };
     "bin/oh-my-posh" = {
       source = pkgs.fetchurl {
