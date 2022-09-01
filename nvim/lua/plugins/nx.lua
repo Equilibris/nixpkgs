@@ -1,3 +1,3 @@
-local nx = require 'nx'
+-- local nx = require 'nx'
 
-nx.setup {}
+-- nx.setup {}

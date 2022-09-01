@@ -63,7 +63,6 @@ in
       fish_add_path $HOME/bin
 
       # eval "$(~/bin/oh-my-posh init zsh --config ~/.config/nixpkgs/posh.config.json)"
-
       # xhost +SI:localuser:root > /dev/null
 
       function screenshot 
