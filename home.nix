@@ -11,10 +11,9 @@
   ];
   nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
-    thefuck
+    thefuck unzip
     htop
-    insomnia vscode steam
-    discord
+    ((import <nixos-unstable> { config = { allowUnfree = true; }; }).discord)
     google-chrome
     git gh git-secret
     clang libcxx libcxxabi clang.bintools clang.bintools

@@ -45,6 +45,9 @@ in
       "find-ports" = "nix-shell -p lsof --run \"sudo lsof -i -P -n | grep LISTEN\"";
       fp = "find-ports";
       l = "exa -al --icons";
+
+      "b-connect-steel" = "bluetoothctl connect 28:9A:4B:0F:64:1E";
+      "b-connect-apple" = "bluetoothctl connect AC:1D:06:0E:7E:5F";
     };
 
     shellInit = ''
@@ -60,6 +63,7 @@ in
 
       npm set prefix ~/.npm-global
       fish_add_path $HOME/.npm-global/bin
+      fish_add_path $HOME/.cargo/bin
       fish_add_path $HOME/bin
 
       # eval "$(~/bin/oh-my-posh init zsh --config ~/.config/nixpkgs/posh.config.json)"

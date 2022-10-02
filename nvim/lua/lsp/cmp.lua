@@ -74,7 +74,9 @@ cmp.setup {
 		{ name = 'nvim_lsp' },
 		{ name = 'luasnip' }, -- For luasnip users.
 		{ name = 'luasnip_choice' },
+		{ name = 'cmp_tabnine' },
 		-- { name = 'vsnip' }, -- For vsnip users.
+		--
 		-- { name = 'ultisnips' }, -- For ultisnips users.
 		-- { name = 'snippy' }, -- For snippy users.
 	}, {

@@ -1,6 +1,6 @@
 { theme ? "onedark",
-  style ? "1",
-  type ? "1",
+  style ? 1,
+  type ? 1,
   pkgs ? import <nixpkgs> {}
 }:
 let
@@ -23,6 +23,21 @@ in
 
       echo -e "[*] Installing rofi configs..."
       { mkdir -p "$ROFI_DIR"; cp -rf $DIR/files/* "$ROFI_DIR"; }
+
+      for launcher in $(ls -1 "$ROFI_DIR/launchers"); do
+        sed -i "s+\$HOME/\.config/rofi+$ROFI_DIR+" "$ROFI_DIR/launchers/$launcher/launcher.sh"
+        sed -i "s+'style-1'+'style-${builtins.toString style}\'+"    "$ROFI_DIR/launchers/$launcher/launcher.sh"
+      done
+      for rasi in $(find "$ROFI_DIR" -name '*.rasi'); do
+        sed -i "s+~/.config/rofi+$ROFI_DIR+" "$rasi"
+      done
+      for colors in $(find "$ROFI_DIR" -type f -wholename "**/shared/colors.rasi"); do
+        sed -i "s/onedark.rasi/${theme}.rasi/" "$colors"
+      done
+
+      mkdir $out/bin
+
+      cp "$ROFI_DIR/launchers/type-${builtins.toString type}/launcher.sh" "$out/bin/wofi"
     '';
     installPhase = "true";
   }

@@ -2,12 +2,19 @@
 , pkgs
 , lib
 , ... }:
-let rofi-themes = import ../pkgs/rofi-themes.nix {}; in
+let 
+  rofi-themes = import ../pkgs/rofi-themes.nix {
+    theme = "nord";
+    style = 15;
+    type =  1;
+  };
+  unstable = import <nixos-unstable> {};
+in
 {
   home.packages = (with pkgs; [ 
     xorg.xhost polkit
 
-    rofi rofi-themes
+    rofi-themes
     slurp grim
     wl-clipboard copyq
     tmux
@@ -15,7 +22,16 @@ let rofi-themes = import ../pkgs/rofi-themes.nix {}; in
     (import ../pkgs/eww.nix {})
   ]);
 
+  programs.rofi = {
+    enable = true;
+    package = unstable.rofi;
+    configPath = "~/.config/rofi/config.rasi";
+  };
+
   home.file = {
+    ".config/rofi/config.rasi" = {
+      source = "${rofi-themes}/config.rasi";
+    };
     ".config/eww" = {
       source = ../eww;
       recursive = true;

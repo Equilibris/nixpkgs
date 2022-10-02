@@ -64,13 +64,17 @@ require('packer').startup(function(use)
 	use 'hrsh7th/nvim-cmp'
 	use 'ray-x/lsp_signature.nvim'
 	use 'terrortylor/nvim-comment'
+	use {
+		'tzachar/cmp-tabnine',
+		run = './install.sh',
+		requires = 'hrsh7th/nvim-cmp',
+	}
 
 	use 'noib3/nvim-cokeline'
 	use 'nvim-lualine/lualine.nvim'
 	use 'kyazdani42/nvim-tree.lua'
 	use 'kyazdani42/nvim-web-devicons'
 
-	use 'nvim-lua/plenary.nvim'
 	use 'sindrets/diffview.nvim'
 	use 'lewis6991/gitsigns.nvim'
 	use 'TimUntersberger/neogit'
