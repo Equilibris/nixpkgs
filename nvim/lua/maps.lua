@@ -23,19 +23,13 @@ vim.api.nvim_set_keymap('n', '<A-k>', ':m .-2<CR>==', nore)
 vim.api.nvim_set_keymap('v', '<A-j>', ":m '>+1<CR>gv=gv", nore)
 vim.api.nvim_set_keymap('v', '<A-k>', ":m '<-2<CR>gv=gv", nore)
 
-vim.api.nvim_set_keymap(
-	'n',
-	'<C-p>',
-
-	[[:lua << EOF
-	require('telescope.builtin').find_files {
+local builtins = require 'telescope.builtin'
+vim.keymap.set('n', '<C-p>', function()
+	builtins.find_files {
 		hidden = true,
 		cwd = vim.fn.systemlist('git rev-parse --show-toplevel')[1],
 	}
-EOF
-]],
-	nore
-)
+end, {})
 vim.api.nvim_set_keymap(
 	'n',
 	'<C-F>',
@@ -70,30 +64,30 @@ vim.api.nvim_set_keymap('n', '<C-Q>', '<cmd>q!<cr>', nore)
 vim.api.nvim_set_keymap('n', '<A-F>', '<cmd>Format<cr>', nore)
 vim.api.nvim_set_keymap('i', '<A-F>', '<cmd>Format<cr>', nore)
 
-vim.api.nvim_set_keymap(
-	'n',
-	'f',
-	"<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>",
-	nore
-)
-vim.api.nvim_set_keymap(
-	'n',
-	'F',
-	"<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>",
-	nore
-)
-vim.api.nvim_set_keymap(
-	'n',
-	't',
-	"<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })<cr>",
-	nore
-)
-vim.api.nvim_set_keymap(
-	'n',
-	'T',
-	"<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })<cr>",
-	nore
-)
+-- vim.api.nvim_set_keymap(
+-- 	'n',
+-- 	'f',
+-- 	"<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>",
+-- 	nore
+-- )
+-- vim.api.nvim_set_keymap(
+-- 	'n',
+-- 	'F',
+-- 	"<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>",
+-- 	nore
+-- )
+-- vim.api.nvim_set_keymap(
+-- 	'n',
+-- 	't',
+-- 	"<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })<cr>",
+-- 	nore
+-- )
+-- vim.api.nvim_set_keymap(
+-- 	'n',
+-- 	'T',
+-- 	"<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })<cr>",
+-- 	nore
+-- )
 
 vim.api.nvim_set_keymap('n', 'H', '<cmd>HopWord<cr>', nore)
 

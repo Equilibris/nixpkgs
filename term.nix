@@ -105,7 +105,7 @@ in
     "bin/fisher" = {
       source = pkgs.fetchurl {
         url = "https://git.io/fisher";
-        sha256 = "sha256-j6rgDiyFG4StG9WV2szKVeTAfW3oei1p27PqtIt9ONk=";
+        sha256 = "sha256-3il1LrsEkOuSSsTArWIQmtDvzPtzSunHwuEsX0RAF+0=";
       };
       executable = true;
     };

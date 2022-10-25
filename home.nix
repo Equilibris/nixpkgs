@@ -16,7 +16,7 @@
     ((import <nixos-unstable> { config = { allowUnfree = true; }; }).discord)
     google-chrome
     git gh git-secret
-    clang libcxx libcxxabi clang.bintools clang.bintools
+    stdenv.cc.cc.lib clang libcxx libcxxabi clang.bintools clang.bintools
 
     obsidian
 
