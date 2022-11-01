@@ -1,7 +1,35 @@
 { config, pkgs, lib, ... }:
 
 let
-  unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
+  aliases = {
+    cls = "clear";
+    cfile = "copyq copy <";
+    hms = "home-manager switch";
+    ":hms" = "hms";
+    ":q" = "exit";
+
+    gp = "git push";
+    gP = "git pull";
+    gs = "git status";
+    ga = "git add";
+
+    gc = "git commit";
+
+    cfg = "cd ~/.config/nixpkgs";
+
+    "get-local-ip" = "ip route get 1.2.3.4 | awk '{print $3}'";
+    "ls-bins" = "compgen -c";
+
+    "find-ports" = "nix-shell -p lsof --run \"sudo lsof -i -P -n | grep LISTEN\"";
+    fp = "find-ports";
+    l = "exa -al --icons";
+
+    "b-connect-steel" = "bluetoothctl connect 28:9A:4B:0F:64:1E";
+    "b-connect-apple" = "bluetoothctl connect AC:1D:06:0E:7E:5F";
+  };
+
+  aliasStr = lib.lists.fold (a: c: "${a}\n${c}") ""
+    (lib.attrsets.mapAttrsToList (k: v: "alias \"${k}\"=\"${v}\"") aliases);
 in
 {
   home.packages = with pkgs; [
@@ -19,75 +47,86 @@ in
     '';
   };
 
-  programs.fish = {
+  programs.zsh = {
     enable = true;
-    package = unstable.fish;
 
-    shellAbbrs = {
-      cls = "clear";
-      cfile = "copyq copy <";
-      hms = "home-manager switch";
-      ":hms" = "hms";
-      ":q" = "exit";
+    enableCompletion = true;
 
-      gp = "git push";
-      gP = "git pull";
-      gs = "git status";
-      ga = "git add";
-
-      gc = "git commit";
-
-      cfg = "cd ~/.config/nixpkgs";
-
-      "get-local-ip" = "ip route get 1.2.3.4 | awk '{print $3}'";
-      "ls-bins" = "compgen -c";
-
-      "find-ports" = "nix-shell -p lsof --run \"sudo lsof -i -P -n | grep LISTEN\"";
-      fp = "find-ports";
-      l = "exa -al --icons";
-
-      "b-connect-steel" = "bluetoothctl connect 28:9A:4B:0F:64:1E";
-      "b-connect-apple" = "bluetoothctl connect AC:1D:06:0E:7E:5F";
-    };
-
-    shellInit = ''
-      # for p in /run/current-system/sw/bin
-      #   if not contains $p $fish_user_paths
-      #     set -g fish_user_paths $p $fish_user_paths
-      #   end
-      # end
-      source ~/bin/fisher
-
-      fish_add_path --move --prepend --path $HOME/.nix-profile/bin /run/wrappers/bin /etc/profiles/per-user/$USER/bin /nix/var/nix/profiles/default/bin /run/current-system/sw/bin
-      # source ~/.oh-my-zsh/custom/plugins/nx-completion/nx-completion.plugin.zsh
+    initExtra = ''
+      source powerlevel9k.zsh-theme
+      source ~/.config/nixpkgs/theme.zsh
 
       npm set prefix ~/.npm-global
-      fish_add_path $HOME/.npm-global/bin
-      fish_add_path $HOME/.cargo/bin
-      fish_add_path $HOME/bin
 
-      # eval "$(~/bin/oh-my-posh init zsh --config ~/.config/nixpkgs/posh.config.json)"
+      export PATH=$PATH:~/.npm-global/bin
+      export PATH=$PATH:~/.cargo/bin
+      export PATH=$PATH:~/bin
+
+      ${aliasStr}
+
+      eval $(thefuck --alias)
+
       # xhost +SI:localuser:root > /dev/null
 
-      function screenshot 
-        grim  -g "$(slurp)" /tmp/$(date +'%H:%M:%S.png')
-      end
-      function killPort
-        fp | grep $1 | echo
-      end
+      screenshot () { grim  -g "$(slurp)" /tmp/$(date +'%H:%M:%S.png') }
+      killPort   () { fp | grep $1 | echo }
       '';
 
       plugins = [
-        # {
-        #   name = "Tide";
-        #   src = pkgs.fetchFromGitHub {
-        #     owner = "IlanCosman";
-        #     repo = "tide";
-        #     rev = "13fa55ef109009e04e6e5fabda0d0e662b4e6315";
-        #     sha256 = "sha256-+6LdcFLqDzUcCmBoKO4LDH5+5odqVqUb1NmEVNMEMjs=";
-        #   };
-        # }
+        {
+          name = "nix-zsh-completions";
+          src = pkgs.fetchFromGitHub {
+            owner = "spwhitt";
+            repo = "nix-zsh-completions";
+            rev = "468d8cf752a62b877eba1a196fbbebb4ce4ebb6f";
+            sha256 = "TWgo56l+FBXssOYWlAfJ5j4pOHNmontOEolcGdihIJs=";
+          };
+        }
+        {
+          name = "powerlevel10k";
+          src = pkgs.fetchFromGitHub {
+            owner = "romkatv";
+            repo = "powerlevel10k";
+            rev = "8091c8a3a8a845c70046684235a01cd500075def";
+            sha256 = "sha256-I0/tktXCbZ3hMYTNvPoWfOEYWRgmHoXsar/jcUB6bpo=";
+          };
+        }
+        {
+          name = "zsh-autosuggestions";
+          src = pkgs.fetchFromGitHub {
+            repo = "zsh-autosuggestions";
+            owner = "zsh-users";
+            rev = "a411ef3e0992d4839f0732ebeb9823024afaaaa8";
+            sha256 = "sha256-KLUYpUu4DHRumQZ3w59m9aTW6TBKMCXl2UcKi4uMd7w=";
+          };
+        }
+        {
+          name = "nx-completion";
+          src = pkgs.fetchFromGitHub {
+            owner = "jscutlery";
+            repo = "nx-completion";
+            rev = "84386914d55b2e73285069c8f156348255da4a60";
+            sha256 = "sha256-deYpsbnWDBk/uRzJetuHg+LSt6O9U1fOMBEv1GHBrPo=";
+          };
+        }
+        {
+          name = "zsh-syntax-highlighting";
+          src = pkgs.fetchFromGitHub {
+            owner = "zsh-users";
+            repo = "zsh-syntax-highlighting";
+            rev = "122dc464392302114556b53ec01a1390c54f739f";
+            sha256 = "sha256-ffD0iHf9WVuE6QzZCkuDgIWj+BY/BRxtYNMi8osJohI=";
+          };
+        }
       ];
+
+      oh-my-zsh = {
+        enable = true;
+
+        plugins = [ "git" "sudo" "rust" "zsh-navigation-tools" ];
+
+        theme = "robbyrussell";
+      };
   };
 
   programs.kitty = {
@@ -102,23 +141,7 @@ in
 
   home.file = {
     ".config/nix/nix.conf" = { source = ./nix.conf; };
-    "bin/fisher" = {
-      source = pkgs.fetchurl {
-        url = "https://git.io/fisher";
-        sha256 = "sha256-3il1LrsEkOuSSsTArWIQmtDvzPtzSunHwuEsX0RAF+0=";
-      };
-      executable = true;
-    };
-    ".config/fish/fish_plugins" = {
-      source = config.lib.file.mkOutOfStoreSymlink ./fish/plugins.list;
-    };
-    "bin/oh-my-posh" = {
-      source = pkgs.fetchurl {
-        url = "https://github.com/JanDeDobbeleer/oh-my-posh/releases/download/v8.17.0/posh-linux-amd64";
-        sha256 = "sha256-8krnWajeEclA677yk+8b72vlIsxWDdPF6cI361RrFoo=";
-      };
-      executable = true;
-    };
+
   } //
     lib.lists.fold 
       (curr: acc: acc // {

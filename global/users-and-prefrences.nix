@@ -1,8 +1,5 @@
 { config, pkgs, ... }:
 
-let
-  unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
-in
 {
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -19,7 +16,7 @@ in
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
-  users.defaultUserShell = unstable.fish;
+  users.defaultUserShell = pkgs.zsh;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.williams = {
