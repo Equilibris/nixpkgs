@@ -1,6 +1,7 @@
 local nore = { noremap = true }
 
 vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 
 vim.api.nvim_set_keymap('i', '<C-BS>', '<C-W>', {})
 vim.api.nvim_set_keymap('i', '<C-H>', '<C-W>', {})

@@ -39,6 +39,7 @@ in
     jq
     coreutils
     exa
+    (import ./pkgs/pixel-lock.nix { })
   ];
   programs.bash = {
     enable = true;
@@ -141,7 +142,6 @@ in
 
   home.file = {
     ".config/nix/nix.conf" = { source = ./nix.conf; };
-
   } //
     lib.lists.fold 
       (curr: acc: acc // {
@@ -152,7 +152,7 @@ in
       }) {} [
         { name = "get-battery"; src = ./scripts/get-battery; }
         { name = "toggle_kbd";  src = ./scripts/toggle_kbd; }
-        { name = "pixel-lock";  src = ./scripts/pixel-lock; }
+        # { name = "pixel-lock";  src = ./scripts/pixel-lock; }
       ];
 }
 

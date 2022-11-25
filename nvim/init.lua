@@ -24,6 +24,7 @@ require('packer').startup(function(use)
 
 	use 'shaunsingh/nord.nvim'
 	use 'nvim-treesitter/nvim-treesitter'
+	use 'sirtaj/vim-openscad'
 
 	use 'nvim-lua/plenary.nvim'
 	use 'nvim-telescope/telescope.nvim'
@@ -36,6 +37,7 @@ require('packer').startup(function(use)
 	use 'declancm/cinnamon.nvim'
 
 	use 'LnL7/vim-nix'
+	use 'lervag/vimtex'
 	use 'elkowar/yuck.vim'
 
 	use 'gpanders/editorconfig.nvim'
@@ -103,6 +105,7 @@ require 'plugins.surround'
 require 'plugins.comment'
 require 'plugins.lualine'
 require 'plugins.project'
+require 'plugins.vimtex'
 require 'plugins.git'
 require 'plugins.hop'
 require 'plugins.nx'

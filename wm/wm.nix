@@ -25,7 +25,7 @@ in
   programs.rofi = {
     enable = true;
     package = unstable.rofi;
-    configPath = "~/.config/rofi/config.rasi";
+    configPath = ".config/rofi/config.rasi";
   };
 
   home.file = {

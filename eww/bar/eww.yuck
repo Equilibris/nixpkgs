@@ -1,16 +1,23 @@
 (defpoll clock_hour   :interval "5s" "date +\%H")
 (defpoll clock_minute :interval "5s" "date +\%M")
+(defpoll clock_date   :interval "5s" "date +\%d")
 
 (defpoll has_bat     :interval "10h" "stat /sys/class/power_supply/BAT0 > /dev/null && echo true || echo false")
 (defpoll bat_percent :interval "10s" "get-battery Percent")
 (defpoll bat_icon    :interval "10s" "get-battery Icon")
-(defpoll light_level :interval "10h" "sudo light")
-(defpoll volume      :interval "10h" "(awk -F'[][]' '/Left:/ { print $2 }' <(amixer sget Master)) | sed 's/%//'")
-(defpoll is_muted    :interval "10h" "(($(amixer sget Master | grep --count \"\[on\]\") < 1)) && echo 'true' || echo 'false'")
+(defpoll light_level :interval "10s" "sudo light")
+(defpoll volume      :interval "10s" "(awk -F'[][]' '/Left:/ { print $2 }' <(amixer sget Master)) | sed 's/%//'")
+(defpoll is_muted    :interval "10s" "(($(amixer sget Master | grep --count \"\[on\]\") < 1)) && echo 'true' || echo 'false'")
+
+(defpoll connected_steel :interval "10s" "bluetoothctl info 28:9A:4B:0F:64:1E | grep Connected | awk '{ print $2 }'")
+(defpoll connected_apple :interval "10s" "bluetoothctl info AC:1D:06:0E:7E:5F | grep Connected | awk '{ print $2 }'")
 
 (defvar lightctrl "false")
 (defvar soundctrl "false")
 (defvar powermenu "false")
+
+(defvar connecting_steel "false")
+(defvar connecting_apple "false")
 
 (defvar eww "eww")
 
@@ -32,8 +39,11 @@
       (box 
         :class "main"
         :hexpand false
-        :height 40
-        :width 40)
+        :height 48
+        :width 48
+        :valign "center"
+        :halign "center"
+        "⏻")
       (revealer
         :transition "slidedown"
         :reveal powermenu
@@ -52,12 +62,44 @@
             :halign "center" :height 20 :width 20 :class "shutdown" :onclick "shutdown 0")
           )))))
 
+(defwidget bluetooth [] 
+  (box
+    :class "hl-section"
+    :orientation "v"
+    :spacing 8
+    (bluetooth_entry
+      :status connected_steel
+      :connecting connecting_steel
+      :icon ""
+      :vname "connecting_steel"
+      :conn_cmd "bluetoothctl connect 28:9A:4B:0F:64:1E")
+    (bluetooth_entry
+      :status connected_apple
+      :connecting connecting_apple
+      :icon ""
+      :vname "connecting_apple"
+      :conn_cmd "bluetoothctl connect AC:1D:06:0E:7E:5F")
+    ))
+
+(defwidget bluetooth_entry [? status conn_cmd connecting vname icon]
+  (box
+    :class "bt-entry"
+    (button
+      :height 48
+      :width 48
+      :onclick "${eww} update ${vname}=true && tmux new \"${conn_cmd};sleep 1;${eww} update ${vname}=false\""
+      :class "${connecting ? "connecting" : ""} ${status == "yes" ? "on" : "off"} indicator"
+      { status == "on" ? "" : icon})
+    ))
+
 (defwidget time []
   (box
     :class "time"
     :orientation "v"
     (box clock_hour)
-    (box clock_minute)))
+    (box clock_minute)
+    (box :class "date" "-")
+    (box :class "date" clock_date)))
 
 (defwidget bat []
   (box
@@ -190,7 +232,13 @@
   (box
     :orientation "v"
     :class "base"
-    (box :valign "start" (pmenu))
+    (box
+      :valign "start" 
+      :space-evenly false
+      :orientation "v"
+      :spacing 8
+      (pmenu)
+      (bluetooth))
     (box 
       :space-evenly false
       :orientation "v"
@@ -200,7 +248,7 @@
         :orientation "v"
         :space-evenly false
         :spacing 8
-        :class "metrics"
+        :class "hl-section metrics"
         (sound)
         (light)
         (bat)

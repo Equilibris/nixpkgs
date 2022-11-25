@@ -12,6 +12,10 @@ $lock-colour: $frost-a;
 $restart-colour: $aurora-yellow;
 $exit-colour: $aurora-pink;
 
+$bt-off: $aurora-red;
+$bt-on: $frost-c;
+$bt-conn: $aurora-green;
+
 * {
   font-family: "FiraCode Nerd Font";
 }
@@ -22,36 +26,55 @@ $exit-colour: $aurora-pink;
 }
 
 .power {
-    * {
-        border-radius: 50%;
-    }
+  * {
+    border-radius: 50%;
+  }
 
-    .main {
-        background-color: $power-colour;
-    }
+  .main {
+    background-color: $power-colour;
+    font-size: 2em;
+  }
 
-    .shutdown {
-        background-color: $shutdown-colour;
-    }
-    .restart {
-        background-color: $restart-colour;
-    }
-    .exit {
-        background-color: $exit-colour;
-    }
-    .lock {
-        background-color: $lock-colour;
-    }
+  .shutdown {
+    background-color: $shutdown-colour;
+  }
+  .restart {
+    background-color: $restart-colour;
+  }
+  .exit {
+    background-color: $exit-colour;
+  }
+  .lock {
+    background-color: $lock-colour;
+  }
 }
 
-.metrics {
+.hl-section {
   background-color: $metrics-bg;
 
   margin: 5px;
-  padding: 0px 8px 8px 8px;
+  padding: 8px 8px 8px 8px;
 
   border-radius: 8px;
+}
 
+.bt-entry {
+  .indicator {
+    font-size: 2em;
+    border-radius: 50%;
+    &.on {
+      background-color: $bt-on;
+    }
+    &.off {
+      background-color: $bt-off;
+    }
+    &.off.connecting {
+      background-color: $bt-conn;
+    }
+  }
+}
+
+.metrics {
   .sound {
     color: $sound-colour;
   }
