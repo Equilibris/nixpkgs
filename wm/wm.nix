@@ -19,7 +19,7 @@ in
     wl-clipboard copyq
     tmux
     fnott libnotify
-    (unstable.eww)
+    (unstable.eww-wayland)
   ]);
 
   programs.rofi = {

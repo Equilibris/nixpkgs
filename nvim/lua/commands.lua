@@ -26,10 +26,11 @@ vim.api.nvim_create_autocmd(
 	{ pattern = 'home.nix', command = 'HMSwitch', group = group }
 )
 
-vim.api.nvim_create_autocmd(
-	'BufWinLeave',
-	{ pattern = '*', group = group, command = 'mkview' }
-)
+vim.api.nvim_create_autocmd('BufWinLeave', {
+	pattern = '*',
+	group = group,
+	command = 'silent! execute "try | mkview | catch | | endtry"',
+})
 vim.api.nvim_create_autocmd(
 	'BufWinEnter',
 	{ pattern = '*', group = group, command = 'silent! loadview' }

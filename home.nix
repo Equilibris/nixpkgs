@@ -56,7 +56,10 @@
     enable = true;
     userName = "William Sørensen";
     userEmail = "47296141+Equilibris@users.noreply.github.com";
-    # init.defaultBranchName = "main";
+    extraConfig = {
+      init.defaultBranchName = "main";
+      safe.directory = "*";
+    };
   };
 
   home.file = lib.lists.fold (curr: acc: acc // {
