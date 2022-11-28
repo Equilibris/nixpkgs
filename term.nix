@@ -152,6 +152,8 @@ in
       }) {} [
         { name = "get-battery"; src = ./scripts/get-battery; }
         { name = "toggle_kbd";  src = ./scripts/toggle_kbd; }
+        { name = "restart-blue";  src = ./scripts/restart-blue.sh; }
+        { name = "recursive-gs";  src = ./scripts/recursive-gs.sh; }
         # { name = "pixel-lock";  src = ./scripts/pixel-lock; }
       ];
 }
