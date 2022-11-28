@@ -11,6 +11,7 @@ in
       (texlive.combine {
         inherit (texlive)
           scheme-medium
+          runcode norewrites
           xifthen ifmtarg framed paralist
           titlesec
           blindtext;
