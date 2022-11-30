@@ -17,10 +17,10 @@ vim.api.nvim_create_autocmd(
 	'BufWritePost',
 	{ pattern = '*.lua', command = 'silent luafile %', group = group }
 )
-vim.api.nvim_create_autocmd(
-	'BufWritePost',
-	{ pattern = '*.tex', command = 'silent VimtexCompile', group = group }
-)
+-- vim.api.nvim_create_autocmd(
+-- 	'BufWritePost',
+-- 	{ pattern = '*.tex', command = 'silent VimtexCompile', group = group }
+-- )
 vim.api.nvim_create_autocmd(
 	'BufWritePost',
 	{ pattern = 'home.nix', command = 'HMSwitch', group = group }
