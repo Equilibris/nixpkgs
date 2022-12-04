@@ -21,23 +21,6 @@ in
           apacite
           titlesec
           blindtext;
-
-       maxiplot = { pkgs = [(pkgs.runCommand "maxiplot" {
-         src = pkgs.fetchurl {
-           url = "https://maxima.sourceforge.io/contrib/maxiplot/maxiplot.sty";
-           sha256 = "sha256-S9NUKd0J7CokxHHcMAiIa8ZoN52R8bGwKaVVc0hWa74=";
-         };
-         passthru = {
-           pname = "maxiplot";
-           version = "1.2.3";
-           tlType = "run";
-         };
-       }
-         "
-           mkdir -p $out/tex/latex/maxiplot/
-           cp $src $out/tex/latex/maxiplot/maxiplot.sty
-           ")];
-        };
       })
       libsForQt5.okular
       texlab
