@@ -53,7 +53,7 @@
     enable = true;
   };
   programs.git = {
-    enable = true;
+    enable = false;
     userName = "William Sørensen";
     userEmail = "47296141+Equilibris@users.noreply.github.com";
     extraConfig = {

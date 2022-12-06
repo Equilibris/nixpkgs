@@ -15,7 +15,7 @@ in
       (texlive.combine {
         inherit (texlive)
           scheme-medium
-          runcode morewrites tcolorbox environ
+          runcode morewrites tcolorbox environ apacite
           xifthen ifmtarg framed paralist
           titlesec
           blindtext;
