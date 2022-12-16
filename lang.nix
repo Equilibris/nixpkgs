@@ -2,7 +2,7 @@
 
 let 
   java = false;
-  rust = false;
+  rust = true;
   js   = true;
 
   docker = true;

@@ -15,6 +15,8 @@ in
       (texlive.combine {
         inherit (texlive)
           scheme-medium
+          svg transparent lipsum babel
+          pythontex
           runcode morewrites tcolorbox environ
           xifthen ifmtarg framed paralist
           enumitem
