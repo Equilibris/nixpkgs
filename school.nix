@@ -11,7 +11,11 @@ in
       teams openscad wxmaxima
 
       hunspell unstable.hunspellDicts.nb-no unstable.hunspellDicts.en-gb-ize
+      libreoffice
 
+      pandoc
+
+      python310
       (texlive.combine {
         inherit (texlive)
           scheme-medium
@@ -19,6 +23,8 @@ in
           pythontex
           runcode morewrites tcolorbox environ
           xifthen ifmtarg framed paralist
+          pythontex fvextra
+          pgfplots
           enumitem
           apacite
           titlesec
