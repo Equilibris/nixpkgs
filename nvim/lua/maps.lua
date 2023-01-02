@@ -65,6 +65,8 @@ vim.api.nvim_set_keymap('n', '<C-Q>', '<cmd>q!<cr>', nore)
 vim.api.nvim_set_keymap('n', '<A-F>', '<cmd>Format<cr>', nore)
 vim.api.nvim_set_keymap('i', '<A-F>', '<cmd>Format<cr>', nore)
 
+vim.api.nvim_set_keymap('n', '<Leader>z', 'zfaB', nore)
+
 -- vim.api.nvim_set_keymap(
 -- 	'n',
 -- 	'f',
