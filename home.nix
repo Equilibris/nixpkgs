@@ -20,6 +20,7 @@
 
     obsidian
 
+    # (import ./pkgs/battop.nix {})
     # (import ./pkgs/spotify.nix {})
 
     # (pkgs.callPackage (import "${spicetify}/package.nix") {

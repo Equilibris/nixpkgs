@@ -1,18 +1,21 @@
 { config, pkgs, lib, ... }:
+let
+  unstable = import <nixos-unstable> {
+    overlays = [
+      (self: super: {
+        neovim = super.neovim.override { vimAlias = true; viAlias = true; };
+      })
+    ];
+  };
+in
 {
-  home.packages = with pkgs; [
-    neovim 
+  home.packages = with unstable; [
+    neovim
     rust-analyzer statix stylua 
     ripgrep proselint wget
   ];
 
   # environment.variables.EDITOR = "nvim";
-  nixpkgs.overlays = [
-    (self: super: {
-      neovim = super.neovim.override { vimAlias = true; viAlias = true; };
-    })
-  ];
-
   home.file = {
     ".config/nvim" = {
       source = ./nvim;

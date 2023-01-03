@@ -1,8 +1,10 @@
 { config, pkgs, lib, ... }:
 
 let 
-  options = import ./options.nix;
-in with options;
+  manager.gnome = false;
+  manager.sway  = false;
+  manager.i3    = true;
+in
   (lib.attrsets.optionalAttrs manager.gnome
   {
     # Enable the X11 windowing system.
@@ -26,19 +28,19 @@ in with options;
       gnome-photos
       gnome-tour
     ]) ++ (with pkgs.gnome; [
-      cheese # webcam tool
+      cheese          # webcam tool
       gnome-music
       gnome-terminal
-      gedit # text editor
-      epiphany # web browser
-      geary # email reader
-      evince # document viewer
+      gedit           # text editor
+      epiphany        # web browser
+      geary           # email reader
+      evince          # document viewer
       gnome-characters
-      totem # video player
-      tali # poker game
-      iagno # go game
-      hitori # sudoku game
-      atomix # puzzle game
+      totem           # video player
+      tali            # poker game
+      iagno           # go game
+      hitori          # sudoku game
+      atomix          # puzzle game
     ]);
   })//
   (lib.attrsets.optionalAttrs manager.sway
@@ -130,5 +132,26 @@ in with options;
         #   night = 3700;
         # };
       };
-    }))
+    }))//
+    (lib.attrsets.optionalAttrs manager.i3 {
+      environment.pathsToLink = [ "/libexec" ]; # links /libexec from derivations to /run/current-system/sw 
+      services.xserver = {
+        enable = true;
 
+        desktopManager = {
+          xterm.enable = false;
+        };
+       
+        displayManager = {
+            defaultSession = "none+i3";
+        };
+
+        windowManager.i3 = {
+          enable = true;
+          extraPackages = with pkgs; [
+            dmenu #application launcher most people use
+            i3lock #default i3 screen locker
+         ];
+        };
+      };
+    })

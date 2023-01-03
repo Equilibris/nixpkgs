@@ -29,7 +29,7 @@ require('packer').startup(function(use)
 	use 'nvim-lua/plenary.nvim'
 	use 'nvim-telescope/telescope.nvim'
 	use 'folke/trouble.nvim'
-	use { 'akinsho/toggleterm.nvim', tag = 'v1.*' }
+	use 'akinsho/toggleterm.nvim'
 
 	use 'kylechui/nvim-surround'
 	use 'windwp/nvim-autopairs'
@@ -48,7 +48,8 @@ require('packer').startup(function(use)
 	use { 'saecki/crates.nvim', tag = 'v0.2.1' }
 
 	use 'lewis6991/hover.nvim'
-	use 'williamboman/nvim-lsp-installer'
+	use 'williamboman/mason.nvim'
+	use 'williamboman/mason-lspconfig.nvim'
 	use 'b0o/schemastore.nvim'
 	use 'simrat39/rust-tools.nvim'
 	use 'neovim/nvim-lspconfig'
