@@ -1,19 +1,20 @@
 { config, pkgs, lib, ... }:
 
 
-# let 
+let 
 #   spicetify = fetchTarball https://github.com/pietdevries94/spicetify-nix/archive/master.tar.gz;
-# in
+  unstable = import <nixos-unstable> { config.allowUnfree = true; };
+in
 {
   imports = [ 
     ./spotify.nix ./term.nix ./lang.nix ./nvim.nix ./wm/wm.nix
     ./work.nix ./school.nix
   ];
   nixpkgs.config.allowUnfree = true;
-  home.packages = with pkgs; [
+  home.packages = with unstable; [
     thefuck unzip
     htop
-    ((import <nixos-unstable> { config = { allowUnfree = true; }; }).discord)
+    discord
     google-chrome
     git gh git-secret
     stdenv.cc.cc.lib clang libcxx libcxxabi clang.bintools clang.bintools
@@ -32,7 +33,7 @@
     #   thirdParyExtensions = {};
     # })
 
-    (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; })
+    (unstable.nerdfonts.override { fonts = [ "FiraCode" ]; })
   ];
 
   # home.sessionPath = [ "$HOME/.npm-global/bin" ];
@@ -44,7 +45,7 @@
     enable = true;
 
     theme.name = "Nordic";
-    theme.package = pkgs.nordic;
+    theme.package = unstable.nordic;
 
     gtk3.extraConfig.gtk-application-prefer-dark-theme = 1;
     gtk4.extraConfig.gtk-application-prefer-dark-theme = true;
