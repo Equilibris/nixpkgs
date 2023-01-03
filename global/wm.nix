@@ -2,8 +2,8 @@
 
 let 
   manager.gnome = false;
-  manager.sway  = false;
-  manager.i3    = true;
+  manager.sway  = true;
+  manager.i3    = false;
 in
   (lib.attrsets.optionalAttrs manager.gnome
   {
