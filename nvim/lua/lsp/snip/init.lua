@@ -16,6 +16,12 @@ local m = require('luasnip.extras').m
 local lambda = require('luasnip.extras').l
 local postfix = require('luasnip.extras.postfix').postfix
 
+local ri = function(insert_node_id)
+	return f(function(args)
+		return args[1][1]
+	end, insert_node_id)
+end
+
 ls.add_snippets('all', {
 	-- ls.add_snippets('gitcommit', {
 
@@ -38,6 +44,16 @@ ls.add_snippets('all', {
 	-- 		end, {}),
 	-- 	})
 	-- ),
+})
+ls.add_snippets('tex', {
+	s('\\begin', {
+		t '\\begin{',
+		i(1, 'env'),
+		t { '}', '' },
+		t '\\end{',
+		ri(1),
+		t '}',
+	}),
 })
 ls.add_snippets('toml', {
 	postfix('.feat', {

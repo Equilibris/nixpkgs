@@ -86,6 +86,8 @@ require('packer').startup(function(use)
 
 	use 'andweeb/presence.nvim'
 
+	use 'p00f/cphelper.nvim'
+
 	use '~/Dev/MicroProjects/nx.nvim'
 end)
 
@@ -110,4 +112,5 @@ require 'plugins.vimtex'
 require 'plugins.git'
 require 'plugins.hop'
 require 'plugins.nx'
+require 'plugins.cp'
 require 'lsp.init'

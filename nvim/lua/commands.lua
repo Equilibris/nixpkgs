@@ -32,13 +32,13 @@ vim.api.nvim_create_autocmd(
 )
 vim.api.nvim_create_autocmd(
 	'BufWinEnter',
-	{ pattern = '*', group = group, command = 'silent! loadview' }
+	{ pattern = '*[!.tex]', group = group, command = 'silent! loadview' }
 )
 
-vim.api.nvim_create_autocmd(
-	'CursorHold',
-	{ command = "silent lua require('hover').hover()", group = group }
-)
+-- vim.api.nvim_create_autocmd(
+-- 	'CursorHold',
+-- 	{ command = "silent lua require('hover').hover()", group = group }
+-- )
 
 vim.cmd [[cabbrev wq execute "lua vim.lsp.buf.formatting_sync()" <bar> wq]]
 vim.api.nvim_create_autocmd(

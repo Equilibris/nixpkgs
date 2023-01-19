@@ -4,11 +4,13 @@
 let
   school = true;
 
-  unstable = import <nixos-unstable> {};
+  unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
 in
   if school then {
-    home.packages = with pkgs; [
+    home.packages = with unstable; [
       teams openscad wxmaxima
+
+      arduino
 
       hunspell unstable.hunspellDicts.nb-no unstable.hunspellDicts.en-gb-ize
       libreoffice

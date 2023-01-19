@@ -12,12 +12,16 @@ in
   ];
   nixpkgs.config.allowUnfree = true;
   home.packages = with unstable; [
-    thefuck unzip
+    libsForQt5.qtstyleplugins
+
+    thefuck unzip bat
     htop
     discord
     google-chrome
     git gh git-secret
-    stdenv.cc.cc.lib clang libcxx libcxxabi clang.bintools clang.bintools
+
+    gcc
+    # stdenv.cc.cc.lib clang libcxx libcxxabi clang.bintools clang.bintools
 
     obsidian
 

@@ -15,14 +15,70 @@ in
       <home-manager/nixos>
     ];
 
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/boot/efi";
+  # boot.shell_on_fail = true;
+  boot.loader = {
+    efi = {
+      canTouchEfiVariables = true;
+      efiSysMountPoint = "/boot/efi";
+    };
+
+    grub = {
+        enable = true;
+        efiSupport = true;
+        device = "nodev";
+        # splashImage = /home/williams/walls/nordic/nixos.png;
+        theme =
+          pkgs.stdenv.mkDerivation {
+            pname = "distro-grub-themes";
+            version = "3.1";
+            src = pkgs.fetchFromGitHub {
+              owner = "TechXero";
+              repo = "XeroNord-Grub";
+              rev = "96912ebf601e31ae32fd3871361d26d11fa9f9b6";
+              hash = "sha256-Q/uHWoajKvnTueqSbH5UtdUuK9Z3l/ELqF41jNaQmYE=";
+            };
+            installPhase = "cp -r XeroNord $out";
+          };
+          # pkgs.stdenv.mkDerivation {
+          #   pname = "distro-grub-themes";
+          #   version = "3.1";
+          #   src = pkgs.fetchFromGitHub {
+          #     owner = "13atm01";
+          #     repo = "GRUB-Theme";
+          #     rev = "02a3e4233e0b2852a310dc9165097ae9ccf3b2c8";
+          #     hash = "sha256-rIpRP5+5Z8tIet6/1/8rB2NFgofUhJVgNhezf7jdRgA=";
+          #   };
+          #   # installPhase = "cp -r \"Monika (Doki Doki Literature Club)/Monika-DDLC-Version\" $out";
+          #   installPhase = "cp -r \"Artoria Pendragon (15th Celebration Version)/Artoria-Celebration-Version\" $out";
+          # };
+
+          # pkgs.stdenv.mkDerivation {
+          #   pname = "distro-grub-themes";
+          #   version = "3.1";
+          #   src = pkgs.fetchFromGitHub {
+          #     owner = "AdisonCavani";
+          #     repo = "distro-grub-themes";
+          #     rev = "v3.1";
+          #     hash = "sha256-ZcoGbbOMDDwjLhsvs77C7G7vINQnprdfI37a9ccrmPs=";
+          #   };
+          #   installPhase = "cp -r customize/nixos $out";
+          # };
+
+      extraEntries = ''
+        menuentry 'Windows Boot Manager (on /dev/nvme0n1p1)' --class windows --class os $menuentry_id_option 'osprober-efi-F8FD-D8E5' {
+            insmod part_gpt
+            insmod fat
+            search --no-floppy --fs-uuid --set=root F8FD-D8E5
+            chainloader /efi/Microsoft/Boot/bootmgfw.efi
+        }
+      '';
+    };
+  };
   boot.kernelPackages = unstable.linuxPackages_latest;
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  # networking.networkmanager.enable = true;  # Enables wireless support via wpa_supplicant.
 
   networking.firewall.enable = false;
   networking.firewall.allowedTCPPortRanges = [
@@ -81,6 +137,8 @@ in
   services.blueman.enable = true;
   hardware.bluetooth.enable = true;
 
+  # programs.dconf.enable = true;
+
   # hardware.pulseaudio.enable = true;
   # # Enable sound with pipewire.
   sound.enable = true;
@@ -112,7 +170,84 @@ in
   i18n.defaultLocale = "en_GB.utf8";
 
   # Configure console keymap
-  console.keyMap = "no";
+  console = {
+    keyMap = "no";
+    colors = [
+      "002b36" ### 01 ### 0 & 1
+      "dc322f" ### 02 ### 2
+      "859900" ### 03 ### 3
+      "b58900" ### 04 ### 4
+      "268bd2" ### 05 ### 5
+      "d33682" ### 06 ### 6
+      "2aa198" ### 07 ### 7
+      "eee8d5" ### 08 ### 8
+      "002b36" ### 01
+      "cb4b16" ### 10
+      "586e75" ### 11
+      "657b83" ### 12
+      "839496" ### 13
+      "6c71c4" ### 14
+      "93a1a1" ### 15
+      "fdf6e3" ### 16
+    ];
+    # colors = [ 002b36-dc322f-859900-b58900-268bd2-d33682-2aa198-eee8d5-002b36-cb4b16-586e75-657b83-839496-6c71c4-93a1a1-fdf6e3-];
+    # colors = [
+    #   "FF0000"
+    #   "FF0000"
+    #   "FF0000"
+    #   "FF0000"
+    #   "FF0000"
+    #   "FF0000"
+    #   "00FF00"
+    #   "00FF00"
+    #   "00FF00"
+    #   "00FF00"
+    #   "00FF00"
+    #   "00FF00"
+    #   "00FF00"
+    #   "0000FF"
+    #   "0000FF"
+    #   "0000FF"
+    #   "0000FF"
+    # ];
+    # colors = [
+    #   "0000FF"
+    #   "0000FF"
+    #   "0000FF"
+    #   "0000FF"
+    #   "FF0000"
+    #   "FF0000"
+    #   "FF0000"
+    #   "00FF00"
+    #   "00FF00"
+    #   "00FF00"
+    #   "FF0000"
+    #   "FF0000"
+    #   "FF0000"
+    #   "00FF00" 
+    #   "00FF00"
+    #   "00FF00"
+    #   "00FF00"
+    # ];
+    # colors = [
+    #   "2E3440"
+    #   "3B4252"
+    #   "434C5E"
+    #   "4C566A"
+    #   "D8DEE9"
+    #   "E5E9F0"
+    #   "ECEFF4"
+    #   "8FBCBB"
+    #   "88C0D0"
+    #   "81A1C1"
+    #   "5E81AC"
+    #   "BF616A"
+    #   "D08770"
+    #   "EBCB8B"
+    #   "A3BE8C"
+    #   "B48EAD"
+    # ];
+  };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;

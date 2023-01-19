@@ -2,7 +2,7 @@
 (defpoll clock_minute :interval "5s" "date +\%M")
 (defpoll clock_date   :interval "5s" "date +\%d")
 
-(defpoll has_bat     :interval "10h" "stat /sys/class/power_supply/BAT0 > /dev/null && echo true || echo false")
+(defpoll has_bat     :interval "10h" "stat /sys/class/power_supply/BAT1 > /dev/null && echo true || echo false")
 (defpoll bat_percent :interval "10s" "get-battery Percent")
 (defpoll bat_icon    :interval "10s" "get-battery Icon")
 (defpoll light_level :interval "10s" "sudo light")

@@ -29,7 +29,8 @@ let unstable = import <nixos-unstable> { config = { allowUnfree = true; }; }; in
   # NVIDIA drivers are unfree.
   nixpkgs.config.allowUnfree = true;
 
-  services.xserver.videoDrivers = [ "nvidia" ];
+  services.xserver.videoDrivers = [ "nvidia" "modesetting" "iwlwifi" ];
+  hardware.nvidia.modesetting.enable = true;
   hardware.opengl.enable = true;
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
