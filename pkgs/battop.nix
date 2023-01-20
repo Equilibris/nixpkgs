@@ -1,11 +1,12 @@
-{ 
-  pkgs ? import <nixpkgs> {},
+{ pkgs ? import <nixpkgs> { }
+,
 }:
 let
-  lib             = pkgs.lib;
+  lib = pkgs.lib;
   fetchFromGitHub = pkgs.fetchFromGitHub;
-  rustPlatform    = pkgs.rustPlatform;
-in rustPlatform.buildRustPackage rec {
+  rustPlatform = pkgs.rustPlatform;
+in
+rustPlatform.buildRustPackage rec {
   pname = "rust-battop";
   version = "a434b80774a8f3ef2db934c362914aa7116c450f";
 

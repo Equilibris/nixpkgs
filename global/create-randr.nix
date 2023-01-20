@@ -1,13 +1,15 @@
 config:
-{ pkgs ? import <nixpkgs> {} }:
-let 
-  textContent = pkgs.lib.lists.fold (
-    curr: acc: "${acc} --output ${curr.output} --pos ${
+{ pkgs ? import <nixpkgs> { } }:
+let
+  textContent = pkgs.lib.lists.fold
+    (
+      curr: acc: "${acc} --output ${curr.output} --pos ${
       builtins.toString curr.x
     },${
       builtins.toString curr.y
     }"
-    ) "" config;
+    ) ""
+    config;
 
   myScript = pkgs.writeTextFile {
     name = "conf-randr";
@@ -21,7 +23,8 @@ let
       wlr-randr ${textContent}
     '';
   };
-in pkgs.stdenv.mkDerivation rec {
+in
+pkgs.stdenv.mkDerivation rec {
   pname = "conf-randr";
   version = "0.0.1";
 

@@ -9,7 +9,8 @@ let
 in
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./wm.nix
       <home-manager/nixos>
@@ -23,46 +24,60 @@ in
     };
 
     grub = {
-        enable = true;
-        efiSupport = true;
-        device = "nodev";
-        # splashImage = /home/williams/walls/nordic/nixos.png;
-        theme =
-          pkgs.stdenv.mkDerivation {
-            pname = "distro-grub-themes";
-            version = "3.1";
-            src = pkgs.fetchFromGitHub {
-              owner = "TechXero";
-              repo = "XeroNord-Grub";
-              rev = "96912ebf601e31ae32fd3871361d26d11fa9f9b6";
-              hash = "sha256-Q/uHWoajKvnTueqSbH5UtdUuK9Z3l/ELqF41jNaQmYE=";
-            };
-            installPhase = "cp -r XeroNord $out";
+      enable = true;
+      efiSupport = true;
+      device = "nodev";
+      # splashImage = /home/williams/walls/nordic/nixos.png;
+      theme =
+        pkgs.stdenv.mkDerivation {
+          pname = "vimix";
+          version = "3.1";
+          src = pkgs.fetchFromGitHub {
+            owner = "vinceliuice";
+            repo = "grub2-themes";
+            rev = "7c0d8eb7849cd5a4cf6a26c8750dcf71c26f2b0f";
+            hash = "sha256-cBgjWD/mR1tiPyVky9Bl5kUrDX6RnARJ+0cEJ4VhbRg=";
           };
-          # pkgs.stdenv.mkDerivation {
-          #   pname = "distro-grub-themes";
-          #   version = "3.1";
-          #   src = pkgs.fetchFromGitHub {
-          #     owner = "13atm01";
-          #     repo = "GRUB-Theme";
-          #     rev = "02a3e4233e0b2852a310dc9165097ae9ccf3b2c8";
-          #     hash = "sha256-rIpRP5+5Z8tIet6/1/8rB2NFgofUhJVgNhezf7jdRgA=";
-          #   };
-          #   # installPhase = "cp -r \"Monika (Doki Doki Literature Club)/Monika-DDLC-Version\" $out";
-          #   installPhase = "cp -r \"Artoria Pendragon (15th Celebration Version)/Artoria-Celebration-Version\" $out";
-          # };
+          installPhase = ''
+            cd $src
+            ./install.sh --generate $out -t vimix
+          '';
+        };
+      # pkgs.stdenv.mkDerivation {
+      #   pname = "distro-grub-themes";
+      #   version = "3.1";
+      #   src = pkgs.fetchFromGitHub {
+      #     owner = "TechXero";
+      #     repo = "XeroNord-Grub";
+      #     rev = "96912ebf601e31ae32fd3871361d26d11fa9f9b6";
+      #     hash = "sha256-Q/uHWoajKvnTueqSbH5UtdUuK9Z3l/ELqF41jNaQmYE=";
+      #   };
+      #   installPhase = "cp -r XeroNord $out";
+      # };
+      # pkgs.stdenv.mkDerivation {
+      #   pname = "distro-grub-themes";
+      #   version = "3.1";
+      #   src = pkgs.fetchFromGitHub {
+      #     owner = "13atm01";
+      #     repo = "GRUB-Theme";
+      #     rev = "02a3e4233e0b2852a310dc9165097ae9ccf3b2c8";
+      #     hash = "sha256-rIpRP5+5Z8tIet6/1/8rB2NFgofUhJVgNhezf7jdRgA=";
+      #   };
+      #   # installPhase = "cp -r \"Monika (Doki Doki Literature Club)/Monika-DDLC-Version\" $out";
+      #   installPhase = "cp -r \"Artoria Pendragon (15th Celebration Version)/Artoria-Celebration-Version\" $out";
+      # };
 
-          # pkgs.stdenv.mkDerivation {
-          #   pname = "distro-grub-themes";
-          #   version = "3.1";
-          #   src = pkgs.fetchFromGitHub {
-          #     owner = "AdisonCavani";
-          #     repo = "distro-grub-themes";
-          #     rev = "v3.1";
-          #     hash = "sha256-ZcoGbbOMDDwjLhsvs77C7G7vINQnprdfI37a9ccrmPs=";
-          #   };
-          #   installPhase = "cp -r customize/nixos $out";
-          # };
+      # pkgs.stdenv.mkDerivation {
+      #   pname = "distro-grub-themes";
+      #   version = "3.1";
+      #   src = pkgs.fetchFromGitHub {
+      #     owner = "AdisonCavani";
+      #     repo = "distro-grub-themes";
+      #     rev = "v3.1";
+      #     hash = "sha256-ZcoGbbOMDDwjLhsvs77C7G7vINQnprdfI37a9ccrmPs=";
+      #   };
+      #   installPhase = "cp -r customize/nixos $out";
+      # };
 
       extraEntries = ''
         menuentry 'Windows Boot Manager (on /dev/nvme0n1p1)' --class windows --class os $menuentry_id_option 'osprober-efi-F8FD-D8E5' {
@@ -107,9 +122,11 @@ in
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     home-manager
-    git gh
+    git
+    gh
     firefox
-    kitty neovim
+    kitty
+    neovim
   ];
 
   environment.variables.EDITOR = "nvim";
@@ -125,10 +142,13 @@ in
   programs.light.enable = true;
 
   security.sudo.extraRules = [
-    { users = [ "williams" ]; runAs = "root";
+    {
+      users = [ "williams" ];
+      runAs = "root";
       commands =
-        [ { command = "/run/current-system/sw/bin/light"; options = [ "NOPASSWD" ]; } ]; }
-      ];
+        [{ command = "/run/current-system/sw/bin/light"; options = [ "NOPASSWD" ]; }];
+    }
+  ];
 
   ###########################################################
   ###################### AUDIO ##############################

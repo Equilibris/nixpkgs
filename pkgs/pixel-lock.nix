@@ -1,4 +1,4 @@
-{ pkgs ? import <nixpkgs> {} }:
+{ pkgs ? import <nixpkgs> { } }:
 let
   stdenv = pkgs.stdenv;
   src = pkgs.writeShellScript "pixel-lock" ''
@@ -17,19 +17,19 @@ let
     rm $LOCK_IMG
   '';
 in
-  stdenv.mkDerivation {
-    name = "pixel-lock";
+stdenv.mkDerivation {
+  name = "pixel-lock";
 
-    src = src;
+  src = src;
 
-    nativeBuildInputs = [ pkgs.imagemagick pkgs.grim ];
+  nativeBuildInputs = [ pkgs.imagemagick pkgs.grim ];
 
-    unpackPhase = "true";
-    buildPhase = "true";
-    installPhase = ''
-      mkdir $out
-      mkdir $out/bin
-      cp $src  $out/bin/pixel-lock
-      chmod +x $out/bin/pixel-lock
-    '';
-  }
+  unpackPhase = "true";
+  buildPhase = "true";
+  installPhase = ''
+    mkdir $out
+    mkdir $out/bin
+    cp $src  $out/bin/pixel-lock
+    chmod +x $out/bin/pixel-lock
+  '';
+}

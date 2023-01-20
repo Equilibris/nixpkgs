@@ -5,9 +5,10 @@
 
 {
   imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
+    [
+      (modulesPath + "/installer/scan/not-detected.nix")
     ];
-  environment.systemPackagess = [ (import ./create-randr.nix [] {}); ];
+  environment.systemPackagess = [ (import ./create-randr.nix [ ] { }); ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
@@ -15,16 +16,19 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/c8a03626-4013-4aa7-b22c-9bcf7d0a85ee";
+    {
+      device = "/dev/disk/by-uuid/c8a03626-4013-4aa7-b22c-9bcf7d0a85ee";
       fsType = "ext4";
     };
 
   fileSystems."/boot/efi" =
-    { device = "/dev/disk/by-uuid/2E43-4B37";
+    {
+      device = "/dev/disk/by-uuid/2E43-4B37";
       fsType = "vfat";
     };
   fileSystems."/mnt/win" =
-    { device = "/dev/sda3";
+    {
+      device = "/dev/sda3";
       fsType = "ntfs";
     };
   # fileSystems."/home" =

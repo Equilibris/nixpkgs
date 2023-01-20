@@ -1,24 +1,29 @@
 { config
 , pkgs
 , lib
-, ... }:
-let 
+, ...
+}:
+let
   rofi-themes = import ../pkgs/rofi-themes.nix {
     theme = "nord";
     style = 15;
-    type =  1;
+    type = 1;
   };
-  unstable = import <nixos-unstable> {};
+  unstable = import <nixos-unstable> { };
 in
 {
-  home.packages = (with pkgs; [ 
-    xorg.xhost polkit
+  home.packages = (with pkgs; [
+    xorg.xhost
+    polkit
 
     rofi-themes
-    slurp grim
-    wl-clipboard copyq
+    slurp
+    grim
+    wl-clipboard
+    copyq
     tmux
-    fnott libnotify
+    fnott
+    libnotify
     (unstable.eww-wayland)
   ]);
 

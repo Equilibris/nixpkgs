@@ -1,15 +1,15 @@
 { config, pkgs, lib, ... }:
 
-let 
+let
   manager.gnome = false;
-  manager.sway  = true;
-  manager.i3    = false;
+  manager.sway = true;
+  manager.i3 = false;
 in
-  (lib.attrsets.optionalAttrs manager.gnome
+(lib.attrsets.optionalAttrs manager.gnome
   {
     # Enable the X11 windowing system.
     services.xserver.enable = true;
-  
+
     # Enable the GNOME Desktop Environment.
     services.xserver.displayManager.gdm.enable = true;
     services.xserver.desktopManager.gnome.enable = true;
@@ -17,7 +17,7 @@ in
       [org.gnome.desktop.peripherals.touchpad]
       click-method='default'
     '';
-  
+
     # Configure keymap in X11
     services.xserver = {
       layout = "no";
@@ -28,23 +28,24 @@ in
       gnome-photos
       gnome-tour
     ]) ++ (with pkgs.gnome; [
-      cheese          # webcam tool
+      cheese # webcam tool
       gnome-music
       gnome-terminal
-      gedit           # text editor
-      epiphany        # web browser
-      geary           # email reader
-      evince          # document viewer
+      gedit # text editor
+      epiphany # web browser
+      geary # email reader
+      evince # document viewer
       gnome-characters
-      totem           # video player
-      tali            # poker game
-      iagno           # go game
-      hitori          # sudoku game
-      atomix          # puzzle game
+      totem # video player
+      tali # poker game
+      iagno # go game
+      hitori # sudoku game
+      atomix # puzzle game
     ]);
-  })//
-  (lib.attrsets.optionalAttrs manager.sway
-    (let
+  }) //
+(lib.attrsets.optionalAttrs manager.sway
+  (
+    let
       # bash script to let dbus know about important env variables and
       # propogate them to relevent services run at the end of sway config
       # see
@@ -57,10 +58,10 @@ in
         executable = true;
 
         text = ''
-      dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
-      systemctl --user stop pipewire pipewire-media-session xdg-desktop-portal xdg-desktop-portal-wlr
-      systemctl --user start pipewire pipewire-media-session xdg-desktop-portal xdg-desktop-portal-wlr
-          '';
+          dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+          systemctl --user stop pipewire pipewire-media-session xdg-desktop-portal xdg-desktop-portal-wlr
+          systemctl --user start pipewire pipewire-media-session xdg-desktop-portal xdg-desktop-portal-wlr
+        '';
       };
 
       # currently, there is some friction between sway and gtk:
@@ -70,17 +71,19 @@ in
       # using the XDG_DATA_DIR environment variable
       # run at the end of sway config
       configure-gtk = pkgs.writeTextFile {
-          name = "configure-gtk";
-          destination = "/bin/configure-gtk";
-          executable = true;
-          text = let
+        name = "configure-gtk";
+        destination = "/bin/configure-gtk";
+        executable = true;
+        text =
+          let
             schema = pkgs.gsettings-desktop-schemas;
             datadir = "${schema}/share/gsettings-schemas/${schema.name}";
-          in ''
+          in
+          ''
             export XDG_DATA_DIRS=${datadir}:$XDG_DATA_DIRS
             gnome_schema=org.gnome.desktop.interface
             gsettings set $gnome_schema gtk-theme 'Nordic'
-            '';
+          '';
       };
     in
     {
@@ -91,7 +94,7 @@ in
         wayland
         glib # gsettings
         nordic # gtk theme
-        gnome3.adwaita-icon-theme  # default gnome cursors
+        gnome3.adwaita-icon-theme # default gnome cursors
         mako # notification system developed by swaywm maintainer
       ];
 
@@ -132,26 +135,27 @@ in
         #   night = 3700;
         # };
       };
-    }))//
-    (lib.attrsets.optionalAttrs manager.i3 {
-      environment.pathsToLink = [ "/libexec" ]; # links /libexec from derivations to /run/current-system/sw 
-      services.xserver = {
-        enable = true;
+    }
+  )) //
+(lib.attrsets.optionalAttrs manager.i3 {
+  environment.pathsToLink = [ "/libexec" ]; # links /libexec from derivations to /run/current-system/sw 
+  services.xserver = {
+    enable = true;
 
-        desktopManager = {
-          xterm.enable = false;
-        };
-       
-        displayManager = {
-            defaultSession = "none+i3";
-        };
+    desktopManager = {
+      xterm.enable = false;
+    };
 
-        windowManager.i3 = {
-          enable = true;
-          extraPackages = with pkgs; [
-            dmenu #application launcher most people use
-            i3lock #default i3 screen locker
-         ];
-        };
-      };
-    })
+    displayManager = {
+      defaultSession = "none+i3";
+    };
+
+    windowManager.i3 = {
+      enable = true;
+      extraPackages = with pkgs; [
+        dmenu #application launcher most people use
+        i3lock #default i3 screen locker
+      ];
+    };
+  };
+})

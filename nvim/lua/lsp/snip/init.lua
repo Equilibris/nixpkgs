@@ -55,6 +55,16 @@ ls.add_snippets('tex', {
 		t '}',
 	}),
 })
+ls.add_snippets('nix', {
+	s('devShell', {
+		isn(1, {
+			t { 'devShell = pkgs.mkShell {', 'packages = with pkgs; [' },
+			i(1),
+			t { '];' },
+		}, '$PARENT_INDENT  '),
+		t { '', '};' },
+	}),
+})
 ls.add_snippets('toml', {
 	postfix('.feat', {
 		f(function(_, parent)

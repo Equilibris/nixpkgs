@@ -6,7 +6,8 @@
 let unstable = import <nixos-unstable> { config = { allowUnfree = true; }; }; in
 {
   imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
+    [
+      (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usb_storage" "sd_mod" ];
@@ -15,12 +16,14 @@ let unstable = import <nixos-unstable> { config = { allowUnfree = true; }; }; in
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/ec7730ce-a750-41f7-836b-2b97414fab37";
+    {
+      device = "/dev/disk/by-uuid/ec7730ce-a750-41f7-836b-2b97414fab37";
       fsType = "ext4";
     };
 
   fileSystems."/boot/efi" =
-    { device = "/dev/disk/by-uuid/8A71-F1B4";
+    {
+      device = "/dev/disk/by-uuid/8A71-F1B4";
       fsType = "vfat";
     };
 

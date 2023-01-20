@@ -1,5 +1,5 @@
-{ 
-  pkgs ? import <nixpkgs> {},
+{ pkgs ? import <nixpkgs> { }
+,
 }:
 
 let
@@ -21,14 +21,14 @@ let
     repo = "spicetify-themes";
 
     rev = "0dd8243d4e25f142c3f62a8d3da8f6647dbf64e4";
-    
+
   };
 
   theme = "Sleek";
   scheme = "Nord";
 in
 pkgs.spotify-unwrapped.overrideAttrs (oldAttrs: rec {
-  postInstall=''
+  postInstall = ''
     touch $out/prefs
     mkdir Themes
     mkdir Extensions

@@ -11,8 +11,15 @@ in
 {
   home.packages = with unstable; [
     neovim
-    rust-analyzer statix stylua 
-    ripgrep proselint wget
+    rust-analyzer
+    statix
+    stylua
+    ripgrep
+    proselint
+    wget
+
+    nil
+    rnix-lsp
   ];
 
   # environment.variables.EDITOR = "nvim";
