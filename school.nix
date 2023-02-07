@@ -11,30 +11,45 @@ if school then {
     openscad
     wxmaxima
 
-    arduino
-
     hunspell
     unstable.hunspellDicts.nb-no
     unstable.hunspellDicts.en-gb-ize
-    libreoffice
+    # libreoffice
 
     pandoc
 
-    python310
-    (texlive.combine {
-      inherit (texlive)
-        scheme-medium
-        svg transparent lipsum babel
-        runcode morewrites tcolorbox environ
-        xifthen ifmtarg framed paralist
-        pythontex fvextra
-        pgfplots
-        enumitem
-        apacite
-        titlesec
-        blindtext;
-    })
+    arduino
+    arduino-cli
+    go
+    screen
+    libsecret
+    pkg-config
+    xorg.libX11
+    xorg.libxkbfile
+    clang-tools
+    electron
+    appimage-run
+
+
+    # python310
+    texlive.combined.scheme-full
+    # (texlive.combine {
+    #   inherit (texlive)
+    #     scheme-medium
+    #     svg transparent lipsum babel
+    #     runcode morewrites tcolorbox environ
+    #     xifthen ifmtarg framed paralist
+    #     pythontex fvextra
+    #     pgfplots
+    #     enumitem
+    #     apacite
+    #     titlesec
+    #     blindtext;
+    # })
     libsForQt5.okular
     texlab
   ];
+  programs.zsh.initExtra = ''
+    source ~/Downloads/arduino.comp.zsh
+  '';
 } else { }

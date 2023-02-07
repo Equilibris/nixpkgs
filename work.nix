@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 
 let
-  work = false;
+  work = true;
 
   python-deps = python-packages: with python-packages; [ boto3 ];
   python-with-deps = pkgs.python3.withPackages python-deps;
@@ -36,7 +36,7 @@ if work then {
       source = ./work/powercatch-config;
     };
 
-    ".m2/settings.xml" = { source = ./work/m2-settings.xml; };
+    # ".m2/settings.xml" = { source = ./work/m2-settings.xml; };
   };
 } else { }
 

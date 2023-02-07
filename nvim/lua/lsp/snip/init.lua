@@ -55,6 +55,28 @@ ls.add_snippets('tex', {
 		t '}',
 	}),
 })
+ls.add_snippets('cpp', {
+	s('!', {
+		t {
+			'#include<iostream>',
+			'#include<vector>',
+			'',
+			'typedef long long ll;',
+			'using namespace std;',
+			'',
+			'int main () {',
+		},
+		i(0),
+		t '}',
+	}),
+	s('llv', {
+		t 'll ',
+		i(1),
+		t ' {',
+		i(0),
+		t '};',
+	}),
+})
 ls.add_snippets('nix', {
 	s('devShell', {
 		isn(1, {
@@ -63,6 +85,12 @@ ls.add_snippets('nix', {
 			t { '];' },
 		}, '$PARENT_INDENT  '),
 		t { '', '};' },
+	}),
+	s('unstable-channel', {
+		t 'unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };',
+	}),
+	s('unstable-channel', {
+		t 'unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };',
 	}),
 })
 ls.add_snippets('toml', {

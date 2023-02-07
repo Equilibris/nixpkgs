@@ -35,6 +35,12 @@ icon () {
 }
 percent() {
     echo $per
+
+    if [ "$per" -lt "5" ]; then 
+        notify-send -u critical "Battery critical" "ma"
+
+        shutdown
+    fi
 }
 
 [ $1 = Icon ] && icon

@@ -11,13 +11,15 @@ in
     ./term.nix
     ./lang.nix
     ./nvim.nix
-    ./wm/wm.nix
     ./work.nix
+    ./wm/wm.nix
     ./school.nix
   ];
   nixpkgs.config.allowUnfree = true;
   home.packages = with unstable; [
     libsForQt5.qtstyleplugins
+    qt5.qtwayland
+    xdg-utils
 
     thefuck
     unzip
@@ -48,6 +50,30 @@ in
 
     (unstable.nerdfonts.override { fonts = [ "FiraCode" ]; })
   ];
+
+
+  # programs.firefox = {
+  #   enable = true;
+  #   package = pkgs.firefox-unwrapped;
+  #   # package = pkgs.wrapFirefox pkgs.firefox-unwrapped {
+  #   #   extraPolicies = {
+  #   #     ExtensionSettings = { };
+  #   #   };
+  #   # };
+  # };
+  home.sessionVariables = {
+    # MOZ_ENABLE_WAYLAND = 1;
+    # XDG_CURRENT_DESKTOP = "sway";
+  };
+
+  # programs.firefox = {
+  #   enable = true;
+  #   package = pkgs.wrapFirefox pkgs.firefox-unwrapped {
+  #     extraPolicies = {
+  #       ExtensionSettings = { };
+  #     };
+  #   };
+  # };
 
   # home.sessionPath = [ "$HOME/.npm-global/bin" ];
 

@@ -86,6 +86,7 @@ require('packer').startup(function(use)
 
 	use 'andweeb/presence.nvim'
 
+	use 'stevearc/vim-arduino'
 	use 'p00f/cphelper.nvim'
 
 	use '~/Dev/MicroProjects/nx.nvim'
@@ -109,6 +110,7 @@ require 'plugins.comment'
 require 'plugins.lualine'
 require 'plugins.project'
 require 'plugins.vimtex'
+require 'plugins.arduino'
 require 'plugins.git'
 require 'plugins.hop'
 require 'plugins.nx'

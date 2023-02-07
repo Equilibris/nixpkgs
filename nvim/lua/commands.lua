@@ -32,7 +32,7 @@ vim.api.nvim_create_autocmd(
 )
 vim.api.nvim_create_autocmd(
 	'BufWinEnter',
-	{ pattern = '*[!.tex]', group = group, command = 'silent! loadview' }
+	{ pattern = '*', group = group, command = 'silent! loadview' }
 )
 
 -- vim.api.nvim_create_autocmd(
@@ -41,10 +41,18 @@ vim.api.nvim_create_autocmd(
 -- )
 
 vim.cmd [[cabbrev wq execute "lua vim.lsp.buf.formatting_sync()" <bar> wq]]
-vim.api.nvim_create_autocmd(
-	'BufWritePre',
-	{ command = 'silent lua vim.lsp.buf.formatting()', group = group }
-)
+vim.api.nvim_create_autocmd('BufWritePre', {
+	-- command = 'silent lua vim.lsp.buf.formatting()',
+	callback = function(c)
+		vim.lsp.buf.format {
+			filter = function(client)
+				return client.name ~= 'texlab' and client.name ~= 'tsserver'
+			end,
+		}
+	end,
+	pattern = '*',
+	group = group,
+})
 
 vim.api.nvim_create_autocmd('User', {
 	pattern = 'LuasnipChoiceNodeEnter',

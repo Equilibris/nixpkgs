@@ -73,7 +73,7 @@ in
       screenshot () { grim  -g "$(slurp)" ~/Photos/$(date +'%H:%M:%S.png') }
       killPort   () { fp | grep $1 | echo }
 
-      if [[ "$(tty)" == "/dev/tty1" ]]; then; sway --unsupported-gpu; fi
+      # if [[ "$(tty)" == "/dev/tty1" ]]; then; sway --unsupported-gpu; fi
     '';
 
     plugins = [
@@ -143,22 +143,20 @@ in
     }}";
   };
 
-  home.file = {
-    ".config/nix/nix.conf" = { source = ./nix.conf; };
-  } //
-  lib.lists.fold
-    (curr: acc: acc // {
-      "bin/${curr.name}" = {
-        source = curr.src;
-        executable = true;
-      };
-    })
-    { } [
-    { name = "get-battery"; src = ./scripts/get-battery; }
-    { name = "toggle_kbd"; src = ./scripts/toggle_kbd; }
-    { name = "restart-blue"; src = ./scripts/restart-blue.sh; }
-    { name = "recursive-gs"; src = ./scripts/recursive-gs.sh; }
-    # { name = "pixel-lock";  src = ./scripts/pixel-lock; }
-  ];
+  home.file =
+    lib.lists.fold
+      (curr: acc: acc // {
+        "bin/${curr.name}" = {
+          source = curr.src;
+          executable = true;
+        };
+      })
+      { } [
+      { name = "get-battery"; src = ./scripts/get-battery; }
+      { name = "toggle_kbd"; src = ./scripts/toggle_kbd; }
+      { name = "restart-blue"; src = ./scripts/restart-blue.sh; }
+      { name = "recursive-gs"; src = ./scripts/recursive-gs.sh; }
+      # { name = "pixel-lock";  src = ./scripts/pixel-lock; }
+    ];
 }
 

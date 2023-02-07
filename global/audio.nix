@@ -1,9 +1,10 @@
 { config, pkgs, ... }:
 
 {
-
   services.blueman.enable = true;
   hardware.bluetooth.enable = true;
+
+  # programs.dconf.enable = true;
 
   # hardware.pulseaudio.enable = true;
   # # Enable sound with pipewire.
@@ -13,7 +14,7 @@
     enable = true;
     alsa.enable = true;
     alsa.support32Bit = true;
-    # pulse.enable = true;
+    pulse.enable = true;
     # If you want to use JACK applications, uncomment this
     #jack.enable = true;
 
@@ -22,4 +23,3 @@
     #media-session.enable = true;
   };
 }
-

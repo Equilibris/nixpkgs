@@ -33,8 +33,34 @@ let unstable = import <nixos-unstable> { config = { allowUnfree = true; }; }; in
   nixpkgs.config.allowUnfree = true;
 
   services.xserver.videoDrivers = [ "nvidia" "modesetting" "iwlwifi" ];
-  hardware.nvidia.modesetting.enable = true;
+  hardware.nvidia = {
+    # package = config.boot.kernelPackages.nvidiaPackages.stable;
+
+    # open = true;
+    powerManagement.enable = true;
+
+    modesetting.enable = true;
+  };
   hardware.opengl.enable = true;
+
+  environment.etc = {
+    # Creates /etc/nanorc
+    "modprobe.d/iwlwifi.conf" = {
+      # https://bbs.archlinux.org/viewtopic.php?id=257739
+      text = ''
+        options iwlwifi 11n_disable=1
+        options iwlwifi swcrypto=0
+        options iwlwifi bt_coex_active=0
+        options iwlwifi power_save=0
+        options iwlwifi uapsd_disable=1
+
+        options iwlmvm power_scheme=1
+      '';
+
+      # The UNIX file mode bits
+      mode = "0444";
+    };
+  };
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
