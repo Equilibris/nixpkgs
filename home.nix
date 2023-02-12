@@ -26,7 +26,7 @@ in
     unzip
     bat
     htop
-    discord
+    discord cordless
     google-chrome
     git
     gh
