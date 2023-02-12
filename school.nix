@@ -32,7 +32,7 @@ if school then {
 
 
     # python310
-    texlive.combined.scheme-full
+    # texlive.combined.scheme-full
     # (texlive.combine {
     #   inherit (texlive)
     #     scheme-medium

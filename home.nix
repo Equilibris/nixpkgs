@@ -20,6 +20,7 @@ in
     libsForQt5.qtstyleplugins
     qt5.qtwayland
     xdg-utils
+    xorg.xprop
 
     thefuck
     unzip
@@ -30,6 +31,7 @@ in
     git
     gh
     git-secret
+    libreoffice
 
     gcc
     # stdenv.cc.cc.lib clang libcxx libcxxabi clang.bintools clang.bintools

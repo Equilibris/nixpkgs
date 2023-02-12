@@ -55,6 +55,13 @@ let
   hyprland = (import flake-compat {
     src = builtins.fetchTarball "https://github.com/hyprwm/Hyprland/archive/master.tar.gz";
   }).defaultNix;
+
+  waylandOverlay =
+    let
+      rev = "master"; # 'rev' could be a git rev, to pin the overlay.
+      url = "https://github.com/nix-community/nixpkgs-wayland/archive/${rev}.tar.gz";
+    in
+    (import "${builtins.fetchTarball url}/overlay.nix");
 in
 (lib.attrsets.optionalAttrs manager.gnome
   {
@@ -158,6 +165,9 @@ in
     hyprland.nixosModules.default
   ];
 
+  # nixpkgs.overlays = [ waylandOverlay ];
+  # environment.systemPackages = with pkgs; [ wlroots ];
+
   programs.hyprland = {
     enable = true;
     package = hyprland.packages.${pkgs.system}.default;
@@ -168,6 +178,8 @@ in
     };
     nvidiaPatches = true;
   };
+
+  hardware.video.hidpi.enable = true;
 }) //
 (lib.attrsets.optionalAttrs manager.i3 {
   environment.pathsToLink = [ "/libexec" ]; # links /libexec from derivations to /run/current-system/sw 

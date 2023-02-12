@@ -67,11 +67,11 @@ require('packer').startup(function(use)
 	use 'hrsh7th/nvim-cmp'
 	use 'ray-x/lsp_signature.nvim'
 	use 'terrortylor/nvim-comment'
-	use {
-		'tzachar/cmp-tabnine',
-		run = './install.sh',
-		requires = 'hrsh7th/nvim-cmp',
-	}
+	-- use {
+	-- 	'tzachar/cmp-tabnine',
+	-- 	run = './install.sh',
+	-- 	requires = 'hrsh7th/nvim-cmp',
+	-- }
 
 	use 'noib3/nvim-cokeline'
 	use 'nvim-lualine/lualine.nvim'

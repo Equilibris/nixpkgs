@@ -66,6 +66,7 @@ in
   # services.gpg-agent.enable = true;
   services.pcscd.enable = true;
   services.fwupd.enable = true;
+  security.polkit.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

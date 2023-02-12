@@ -16,6 +16,8 @@ in
     xorg.xhost
     polkit
 
+    mako
+
     rofi-themes
     slurp
     grim
@@ -47,8 +49,8 @@ in
     ".swaylock/config" = {
       source = config.lib.file.mkOutOfStoreSymlink ./swaylock.config;
     };
-    ".config/fnott/fnott.ini" = {
-      source = config.lib.file.mkOutOfStoreSymlink ./fnott.ini;
+    ".config/hypr/hyprland.conf" = {
+      source = config.lib.file.mkOutOfStoreSymlink ./hyprland.conf;
     };
     # ".config/rofi" = {
     #   source = rofi-themes;
