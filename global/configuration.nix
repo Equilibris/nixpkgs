@@ -32,7 +32,6 @@ in
     home-manager
     git
     gh
-    firefox
     kitty
     neovim
     polkit

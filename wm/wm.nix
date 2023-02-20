@@ -43,6 +43,9 @@ in
       source = ../eww;
       recursive = true;
     };
+    ".config/electron-flags.conf" = {
+      source = config.lib.file.mkOutOfStoreSymlink ./electron-flags.conf;
+    };
     ".config/sway/config" = {
       source = config.lib.file.mkOutOfStoreSymlink ./sway.config;
     };

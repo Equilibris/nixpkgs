@@ -33,19 +33,19 @@ if school then {
 
     # python310
     # texlive.combined.scheme-full
-    # (texlive.combine {
-    #   inherit (texlive)
-    #     scheme-medium
-    #     svg transparent lipsum babel
-    #     runcode morewrites tcolorbox environ
-    #     xifthen ifmtarg framed paralist
-    #     pythontex fvextra
-    #     pgfplots
-    #     enumitem
-    #     apacite
-    #     titlesec
-    #     blindtext;
-    # })
+    (texlive.combine {
+      inherit (texlive)
+        scheme-medium
+        svg transparent lipsum babel
+        runcode morewrites tcolorbox environ
+        xifthen ifmtarg framed paralist
+        pythontex fvextra
+        pgfplots
+        enumitem
+        apacite
+        titlesec
+        blindtext;
+    })
     libsForQt5.okular
     texlab
   ];

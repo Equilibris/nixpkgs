@@ -179,7 +179,7 @@ in
     nvidiaPatches = true;
   };
 
-  hardware.video.hidpi.enable = true;
+  # hardware.video.hidpi.enable = true;
 }) //
 (lib.attrsets.optionalAttrs manager.i3 {
   environment.pathsToLink = [ "/libexec" ]; # links /libexec from derivations to /run/current-system/sw 

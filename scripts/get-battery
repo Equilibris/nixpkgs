@@ -37,9 +37,11 @@ percent() {
     echo $per
 
     if [ "$per" -lt "5" ]; then 
+    if [ $(cat "$bat/status") != Charging ]; then
         notify-send -u critical "Battery critical" "ma"
 
         shutdown
+    fi
     fi
 }
 

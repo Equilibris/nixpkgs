@@ -27,7 +27,7 @@
     };
 
   swapDevices = [
-    { device = "/dev/sda6"; size = 2147; }
+    { device = "/dev/sda6"; }
   ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking

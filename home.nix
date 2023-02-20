@@ -14,6 +14,7 @@ in
     ./work.nix
     ./wm/wm.nix
     ./school.nix
+    ./firefox.nix
   ];
   nixpkgs.config.allowUnfree = true;
   home.packages = with unstable; [
@@ -26,7 +27,8 @@ in
     unzip
     bat
     htop
-    discord cordless
+    discord
+    cordless
     google-chrome
     git
     gh
@@ -54,28 +56,10 @@ in
   ];
 
 
-  # programs.firefox = {
-  #   enable = true;
-  #   package = pkgs.firefox-unwrapped;
-  #   # package = pkgs.wrapFirefox pkgs.firefox-unwrapped {
-  #   #   extraPolicies = {
-  #   #     ExtensionSettings = { };
-  #   #   };
-  #   # };
-  # };
   home.sessionVariables = {
-    # MOZ_ENABLE_WAYLAND = 1;
+    MOZ_ENABLE_WAYLAND = 1;
     # XDG_CURRENT_DESKTOP = "sway";
   };
-
-  # programs.firefox = {
-  #   enable = true;
-  #   package = pkgs.wrapFirefox pkgs.firefox-unwrapped {
-  #     extraPolicies = {
-  #       ExtensionSettings = { };
-  #     };
-  #   };
-  # };
 
   # home.sessionPath = [ "$HOME/.npm-global/bin" ];
 
