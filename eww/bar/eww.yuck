@@ -106,7 +106,7 @@
     :class "bat"
     :orientation "v"
     :valign "end"
-    (metric :value { has_bat ? bat_percent : 100 } :name "battery")))
+    (metric_with_label :label "${bat_icon}" :value { has_bat ? bat_percent : 100 } :name "battery")))
 (defwidget sound []
   (eventbox
     :onhover "${eww} update soundctrl=true"

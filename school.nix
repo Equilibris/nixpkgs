@@ -7,7 +7,7 @@ let
 in
 if school then {
   home.packages = with unstable; [
-    teams
+    # teams
     openscad
     wxmaxima
 
@@ -32,24 +32,25 @@ if school then {
 
 
     # python310
-    # texlive.combined.scheme-full
-    (texlive.combine {
-      inherit (texlive)
-        scheme-medium
-        svg transparent lipsum babel
-        runcode morewrites tcolorbox environ
-        xifthen ifmtarg framed paralist
-        pythontex fvextra
-        pgfplots
-        enumitem
-        apacite
-        titlesec
-        blindtext;
-    })
+    inkscape
+    texlive.combined.scheme-full
+    # (texlive.combine {
+    #   inherit (texlive)
+    #     scheme-medium
+    #     svg transparent lipsum babel
+    #     runcode morewrites tcolorbox environ
+    #     xifthen ifmtarg framed paralist
+    #     pythontex fvextra
+    #     pgfplots
+    #     enumitem
+    #     apacite
+    #     titlesec
+    #     blindtext;
+    # })
     libsForQt5.okular
     texlab
   ];
   programs.zsh.initExtra = ''
-    source ~/Downloads/arduino.comp.zsh
+    # source ~/Downloads/arduino.comp.zsh
   '';
 } else { }
