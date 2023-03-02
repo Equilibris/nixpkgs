@@ -2,27 +2,9 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, unstable, ... }:
 
-let
-  unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
-in
 {
-  imports =
-    [
-      # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ./wm.nix
-      ./boot.nix
-      ./users.nix
-      ./audio.nix
-      ./console.nix
-      ./nix-conf.nix
-      ./networking.nix
-      <home-manager/nixos>
-    ];
-
-
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 

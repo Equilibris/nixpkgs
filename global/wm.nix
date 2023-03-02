@@ -1,8 +1,6 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, hyprland, unstable, ... }:
 
 let
-  unstable = import <nixos-unstable> { };
-
   manager.gnome = false;
   manager.i3 = false;
 
@@ -51,10 +49,6 @@ let
   };
 
 
-  flake-compat = builtins.fetchTarball "https://github.com/edolstra/flake-compat/archive/master.tar.gz";
-  hyprland = (import flake-compat {
-    src = builtins.fetchTarball "https://github.com/hyprwm/Hyprland/archive/master.tar.gz";
-  }).defaultNix;
 
   waylandOverlay =
     let
@@ -161,16 +155,12 @@ in
   }
 ) //
 (lib.attrsets.optionalAttrs manager.hyprland {
-  imports = [
-    hyprland.nixosModules.default
-  ];
-
   # nixpkgs.overlays = [ waylandOverlay ];
   # environment.systemPackages = with pkgs; [ wlroots ];
 
   programs.hyprland = {
     enable = true;
-    package = hyprland.packages.${pkgs.system}.default;
+    # package = hyprland.packages.${pkgs.system}.default;
 
     xwayland = {
       enable = true;
