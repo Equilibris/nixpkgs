@@ -2,18 +2,16 @@
 
 let
   school = true;
-
-  unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
 in
 if school then {
-  home.packages = with unstable; [
+  home.packages = with pkgs; [
     # teams
     openscad
     wxmaxima
 
     hunspell
-    unstable.hunspellDicts.nb-no
-    unstable.hunspellDicts.en-gb-ize
+    hunspellDicts.nb-no
+    hunspellDicts.en-gb-ize
     # libreoffice
 
     pandoc

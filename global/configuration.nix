@@ -19,6 +19,9 @@
     polkit
 
     ntfs3g
+
+    libimobiledevice
+    ifuse
   ];
 
   programs.steam = {
@@ -48,6 +51,14 @@
   services.pcscd.enable = true;
   services.fwupd.enable = true;
   security.polkit.enable = true;
+  services.qemuGuest.enable = true;
+  services.usbmuxd =
+    {
+      enable = true;
+      package = pkgs.usbmuxd2;
+    };
+
+  zramSwap.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

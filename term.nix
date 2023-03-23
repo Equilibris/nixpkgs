@@ -30,13 +30,12 @@ let
 
   aliasStr = lib.lists.fold (a: c: "${a}\n${c}") ""
     (lib.attrsets.mapAttrsToList (k: v: "alias \"${k}\"=\"${v}\"") aliases);
-  unstable = import <nixos-unstable> { };
 in
 {
-  home.packages = with unstable; [
+  home.packages = with pkgs; [
     fzf
     thefuck
-    (unstable.nerdfonts.override { fonts = [ "FiraCode" ]; })
+    (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; })
     jq
     coreutils
     exa

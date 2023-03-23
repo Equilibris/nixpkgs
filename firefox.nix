@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, nur, ... }:
 
 let
   unstable = import <nixos-unstable> {
@@ -17,18 +17,17 @@ in
 
     # package = pkgs.firefox-wayland;
 
-    extensions =
-      with unstable.nur.repos.rycee.firefox-addons; [
-        bitwarden
-        darkreader
-        vimium
-        ublock-origin
-      ];
-
-
     profiles."williams" = {
       id = 0;
       name = "William Sørensen";
+
+      # extensions =
+      #   with nur.repos.rycee.firefox-addons; [
+      #     bitwarden
+      #     darkreader
+      #     vimium
+      #     ublock-origin
+      #   ];
 
       # bookmarks =
       #   [

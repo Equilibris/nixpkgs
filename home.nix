@@ -1,23 +1,7 @@
 { config, pkgs, lib, ... }:
-
-
-let
-  #   spicetify = fetchTarball https://github.com/pietdevries94/spicetify-nix/archive/master.tar.gz;
-  unstable = import <nixos-unstable> { config.allowUnfree = true; };
-in
 {
-  imports = [
-    ./spotify.nix
-    ./term.nix
-    ./lang.nix
-    ./nvim.nix
-    ./work.nix
-    ./wm/wm.nix
-    ./school.nix
-    ./firefox.nix
-  ];
   nixpkgs.config.allowUnfree = true;
-  home.packages = with unstable; [
+  home.packages = with pkgs; [
     libsForQt5.qtstyleplugins
     qt5.qtwayland
     xdg-utils
@@ -52,7 +36,7 @@ in
     #   thirdParyExtensions = {};
     # })
 
-    (unstable.nerdfonts.override { fonts = [ "FiraCode" ]; })
+    (nerdfonts.override { fonts = [ "FiraCode" ]; })
   ];
 
 
@@ -70,7 +54,7 @@ in
     enable = true;
 
     theme.name = "Nordic";
-    theme.package = unstable.nordic;
+    theme.package = pkgs.nordic;
 
     gtk3.extraConfig.gtk-application-prefer-dark-theme = 1;
     gtk4.extraConfig.gtk-application-prefer-dark-theme = true;

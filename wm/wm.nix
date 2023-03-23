@@ -9,7 +9,6 @@ let
     style = 15;
     type = 1;
   };
-  unstable = import <nixos-unstable> { };
 in
 {
   home.packages = (with pkgs; [
@@ -26,12 +25,12 @@ in
     tmux
     fnott
     libnotify
-    (unstable.eww-wayland)
+    (pkgs.eww-wayland)
   ]);
 
   programs.rofi = {
     enable = true;
-    package = unstable.rofi;
+    package = pkgs.rofi;
     configPath = ".config/rofi/config.rasi";
   };
 

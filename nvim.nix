@@ -1,15 +1,15 @@
 { config, pkgs, lib, ... }:
 let
-  unstable = import <nixos-unstable> {
-    overlays = [
-      (self: super: {
-        neovim = super.neovim.override { vimAlias = true; viAlias = true; };
-      })
-    ];
-  };
+  # pkgs = import <nixos-pkgs> {
+  #   overlays = [
+  #     (self: super: {
+  #       neovim = super.neovim.override { vimAlias = true; viAlias = true; };
+  #     })
+  #   ];
+  # };
 in
 {
-  home.packages = with unstable; [
+  home.packages = with pkgs; [
     neovim
     rust-analyzer
     statix
