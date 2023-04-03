@@ -57,7 +57,7 @@
             nur.nixosModules.nur
             ./global/nix-conf.nix
             ./global/configuration.nix
-            # ./global/containers.nix
+            ./global/containers.nix
             ./global/wm.nix
             ./global/boot.nix
             ./global/users.nix

@@ -21,5 +21,4 @@
     description = "William Sørensen";
     extraGroups = [ "networkmanager" "wheel" "docker" ];
   };
-  # virtualisation.docker.enable = true;
 }

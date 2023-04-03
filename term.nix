@@ -22,7 +22,7 @@ let
 
     "find-ports" = "nix-shell -p lsof --run \"sudo lsof -i -P -n | grep LISTEN\"";
     fp = "find-ports";
-    l = "exa -al --icons --sort=Extension";
+    l = "exa -al --icons --sort=Extension --git";
 
     "b-connect-steel" = "bluetoothctl connect 28:9A:4B:0F:64:1E";
     "b-connect-apple" = "bluetoothctl connect AC:1D:06:0E:7E:5F";
