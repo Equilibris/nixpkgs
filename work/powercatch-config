@@ -1,0 +1,12 @@
+[mfa]
+mfa_device_id = arn:aws:iam::232639570454:mfa/william.sorensen@embriq.no
+
+[powercatch-dev]
+role_arn = ZZZ
+
+[powercatch-staging]
+role_arn = ZZZ
+
+[powercatch-prod]
+role_arn = ZZZ
+

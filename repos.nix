@@ -24,20 +24,20 @@ let
   ];
 in
 {
-  home.files = lib.lists.fold
-    (curr: acc:
-      let
-        src = pkgs.fetchFromGitHub {
-          owner = "equilibris";
-          repo = curr.name;
-          rev = "master";
+  # home.files = lib.lists.fold
+  #   (curr: acc:
+  #     let
+  #       src = pkgs.fetchFromGitHub {
+  #         owner = "equilibris";
+  #         repo = curr.name;
+  #         rev = "master";
 
-          fetchSubmodules = true;
-          leaveDotGit = true;
-        };
-      in
-      acc // { })
-    { }
-    repos;
+  #         fetchSubmodules = true;
+  #         leaveDotGit = true;
+  #       };
+  #     in
+  #     acc // { })
+  #   { }
+  #   repos;
 }
 

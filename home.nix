@@ -13,7 +13,6 @@
     htop
     discord
     cordless
-    google-chrome
     git
     gh
     git-secret

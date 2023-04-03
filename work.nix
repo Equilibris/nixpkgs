@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 
 let
-  work = false;
+  work = true;
 
   python-deps = python-packages: with python-packages; [ boto3 ];
   python-with-deps = pkgs.python3.withPackages python-deps;
@@ -30,10 +30,10 @@ if work then {
 
   home.file = {
     "bin/aws-cli-helper.py" = {
-      source = ./work/aws-cli-helper.py;
+      source = config.lib.file.mkOutOfStoreSymlink ./work/aws-cli-helper.py;
     };
     ".aws/powercatch-config" = {
-      source = ./work/powercatch-config;
+      source = config.lib.file.mkOutOfStoreSymlink ./work/powercatch-config;
     };
 
     # ".m2/settings.xml" = { source = ./work/m2-settings.xml; };

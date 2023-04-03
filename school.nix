@@ -31,7 +31,7 @@ if school then {
 
     # python310
     inkscape
-    texlive.combined.scheme-full
+    # texlive.combined.scheme-full
     # (texlive.combine {
     #   inherit (texlive)
     #     scheme-medium

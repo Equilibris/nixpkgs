@@ -25,6 +25,10 @@
       device = "/dev/disk/by-uuid/2E43-4B37";
       fsType = "vfat";
     };
+#  fileSystems."/mnt/win" = {
+#    device = "/dev/sda2";
+#    fsType = "ntfs";
+#  };
 
   swapDevices = [
     { device = "/dev/sda6"; }
