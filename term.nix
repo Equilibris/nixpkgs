@@ -73,6 +73,7 @@ in
       killPort   () { fp | grep $1 | echo }
 
       # if [[ "$(tty)" == "/dev/tty1" ]]; then; sway --unsupported-gpu; fi
+      if [[ "$(tty)" == "/dev/tty1" ]]; then;   hyp;                    fi
     '';
 
     plugins = [
@@ -155,6 +156,7 @@ in
       { name = "toggle_kbd"; src = ./scripts/toggle_kbd; }
       { name = "restart-blue"; src = ./scripts/restart-blue.sh; }
       { name = "recursive-gs"; src = ./scripts/recursive-gs.sh; }
+      { name = "hyp"; src = ./scripts/hyprland.sh; }
       # { name = "pixel-lock";  src = ./scripts/pixel-lock; }
     ];
 }

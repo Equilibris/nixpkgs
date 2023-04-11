@@ -39,6 +39,7 @@ require('packer').startup(function(use)
 	use 'LnL7/vim-nix'
 	use 'lervag/vimtex'
 	use 'elkowar/yuck.vim'
+	use 'rest-nvim/rest.nvim'
 
 	use 'gpanders/editorconfig.nvim'
 
