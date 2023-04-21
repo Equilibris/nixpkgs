@@ -12,11 +12,12 @@
     bat
     htop
     discord
-    cordless
     git
     gh
     git-secret
     libreoffice
+
+    teams
 
     gcc
     # stdenv.cc.cc.lib clang libcxx libcxxabi clang.bintools clang.bintools
@@ -38,7 +39,6 @@
     (nerdfonts.override { fonts = [ "FiraCode" ]; })
   ];
 
-
   home.sessionVariables = {
     MOZ_ENABLE_WAYLAND = 1;
     # XDG_CURRENT_DESKTOP = "sway";
@@ -46,6 +46,12 @@
 
   # home.sessionPath = [ "$HOME/.npm-global/bin" ];
 
+  services.gammastep = {
+    enable = true;
+    provider = "manual";
+    latitude = 59.9;
+    longitude = 10.7;
+  };
 
   fonts.fontconfig.enable = true;
 

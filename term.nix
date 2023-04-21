@@ -13,6 +13,8 @@ let
     gs = "git status";
     ga = "git add";
 
+    txd = "tmux new -d --";
+
     gc = "git commit";
 
     cfg = "cd ~/.config/nixpkgs";

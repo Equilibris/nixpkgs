@@ -37,7 +37,6 @@
             home.username = "williams";
             home.homeDirectory = "/home/williams";
           }
-          { nixpkgs.config.allowUnfree = true; }
           ./home.nix
           ./spotify.nix
           ./term.nix
