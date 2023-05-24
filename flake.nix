@@ -9,6 +9,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    typst.url = "github:typst/typst";
     hyprland.url = "github:hyprwm/Hyprland";
   };
 
@@ -19,6 +20,7 @@
     , home-manager
     , nur
     , nixos-hardware
+    , typst
     }:
     let
       system = "x86_64-linux";
@@ -36,6 +38,7 @@
             home.stateVersion = "22.11";
             home.username = "williams";
             home.homeDirectory = "/home/williams";
+            home.packages = [ typst.packages.${system}.default ];
           }
           ./home.nix
           ./spotify.nix

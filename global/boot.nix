@@ -11,7 +11,6 @@
       efiSupport = true;
       device = "nodev";
 
-      version = 2;
       useOSProber = true;
 
       # splashImage = /home/williams/walls/nordic/nixos.png;

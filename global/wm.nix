@@ -105,6 +105,7 @@ in
     gnome3.adwaita-icon-theme # default gnome cursors
     mako # notification system developed by swaywm maintainer
     xwayland
+    gtk4
   ];
 
   # xdg-desktop-portal works by exposing a series of D-Bus interfaces
@@ -113,6 +114,8 @@ in
   # (/org/freedesktop/portal/desktop).
   # The portal interfaces include APIs for file access, opening URIs,
   # printing and others.
+  environment.variables.GTK_USE_PORTAL = "1";
+  environment.variables.GDK_BACKEND = "x11";
   services.dbus.enable = true;
   xdg.portal = {
     enable = true;
@@ -122,7 +125,7 @@ in
       pkgs.xdg-desktop-portal-gtk
       pkgs.xdg-desktop-portal-wlr
     ];
-    gtkUsePortal = true;
+    # gtkUsePortal = true;
   };
 
 

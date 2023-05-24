@@ -2,7 +2,7 @@
 
 let
   java = false;
-  rust = true;
+  rust = false;
   js = true;
   julia = true;
 

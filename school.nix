@@ -29,7 +29,19 @@ if school then {
     appimage-run
 
 
-    # python310
+    (python310.withPackages (ps: with ps; [
+      jupyter
+      jupyter-client
+      # jupyter-console
+      boto3
+      jupyter-core
+      jupyterlab-pygments
+      jupyterlab-widgets
+      nbclient
+      nbconvert
+      nbformat
+      notebook
+    ]))
     inkscape
     # texlive.combined.scheme-full
     # (texlive.combine {

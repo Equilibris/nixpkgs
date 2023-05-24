@@ -31,6 +31,7 @@
   };
 
   environment.variables.EDITOR = "nvim";
+  environment.variables.GDK_BACKEND = "x11";
 
   # programs.home-manager.enable = true;
 
