@@ -3,6 +3,8 @@ local on_attach = config.on_attach
 local lsp_flags = config.lsp_flags
 local capabilities = config.capabilities
 
+local rt = require 'rust-tools'
+
 local opts = {
 	tools = { -- rust-tools options
 		-- automatically set inlay hints (type hints)
@@ -179,6 +181,7 @@ local opts = {
 		-- setting it to false may improve startup time
 		standalone = true,
 		on_attach,
+		cmd = { '/home/williams/.nix-profile/bin/rust-analyzer' },
 	}, -- rust-analyer options
 
 	-- debugging stuff
@@ -191,6 +194,9 @@ local opts = {
 	},
 }
 
-require('rust-tools').setup(opts)
+rt.setup(opts)
+
+vim.api.nvim_create_user_command('RRun', rt.runnables.runnables, {})
+vim.api.nvim_create_user_command('RMacro', rt.expand_macro.expand_macro, {})
 
 require('crates').setup {}

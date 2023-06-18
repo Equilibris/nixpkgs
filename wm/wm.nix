@@ -25,7 +25,6 @@ in
     tmux
     fnott
     libnotify
-    (pkgs.eww-wayland)
   ]);
 
   programs.rofi = {

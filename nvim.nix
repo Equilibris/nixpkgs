@@ -11,7 +11,6 @@ in
 {
   home.packages = with pkgs; [
     neovim
-    rust-analyzer
     statix
     stylua
     ripgrep

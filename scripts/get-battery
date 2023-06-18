@@ -36,12 +36,13 @@ icon () {
 percent() {
     echo $per
 
-    if [ "$per" -lt "5" ]; then 
     if [ $(cat "$bat/status") != Charging ]; then
-        notify-send -u critical "Battery critical" "ma"
-
-        shutdown
-    fi
+        if [ "$per" -lt "2" ]; then 
+            shutdown 0
+        fi
+        if [ "$per" -lt "5" ]; then 
+            notify-send -u critical "Battery critical" "Conenct Charger"
+        fi
     fi
 }
 

@@ -2,7 +2,7 @@ local config = require 'lsp.config'
 local lsp_flags = config.lsp_flags
 local capabilities = config.capabilities
 
-require('lspconfig').sumneko_lua.setup {
+require('lspconfig').lua_ls.setup {
 	on_attach = config.create_on_attach_effect(function(client, bufnr)
 		vim.opt.spell = false
 

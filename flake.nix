@@ -3,7 +3,15 @@
     nixpkgs.url = "github:NixOS/nixpkgs";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nur.url = "github:nix-community/NUR";
+    fenix = {
+      url = "github:nix-community/fenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
+    eww = {
+      url = "github:elkowar/eww";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -21,10 +29,13 @@
     , nur
     , nixos-hardware
     , typst
+    , fenix
+    , eww
     }:
     let
       system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
+      fenix-pkgs = fenix.packages.${system}.latest;
+      pkgs = nixpkgs.legacyPackages.${system} // { inherit (fenix-pkgs) rust-src; };
     in
     {
       homeConfigurations.williams = home-manager.lib.homeManagerConfiguration {
@@ -39,6 +50,20 @@
             home.username = "williams";
             home.homeDirectory = "/home/williams";
             home.packages = [ typst.packages.${system}.default ];
+          }
+          {
+            home.packages = [
+              # (eww.packages.${system}.eww-wayland)
+              (fenix-pkgs.withComponents [
+                "cargo"
+                "clippy"
+                "rust-src"
+                "rustc"
+                "rustfmt"
+                "miri"
+                "rust-analyzer"
+              ])
+            ];
           }
           ./home.nix
           ./spotify.nix

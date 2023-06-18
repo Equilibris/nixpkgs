@@ -43,7 +43,7 @@ if school then {
       notebook
     ]))
     inkscape
-    # texlive.combined.scheme-full
+    texlive.combined.scheme-full
     # (texlive.combine {
     #   inherit (texlive)
     #     scheme-medium

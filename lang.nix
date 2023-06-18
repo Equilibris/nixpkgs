@@ -2,7 +2,7 @@
 
 let
   java = false;
-  rust = false;
+  rust = true;
   js = true;
   julia = true;
 
@@ -15,7 +15,9 @@ in
 
   home.packages = with pkgs;
     lib.optionals js [ nodejs ]
-    ++ lib.optionals rust [ rustup ]
+    # ++ lib.optionals rust [ rustup /* rust-analyzer */ ]
+    ++ lib.optionals rust [
+    ]
     ++ lib.optionals java [ maven jetbrains.jdk /* openjdk */ kotlin jetbrains.idea-community ]
     ++ lib.optionals julia [ julia-bin patchelf ]
 
