@@ -26,6 +26,10 @@ let
     '';
   };
 
+  # xdg-desktop-portal-hyprland = inputs.xdph.packages.${prev.system}.default.override {
+  #   hyprland-share-picker = inputs.xdph.packages.${prev.system}.hyprland-share-picker.override { inherit hyprland; };
+  # };
+
   # currently, there is some friction between sway and gtk:
   # https://github.com/swaywm/sway/wiki/GTK-3-settings-on-Wayland
   # the suggested way to set gtk settings is with gsettings
@@ -95,7 +99,6 @@ in
       atomix # puzzle game
     ]);
   }) //
-
 (lib.attrsets.optionalAttrs wayland {
   environment.systemPackages = with pkgs; [
     configure-gtk
@@ -105,6 +108,7 @@ in
     gnome3.adwaita-icon-theme # default gnome cursors
     mako # notification system developed by swaywm maintainer
     xwayland
+    gtk3
     gtk4
   ];
 
@@ -114,7 +118,7 @@ in
   # (/org/freedesktop/portal/desktop).
   # The portal interfaces include APIs for file access, opening URIs,
   # printing and others.
-  environment.variables.GTK_USE_PORTAL = "1";
+  # environment.variables.GTK_USE_PORTAL = "1";
   environment.variables.GDK_BACKEND = "x11";
   services.dbus.enable = true;
   xdg.portal = {
@@ -125,7 +129,6 @@ in
       pkgs.xdg-desktop-portal-gtk
       pkgs.xdg-desktop-portal-wlr
     ];
-    # gtkUsePortal = true;
   };
 
 

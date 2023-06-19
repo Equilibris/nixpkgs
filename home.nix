@@ -17,6 +17,8 @@
     git-secret
     libreoffice
 
+    glib
+
     # teams
 
     gcc
