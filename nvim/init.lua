@@ -73,6 +73,7 @@ require('packer').startup(function(use)
 	-- 	run = './install.sh',
 	-- 	requires = 'hrsh7th/nvim-cmp',
 	-- }
+	use 'ThePrimeagen/git-worktree.nvim'
 
 	use 'noib3/nvim-cokeline'
 	use 'nvim-lualine/lualine.nvim'
@@ -97,13 +98,16 @@ end)
 require 'sets'
 require 'maps'
 require 'commands'
+
+require 'plugins.telescope'
+
 require 'plugins.toggleterm'
 require 'plugins.treesitter'
 require 'plugins.autopairs'
 require 'plugins.nvim-tree'
-require 'plugins.telescope'
 require 'plugins.cinnamon'
 require 'plugins.trouble'
+require 'plugins.worktree'
 require 'plugins.cokeline'
 require 'plugins.presence'
 require 'plugins.surround'

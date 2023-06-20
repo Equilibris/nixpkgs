@@ -4,7 +4,8 @@ let
   aliases = {
     cls = "clear";
     cfile = "copyq copy <";
-    hms = "home-manager switch";
+    # hms = "export NIXPKGS_ALLOW_UNFREE=1 home-manager switch ";
+    hms = "export NIXPKGS_ALLOW_UNFREE=1; home-manager switch --impure --flake \"$HOME/.config/nixpkgs/flake.nix\"";
     ":hms" = "hms";
     ":q" = "exit";
 

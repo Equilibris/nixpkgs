@@ -24,7 +24,8 @@ in
   # environment.variables.EDITOR = "nvim";
   home.file = {
     ".config/nvim" = {
-      source = ./nvim;
+      source =
+        config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nixpkgs/nvim";
       recursive = true;
     };
     # ".local/share/nvim/site/pack/packer/start/packer.nvim" = {

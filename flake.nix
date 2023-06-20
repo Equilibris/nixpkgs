@@ -52,7 +52,7 @@
             home.packages = [ typst.packages.${system}.default ];
           }
           {
-            home.packages = [
+            home.packages = with pkgs; [
               # (eww.packages.${system}.eww-wayland)
               (fenix-pkgs.withComponents [
                 "cargo"
@@ -63,6 +63,7 @@
                 "miri"
                 "rust-analyzer"
               ])
+              # cargo-insta
             ];
           }
           ./home.nix

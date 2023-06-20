@@ -8,7 +8,7 @@ local yellow = vim.g.terminal_color_3
 require('cokeline').setup {
 	-- Only show the bufferline when there are at least this many visible buffers.
 	-- default: `1`.
-	show_if_buffers_are_at_least = 0,
+	show_if_buffers_are_at_least = 1,
 
 	-- buffers = {
 	--   -- A function to filter out unwanted buffers. Takes a buffer table as a

@@ -42,16 +42,16 @@ in
       recursive = true;
     };
     ".config/electron-flags.conf" = {
-      source = config.lib.file.mkOutOfStoreSymlink ./electron-flags.conf;
+      source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nixpkgs/wm/electron-flags.conf";
     };
     ".config/sway/config" = {
-      source = config.lib.file.mkOutOfStoreSymlink ./sway.config;
+      source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nixpkgs/wm/sway.config";
     };
     ".swaylock/config" = {
-      source = config.lib.file.mkOutOfStoreSymlink ./swaylock.config;
+      source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nixpkgs/wm/swaylock.config";
     };
     ".config/hypr/hyprland.conf" = {
-      source = config.lib.file.mkOutOfStoreSymlink ./hyprland.conf;
+      source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nixpkgs/wm/hyprland.conf";
     };
     # ".config/rofi" = {
     #   source = rofi-themes;

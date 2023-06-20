@@ -30,10 +30,10 @@ if work then {
 
   home.file = {
     "bin/aws-cli-helper.py" = {
-      source = config.lib.file.mkOutOfStoreSymlink ./work/aws-cli-helper.py;
+      source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nixpkgs/work/aws-cli-helper.py";
     };
     ".aws/powercatch-config" = {
-      source = config.lib.file.mkOutOfStoreSymlink ./work/powercatch-config;
+      source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nixpkgs/work/powercatch-config";
     };
 
     # ".m2/settings.xml" = { source = ./work/m2-settings.xml; };
