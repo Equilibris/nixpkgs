@@ -150,7 +150,7 @@ in
     lib.lists.fold
       (curr: acc: acc // {
         "bin/${curr.name}" = {
-          source = curr.src;
+          source =  curr.src;
           executable = true;
         };
       })
