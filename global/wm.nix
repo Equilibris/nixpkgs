@@ -54,12 +54,12 @@ let
 
 
 
-  waylandOverlay =
-    let
-      rev = "master"; # 'rev' could be a git rev, to pin the overlay.
-      url = "https://github.com/nix-community/nixpkgs-wayland/archive/${rev}.tar.gz";
-    in
-    (import "${builtins.fetchTarball url}/overlay.nix");
+  # waylandOverlay =
+  #   let
+  #     rev = "master"; # 'rev' could be a git rev, to pin the overlay.
+  #     url = "https://github.com/nix-community/nixpkgs-wayland/archive/${rev}.tar.gz";
+  #   in
+  #   (import "${builtins.fetchTarball url}/overlay.nix");
 in
 (lib.attrsets.optionalAttrs manager.gnome
   {
@@ -110,6 +110,7 @@ in
     xwayland
     gtk3
     gtk4
+    foot
   ];
 
   # xdg-desktop-portal works by exposing a series of D-Bus interfaces
@@ -127,7 +128,7 @@ in
     # gtk portal needed to make gtk apps happy
     extraPortals = [
       pkgs.xdg-desktop-portal-gtk
-      pkgs.xdg-desktop-portal-wlr
+      # pkgs.xdg-desktop-portal-wlr
     ];
   };
 

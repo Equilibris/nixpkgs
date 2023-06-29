@@ -42,6 +42,9 @@ in
     jq
     coreutils
     exa
+
+    foot
+
     (import ./pkgs/pixel-lock.nix { })
   ];
   programs.bash = {
