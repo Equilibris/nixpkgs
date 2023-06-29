@@ -87,7 +87,7 @@ require('mason').setup {
 
 require('mason-lspconfig').setup {
 	ensure_installed = {
-		'tsserver',
+		'vtsls',
 		'cssls',
 		'lua_ls',
 		'sqlls',

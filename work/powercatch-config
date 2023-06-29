@@ -2,11 +2,10 @@
 mfa_device_id = arn:aws:iam::232639570454:mfa/william.sorensen@embriq.no
 
 [powercatch-dev]
-role_arn = ZZZ
+role_arn = arn:aws:iam::577471751545:role/PowercatchDevDeveloperAccessRole
 
 [powercatch-staging]
-role_arn = ZZZ
+role_arn = arn:aws:iam::917443168615:role/PowercatchStagingDeveloperAccessRole
 
 [powercatch-prod]
-role_arn = ZZZ
-
+role_arn = arn:aws:iam::478249655496:role/PowercatchProdDeveloperAccessRole

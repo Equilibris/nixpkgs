@@ -15,6 +15,7 @@ let
 in
 if work then {
   # home.packages = [ python-with-deps ];
+  home.packages = with pkgs; [ slack ];
 
   programs.zsh.initExtra = ''
     ca () { export CODEARTIFACT_AUTH_TOKEN=$(aws codeartifact --region eu-north-1 get-authorization-token --domain powercatch --domain-owner 232639570454 --query authorizationToken --output text --profile mfa) \
