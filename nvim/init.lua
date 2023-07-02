@@ -83,7 +83,7 @@ require('packer').startup(function(use)
 
 	use 'sindrets/diffview.nvim'
 	use 'lewis6991/gitsigns.nvim'
-	use 'TimUntersberger/neogit'
+	use 'NeoGitOrg/neogit'
 	use 'tpope/vim-fugitive'
 	use 'rbong/vim-flog'
 

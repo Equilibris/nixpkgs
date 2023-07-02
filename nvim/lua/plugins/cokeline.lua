@@ -43,13 +43,13 @@ require('cokeline').setup {
 		cycle_prev_next = true,
 	},
 
-	rendering = {
-		-- The maximum number of characters a rendered buffer is allowed to take
-		-- up. The buffer will be truncated if its width is bigger than this
-		-- value.
-		-- default: `999`.
-		max_buffer_width = 999,
-	},
+	-- rendering = {
+	-- 	-- The maximum number of characters a rendered buffer is allowed to take
+	-- 	-- up. The buffer will be truncated if its width is bigger than this
+	-- 	-- value.
+	-- 	-- default: `999`.
+	-- 	max_buffer_width = 999,
+	-- },
 
 	-- The default highlight group values.
 	-- The `fg` and `bg` keys are either colors in hexadecimal format or
@@ -69,11 +69,11 @@ require('cokeline').setup {
 
 		-- default: `'NONE'`.
 		-- style = 'attr1,attr2,...' | function(buffer) -> 'attr1,attr2,...',
-		fg = function(buffer)
-			return buffer.is_focused and get_hex('Normal', 'fg')
-				or get_hex('Comment', 'fg')
-		end,
-		bg = get_hex('Normal', 'bg'),
+		-- 	fg = function(buffer)
+		-- 		return buffer.is_focused and get_hex('Normal', 'fg')
+		-- 			or get_hex('Comment', 'fg')
+		-- 	end,
+		-- 	bg = get_hex('Normal', 'bg'),
 	},
 
 	-- A list of components to be rendered for each buffer. Check out the section
