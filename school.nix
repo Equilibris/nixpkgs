@@ -5,20 +5,11 @@ let
 in
 if school then {
   home.packages = with pkgs; [
-    # teams
-    openscad
-    wxmaxima
-
     hunspell
     hunspellDicts.nb-no
     hunspellDicts.en-gb-ize
-    # libreoffice
-
     pandoc
 
-    arduino
-    arduino-cli
-    go
     screen
     libsecret
     pkg-config
@@ -26,41 +17,7 @@ if school then {
     xorg.libxkbfile
     clang-tools
     electron
-    appimage-run
 
-
-    (python310.withPackages (ps: with ps; [
-      jupyter
-      jupyter-client
-      # jupyter-console
-      boto3
-      jupyter-core
-      jupyterlab-pygments
-      jupyterlab-widgets
-      nbclient
-      nbconvert
-      nbformat
-      notebook
-    ]))
-    inkscape
-    texlive.combined.scheme-full
-    # (texlive.combine {
-    #   inherit (texlive)
-    #     scheme-medium
-    #     svg transparent lipsum babel
-    #     runcode morewrites tcolorbox environ
-    #     xifthen ifmtarg framed paralist
-    #     pythontex fvextra
-    #     pgfplots
-    #     enumitem
-    #     apacite
-    #     titlesec
-    #     blindtext;
-    # })
     libsForQt5.okular
-    texlab
   ];
-  programs.zsh.initExtra = ''
-    # source ~/Downloads/arduino.comp.zsh
-  '';
 } else { }

@@ -1,5 +1,8 @@
 cd ~
 
+# ensures my computer does not die
+tmux new -d "yes 'get-battery Percent; sleep 10' | bash"
+
 gnome_schema=org.gnome.desktop.interface
 gsettings set $gnome_schema gtk-theme 'Nordic'
 
