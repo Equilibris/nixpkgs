@@ -39,7 +39,7 @@ percent() {
             shutdown 0
         fi
         if [ "$per" -lt "10" ]; then 
-            notify-send -u critical "Battery critical" "Conenct Charger"
+            notify-send -t 10000 -u critical "Battery critical" "$per%"
         fi
     fi
 
