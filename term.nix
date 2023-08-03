@@ -141,7 +141,7 @@ in
 
   programs.kitty = {
     enable = true;
-    font.name = "FiraCode Nerd Font";
+    # font.name = "FiraCode Nerd Font";
 
     extraConfig = builtins.readFile "${pkgs.fetchurl {
         url = "https://raw.githubusercontent.com/connorholyday/nord-kitty/master/nord.conf";

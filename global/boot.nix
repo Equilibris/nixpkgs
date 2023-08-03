@@ -14,7 +14,7 @@
       useOSProber = true;
 
       # splashImage = /home/williams/walls/nordic/nixos.png;
-      theme =
+      # theme =
         # pkgs.stdenv.mkDerivation {
         #   pname = "vimix";
         #   version = "3.1";
@@ -31,17 +31,17 @@
         #     sudo ./install.sh --generate $out -t vimix
         #   '';
         # };
-        pkgs.stdenv.mkDerivation {
-          pname = "distro-grub-themes";
-          version = "3.1";
-          src = pkgs.fetchFromGitHub {
-            owner = "TechXero";
-            repo = "XeroNord-Grub";
-            rev = "96912ebf601e31ae32fd3871361d26d11fa9f9b6";
-            hash = "sha256-Q/uHWoajKvnTueqSbH5UtdUuK9Z3l/ELqF41jNaQmYE=";
-          };
-          installPhase = "cp -r XeroNord $out";
-        };
+        # pkgs.stdenv.mkDerivation {
+        #   pname = "distro-grub-themes";
+        #   version = "3.1";
+        #   src = pkgs.fetchFromGitHub {
+        #     owner = "vinceliuice";
+        #     repo = "grub2-themes";
+        #     rev = "02ec0a888bbac1483080238aee641a8f78979b21";
+        #     hash = "sha256-LLlP3d5I6uDOaa1N1nAbz7xYVghEAF/bydS7oVQj99U=";
+        #   };
+        #   installPhase = "sh $src/install.sh -g $out";
+        # };
       # pkgs.stdenv.mkDerivation {
       #   pname = "distro-grub-themes";
       #   version = "3.1";

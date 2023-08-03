@@ -67,9 +67,6 @@
     gtk4.extraConfig.gtk-application-prefer-dark-theme = true;
   };
 
-  programs.gpg = {
-    enable = true;
-  };
   programs.git = {
     enable = false;
     userName = "William Sørensen";

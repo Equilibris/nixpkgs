@@ -8,10 +8,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    eww = {
-      url = "github:elkowar/eww";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -30,7 +26,6 @@
     , nixos-hardware
     , typst
     , fenix
-    , eww
     }:
     let
       system = "x86_64-linux";
@@ -56,6 +51,7 @@
               # (eww.packages.${system}.eww-wayland)
               (fenix-pkgs.withComponents [
                 "cargo"
+                "rustup"
                 "clippy"
                 "rust-src"
                 "rustc"
