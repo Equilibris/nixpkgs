@@ -51,7 +51,6 @@
               # (eww.packages.${system}.eww-wayland)
               (fenix-pkgs.withComponents [
                 "cargo"
-                "rustup"
                 "clippy"
                 "rust-src"
                 "rustc"
@@ -59,7 +58,9 @@
                 "miri"
                 "rust-analyzer"
               ])
-              # cargo-insta
+              cargo-insta
+              sqlx-cli
+              bacon
             ];
           }
           ./home.nix

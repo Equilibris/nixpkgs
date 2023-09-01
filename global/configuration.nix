@@ -22,6 +22,8 @@
 
     cachix
 
+    openssl
+
     libimobiledevice
     ifuse
 
