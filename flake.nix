@@ -81,6 +81,7 @@
             home-manager.nixosModules.home-manager
             nur.nixosModules.nur
             ./global/nix-conf.nix
+            ./cachix.nix
             ./global/configuration.nix
             ./global/containers.nix
             ./global/wm.nix

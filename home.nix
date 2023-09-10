@@ -17,6 +17,8 @@
     git-secret
     libreoffice
 
+    uair
+
     glib
 
     # teams
@@ -77,27 +79,21 @@
     };
   };
 
-  home.file = lib.lists.fold
-    (curr: acc: acc // {
-      ".config/BetterDiscord/${curr.name}" = {
-        source = pkgs.fetchurl {
-          url = "http://betterdiscord.app/Download?id=${toString curr.id}";
-          sha256 = if builtins.hasAttr "sha256" curr then curr.sha256 else "";
-        };
-      };
-    })
-    { } [
-    #     {
-    #       name = "themes/nordic.theme.css"; id = 33; 
-    #       sha256 = "hazRQ45BSkOZ4YnqDw/xTzcXowBgG762vP8zhNrnEZ4=";
-    #     }
-    #     {
-    #       name = "themes/ClearVision.theme.css"; id = 23;
-    #       sha256 = "3YgErNGy1Q7tTPrQ1R9U/2b9GY2DdhxjbAF/P2aZXyA=";
-    #     }
-    #     {
-    #       name = "plugins/ShowHiddenChannels.plugin.js"; id = 103;
-    #       sha256 = "DZmbmc7JFR38o9dHeZLhJkQc/jjkNbUxCj6n6ibXxgs=";
-    #     }
-  ];
+  home.file.".config/uair/uair.toml".text = ''
+    [defaults]
+    format = "{time}\n"
+    time_format = "%H:%M:%S"
+
+    [[sessions]]
+    id = "work"
+    name = "Work"
+    duration = "25m"
+    command = "notify-send 'Work Done!'"
+
+    [[sessions]]
+    id = "rest"
+    name = "Rest"
+    duration = "5m"
+    command = "notify-send 'Rest Done!'"
+  '';
 }
