@@ -54,6 +54,7 @@ require('packer').startup(function(use)
 	use 'williamboman/mason-lspconfig.nvim'
 	use 'b0o/schemastore.nvim'
 	use 'simrat39/rust-tools.nvim'
+	use 'mfussenegger/nvim-jdtls'
 	use 'neovim/nvim-lspconfig'
 	use 'L3MON4D3/LuaSnip'
 	use {
