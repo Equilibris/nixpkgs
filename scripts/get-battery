@@ -24,10 +24,8 @@ icon () {
         icon=""
     elif [ "$per" -gt "10" ]; then
         icon=""
-        notify-send -u critical "Battery Low" "Connect Charger"
     elif [ "$per" -gt "0" ]; then
         icon=""
-        notify-send -u critical "Battery Low" "Connect Charger"
     else
             echo  && exit
     fi
@@ -35,16 +33,19 @@ icon () {
 }
 percent() {
     if [ $(cat "$bat/status") != Charging ]; then
-        if [ "$per" -lt "5" ]; then 
+        if [ "$per" -lt "3" ]; then 
             shutdown 0
         fi
         if [ "$per" -lt "10" ]; then 
-            notify-send -t 10000 -u critical "Battery critical" "$per%"
+            notify-send -t 10000 -u critical "Battery critical" "$per% $(icon)"
         fi
     fi
 
-    echo $per
+    echo $per "$(icon)"
 }
 
-[ $1 = Icon ] && icon
-[ $1 = Percent ] && percent
+
+percent
+
+# [ $1 = Icon ] && icon
+# [ $1 = Percent ] && percent

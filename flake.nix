@@ -13,8 +13,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    devenv.url = "github:cachix/devenv";
     typst.url = "github:typst/typst";
     hyprland.url = "github:hyprwm/Hyprland";
+  };
+
+  nixConfig = {
+    extra-trusted-public-keys = "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=";
+    extra-substituters = "https://devenv.cachix.org";
+    allow-unfree = true;
   };
 
   outputs =
@@ -26,6 +33,7 @@
     , nixos-hardware
     , typst
     , fenix
+    , devenv
     }:
     let
       system = "x86_64-linux";
@@ -44,7 +52,7 @@
             home.stateVersion = "22.11";
             home.username = "williams";
             home.homeDirectory = "/home/williams";
-            home.packages = [ typst.packages.${system}.default ];
+            home.packages = [ typst.packages.${system}.default devenv.packages.${system}.default ];
           }
           {
             home.packages = with pkgs; [

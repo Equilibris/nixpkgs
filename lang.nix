@@ -1,7 +1,7 @@
 { config, pkgs, lib, fetchurl, ... }:
 
 let
-  java = false;
+  java = true;
   rust = true;
   js = true;
   julia = true;
@@ -18,14 +18,9 @@ in
     # ++ lib.optionals rust [ rustup /* rust-analyzer */ ]
     ++ lib.optionals rust [
     ]
-    ++ lib.optionals java [ maven jetbrains.jdk /* openjdk */ kotlin jetbrains.idea-community ]
+    ++ lib.optionals java [ jdt-language-server maven jetbrains.jdk /* openjdk kotlin jetbrains.idea-community */ ]
     ++ lib.optionals julia [ julia-bin patchelf ]
 
     ++ lib.optionals docker [ pkgs.docker docker-compose ]
     ++ lib.optionals aws [ awscli2 ];
 }
-# monoidMerge true {} 
-# (monoidMerge rust {}
-# (monoidMerge nodejs {} {}))
-
-

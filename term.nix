@@ -25,7 +25,7 @@ let
 
     "find-ports" = "nix-shell -p lsof --run \"sudo lsof -i -P -n | grep LISTEN\"";
     fp = "find-ports";
-    l = "exa -al --icons --sort=Extension --git";
+    l = "eza -al --icons --sort=Extension --git";
 
     "b-connect-steel" = "bluetoothctl connect 28:9A:4B:0F:64:1E";
     "b-connect-apple" = "bluetoothctl connect AC:1D:06:0E:7E:5F";
@@ -41,7 +41,7 @@ in
     (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; })
     jq
     coreutils
-    exa
+    eza
 
     foot
 
@@ -141,7 +141,7 @@ in
 
   programs.kitty = {
     enable = true;
-    # font.name = "FiraCode Nerd Font";
+    font.name = "FiraCode Nerd Font";
 
     extraConfig = builtins.readFile "${pkgs.fetchurl {
         url = "https://raw.githubusercontent.com/connorholyday/nord-kitty/master/nord.conf";
@@ -153,7 +153,7 @@ in
     lib.lists.fold
       (curr: acc: acc // {
         "bin/${curr.name}" = {
-          source =  curr.src;
+          source = curr.src;
           executable = true;
         };
       })
