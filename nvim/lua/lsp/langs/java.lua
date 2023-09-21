@@ -37,4 +37,14 @@ local jconfig = {
 }
 -- This starts a new
 
-require('jdtls').start_or_attach(jconfig)
+local group = vim.api.nvim_create_augroup('WilliamSJava', {
+	clear = true,
+})
+
+vim.api.nvim_create_autocmd('BufWinEnter', {
+	pattern = '*.java',
+	group = group,
+	callback = function(c)
+		require('jdtls').start_or_attach(jconfig)
+	end,
+})

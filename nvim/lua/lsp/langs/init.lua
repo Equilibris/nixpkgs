@@ -108,6 +108,7 @@ local trivial_lsps = {
 	sqlls = {},
 	svelte = {},
 	arduino_language_server = {},
+	ocamllsp = {},
 }
 
 local lspconfig = require 'lspconfig'

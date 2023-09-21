@@ -50,8 +50,11 @@ vim.api.nvim_set_keymap(
 	nore
 )
 
-vim.api.nvim_set_keymap('n', '<Leader>f', '<Plug>(cokeline-pick-focus)', nore)
-vim.api.nvim_set_keymap('n', '<Leader>F', '<Plug>(cokeline-pick-close)', nore)
+vim.keymap.set('n', '<Leader>f', function()
+	builtins.buffers {}
+end, {})
+-- vim.api.nvim_set_keymap('n', '<Leader>f', '<Plug>(cokeline-pick-focus)', nore)
+-- vim.api.nvim_set_keymap('n', '<Leader>F', '<Plug>(cokeline-pick-close)', nore)
 
 vim.api.nvim_set_keymap('n', '<C-c>', '<cmd>CodeActionMenu<cr>', nore)
 -- vim.api.nvim_set_keymap('i', '<C-c>', '<cmd>CodeActionMenu<cr>', nore)

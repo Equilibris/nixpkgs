@@ -18,6 +18,8 @@ require('packer').startup(function(use)
 	end
 	use 'wbthomason/packer.nvim'
 
+	use 'nvim-neorg/neorg'
+
 	use { 'smithbm2316/centerpad.nvim' }
 
 	use 'ahmedkhalf/project.nvim'
@@ -118,6 +120,7 @@ require 'plugins.lualine'
 require 'plugins.project'
 require 'plugins.vimtex'
 require 'plugins.arduino'
+require 'plugins.neorg'
 require 'plugins.git'
 require 'plugins.hop'
 require 'plugins.nx'

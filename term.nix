@@ -78,8 +78,8 @@ in
       screenshot () { grim  -g "$(slurp)" ~/Photos/$(date +'%H:%M:%S.png') }
       killPort   () { fp | grep $1 | echo }
 
-      # if [[ "$(tty)" == "/dev/tty1" ]]; then; sway --unsupported-gpu; fi
-      if [[ "$(tty)" == "/dev/tty1" ]]; then;   hyp;                    fi
+      if [[ "$(tty)" == "/dev/tty1" ]]; then;   sway; fi
+      # if [[ "$(tty)" == "/dev/tty1" ]]; then; hyp;  fi
     '';
 
     plugins = [
