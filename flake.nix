@@ -112,6 +112,7 @@
                     settings.PasswordAuthentication = false;
                     settings.KbdInteractiveAuthentication = false;
                   };
+                  services.getty.autologinUser = "williams";
                   users.users."williams".openssh.authorizedKeys.keys = [
                     "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCs/0iZDUAQ66/lmYFhdnBQZkq4i4Yh/FtJU0qRfr9FBZHwml5fe3yKnASrC3Ch3uMBALtFeR7i0HFEfjYNBfPyMXUmBUXkkwUbXa94U9kAy82LMrnwCwD65/wzc/ZhlcSWLijKp1J+/l7oSPGyHqgbJkedfvL7bGmZUP1r3g4BUwOolVvfqCb71H66uDCa2KYd3i27kGy9Z+edcahtbySodmOzvAcxGs6u1ncTSNpUs2ZTlypPCtInPCYJM3ww9IxldRiMlwVJ+qRdaQUPrwWHghwj3hOpsx0tMGa3x5kkTfEeiIbdu7m+WpU8Q9dG3LeJwnIgA7rs51eyGojtJMJkclddd42Lmd2wh29ztEBgV3janQx6eRbLdBG+3AbhnbpebnnyVEhbxwD/FjoPC01/xty5gXfi9LZDlqVOlR4fNSgVAKiTb8YItym3o+V1UQBxvSHxuiRGJqA7DGs3dQuMmSTvi4VxpcQ079ywuC/lx6NdyMezn6/bcAC3PkD4YYE= williams@nixos"
                   ];
