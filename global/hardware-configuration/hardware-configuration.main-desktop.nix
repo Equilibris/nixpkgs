@@ -9,24 +9,24 @@
 
 
   environment.systemPackages = [
-    (import ./create-randr.nix [
-      {
-        output = "DP-1";
-        x = 1920;
-        y = 0;
-      }
-      {
-        output = "HDMI-A-1";
-        x = 3840;
-        y = 0;
-      }
-      {
-        output = "DP-2";
-        x = 0;
-        y = 0;
-      }
-    ]
-      { })
+    # (import ./create-randr.nix [
+    #   {
+    #     output = "DP-1";
+    #     x = 1920;
+    #     y = 0;
+    #   }
+    #   {
+    #     output = "HDMI-A-1";
+    #     x = 3840;
+    #     y = 0;
+    #   }
+    #   {
+    #     output = "DP-2";
+    #     x = 0;
+    #     y = 0;
+    #   }
+    # ]
+    #   { })
   ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" ];
