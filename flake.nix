@@ -127,9 +127,9 @@
                 /home/williams/.config/nixpkgs/global/hardware-configuration/legion.nix
                 # nixos-hardware.nixosModules.lenovo-legion-16ach6h-hybrid
                 ((import ./global/wm.nix) {
-                  sway = true;
-                  wayland = true;
-                  hyprland = true;
+                  enable-sway = true;
+                  enable-wayland = true;
+                  enable-hyprland = true;
                 })
               ];
           };

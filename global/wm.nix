@@ -1,8 +1,8 @@
-{ gnome ? false
-, i3 ? false
-, sway ? false
-, hyprland ? false
-, wayland ? false
+{ enable-gnome ? false
+, enable-i3 ? false
+, enable-sway ? false
+, enable-hyprland ? false
+, enable-wayland ? false
 ,
 }: { config, pkgs, lib, hyprland, unstable, ... }:
 let
@@ -59,7 +59,7 @@ let
   #   in
   #   (import "${builtins.fetchTarball url}/overlay.nix");
 in
-(lib.attrsets.optionalAttrs gnome
+(lib.attrsets.optionalAttrs enable-gnome
   {
     # Enable the X11 windowing system.
     services.xserver.enable = true;
@@ -97,7 +97,7 @@ in
       atomix # puzzle game
     ]);
   }) //
-(lib.attrsets.optionalAttrs wayland {
+(lib.attrsets.optionalAttrs enable-wayland {
   environment.systemPackages = with pkgs; [
     configure-gtk
     wayland
@@ -133,7 +133,7 @@ in
 
   location.provider = "geoclue2";
 }) //
-(lib.attrsets.optionalAttrs sway
+(lib.attrsets.optionalAttrs enable-sway
   {
     environment.systemPackages = with pkgs; [
       sway
@@ -146,7 +146,7 @@ in
     };
   }
 ) //
-(lib.attrsets.optionalAttrs hyprland {
+(lib.attrsets.optionalAttrs enable-hyprland {
   # nixpkgs.overlays = [ waylandOverlay ];
   # environment.systemPackages = with pkgs; [ wlroots ];
 
@@ -159,7 +159,7 @@ in
     enableNvidiaPatches = true;
   };
 }) //
-(lib.attrsets.optionalAttrs i3 {
+(lib.attrsets.optionalAttrs enable-i3 {
   environment.pathsToLink = [ "/libexec" ]; # links /libexec from derivations to /run/current-system/sw 
   services.xserver = {
     enable = true;
