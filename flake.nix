@@ -97,6 +97,7 @@
             ./global/audio.nix
             ./global/console.nix
             ./global/networking.nix
+            ./global/wifi.nix
           ];
         in
         {

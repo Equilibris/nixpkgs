@@ -3,3 +3,4 @@ eww-src
 !*.secret
 work/aws-cli-helper.py
 work/powercatch-config
+global/wifi.nix
