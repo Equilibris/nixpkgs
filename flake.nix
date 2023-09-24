@@ -97,7 +97,7 @@
             ./global/audio.nix
             ./global/console.nix
             ./global/networking.nix
-            ./global/wifi.nix
+            /home/williams/.config/nixpkgs/global/wifi.nix
           ];
         in
         {

@@ -1,19 +1,11 @@
-{
-  gnome = false,
-  i3 = false,
-  sway = false,
-  hyprland = false,
-  wayland = false
-  }: { config, pkgs, lib, hyprland, unstable, ... }:
-
-  let
-  manager.gnome = gnome;
-  manager.i3 = i3;
-
-  manager.sway = sway;
-  manager.hyprland = hyprland;
-  wayland = wayland;
-
+{ gnome ? false
+, i3 ? false
+, sway ? false
+, hyprland ? false
+, wayland ? false
+,
+}: { config, pkgs, lib, hyprland, unstable, ... }:
+let
   # bash script to let dbus know about important env variables and
   # propogate them to relevent services run at the end of sway config
   # see
@@ -66,127 +58,127 @@
   #     url = "https://github.com/nix-community/nixpkgs-wayland/archive/${rev}.tar.gz";
   #   in
   #   (import "${builtins.fetchTarball url}/overlay.nix");
-  in
-  (lib.attrsets.optionalAttrs manager.gnome
+in
+(lib.attrsets.optionalAttrs gnome
   {
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
+    # Enable the X11 windowing system.
+    services.xserver.enable = true;
 
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-  services.xserver.desktopManager.gnome.extraGSettingsOverrides = ''
-    [org.gnome.desktop.peripherals.touchpad]
-    click-method='default'
-  '';
+    # Enable the GNOME Desktop Environment.
+    services.xserver.displayManager.gdm.enable = true;
+    services.xserver.desktopManager.gnome.enable = true;
+    services.xserver.desktopManager.gnome.extraGSettingsOverrides = ''
+      [org.gnome.desktop.peripherals.touchpad]
+      click-method='default'
+    '';
 
-  # Configure keymap in X11
-  services.xserver = {
-    layout = "no";
-    xkbVariant = "";
+    # Configure keymap in X11
+    services.xserver = {
+      layout = "no";
+      xkbVariant = "";
+    };
+
+    environment.gnome.excludePackages = (with pkgs; [
+      gnome-photos
+      gnome-tour
+    ]) ++ (with pkgs.gnome; [
+      cheese # webcam tool
+      gnome-music
+      gnome-terminal
+      gedit # text editor
+      epiphany # web browser
+      geary # email reader
+      evince # document viewer
+      gnome-characters
+      totem # video player
+      tali # poker game
+      iagno # go game
+      hitori # sudoku game
+      atomix # puzzle game
+    ]);
+  }) //
+(lib.attrsets.optionalAttrs wayland {
+  environment.systemPackages = with pkgs; [
+    configure-gtk
+    wayland
+    glib # gsettings
+    nordic # gtk theme
+    gnome3.adwaita-icon-theme # default gnome cursors
+    mako # notification system developed by swaywm maintainer
+    xwayland
+    gtk3
+    gtk4
+    foot
+  ];
+
+  # xdg-desktop-portal works by exposing a series of D-Bus interfaces
+  # known as portals under a well-known name
+  # (org.freedesktop.portal.Desktop) and object path
+  # (/org/freedesktop/portal/desktop).
+  # The portal interfaces include APIs for file access, opening URIs,
+  # printing and others.
+  # environment.variables.GTK_USE_PORTAL = "1";
+  environment.variables.GDK_BACKEND = "x11";
+  services.dbus.enable = true;
+  xdg.portal = {
+    enable = true;
+    wlr.enable = true;
+    # gtk portal needed to make gtk apps happy
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+      # pkgs.xdg-desktop-portal-wlr
+    ];
   };
 
-  environment.gnome.excludePackages = (with pkgs; [
-    gnome-photos
-    gnome-tour
-  ]) ++ (with pkgs.gnome; [
-    cheese # webcam tool
-    gnome-music
-    gnome-terminal
-    gedit # text editor
-    epiphany # web browser
-    geary # email reader
-    evince # document viewer
-    gnome-characters
-    totem # video player
-    tali # poker game
-    iagno # go game
-    hitori # sudoku game
-    atomix # puzzle game
-  ]);
+
+  location.provider = "geoclue2";
 }) //
-(lib.attrsets.optionalAttrs wayland {
-environment.systemPackages = with pkgs; [
-configure-gtk
-wayland
-glib # gsettings
-nordic # gtk theme
-gnome3.adwaita-icon-theme # default gnome cursors
-mako # notification system developed by swaywm maintainer
-xwayland
-gtk3
-gtk4
-foot
-];
+(lib.attrsets.optionalAttrs sway
+  {
+    environment.systemPackages = with pkgs; [
+      sway
+      dbus-sway-environment
+    ];
 
-# xdg-desktop-portal works by exposing a series of D-Bus interfaces
-# known as portals under a well-known name
-# (org.freedesktop.portal.Desktop) and object path
-# (/org/freedesktop/portal/desktop).
-# The portal interfaces include APIs for file access, opening URIs,
-# printing and others.
-# environment.variables.GTK_USE_PORTAL = "1";
-environment.variables.GDK_BACKEND = "x11";
-services.dbus.enable = true;
-xdg.portal = {
-enable = true;
-wlr.enable = true;
-# gtk portal needed to make gtk apps happy
-extraPortals = [
-pkgs.xdg-desktop-portal-gtk
-# pkgs.xdg-desktop-portal-wlr
-];
-};
-
-
-location.provider = "geoclue2";
-}) //
-(lib.attrsets.optionalAttrs manager.sway
-{
-environment.systemPackages = with pkgs; [
-sway
-dbus-sway-environment
-];
-
-programs.sway = {
-enable = true;
-wrapperFeatures.gtk = true;
-};
-}
+    programs.sway = {
+      enable = true;
+      wrapperFeatures.gtk = true;
+    };
+  }
 ) //
-(lib.attrsets.optionalAttrs manager.hyprland {
-# nixpkgs.overlays = [ waylandOverlay ];
-# environment.systemPackages = with pkgs; [ wlroots ];
+(lib.attrsets.optionalAttrs hyprland {
+  # nixpkgs.overlays = [ waylandOverlay ];
+  # environment.systemPackages = with pkgs; [ wlroots ];
 
-programs.hyprland = {
-enable = true;
+  programs.hyprland = {
+    enable = true;
 
-xwayland = {
-enable = true;
-};
-enableNvidiaPatches = true;
-};
+    xwayland = {
+      enable = true;
+    };
+    enableNvidiaPatches = true;
+  };
 }) //
-(lib.attrsets.optionalAttrs manager.i3 {
-environment.pathsToLink = [ "/libexec" ]; # links /libexec from derivations to /run/current-system/sw 
-services.xserver = {
-enable = true;
+(lib.attrsets.optionalAttrs i3 {
+  environment.pathsToLink = [ "/libexec" ]; # links /libexec from derivations to /run/current-system/sw 
+  services.xserver = {
+    enable = true;
 
-desktopManager = {
-xterm.enable = false;
-};
+    desktopManager = {
+      xterm.enable = false;
+    };
 
-displayManager = {
-defaultSession = "none+i3";
-};
+    displayManager = {
+      defaultSession = "none+i3";
+    };
 
-windowManager.i3 = {
-enable = true;
-extraPackages = with pkgs; [
-dmenu #application launcher most people use
-i3lock #default i3 screen locker
-];
-};
-};
+    windowManager.i3 = {
+      enable = true;
+      extraPackages = with pkgs; [
+        dmenu #application launcher most people use
+        i3lock #default i3 screen locker
+      ];
+    };
+  };
 })
 
