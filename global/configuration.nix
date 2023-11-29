@@ -28,6 +28,8 @@
     ifuse
 
     pinentry-curses
+
+    qemu
   ];
 
   programs.steam = {

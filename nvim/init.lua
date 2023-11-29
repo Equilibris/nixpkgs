@@ -19,8 +19,9 @@ require('packer').startup(function(use)
 	use 'wbthomason/packer.nvim'
 
 	use 'nvim-neorg/neorg'
+	-- use 'nvim-orgmode/orgmode'
 
-	use { 'smithbm2316/centerpad.nvim' }
+	use 'folke/zen-mode.nvim'
 
 	use 'ahmedkhalf/project.nvim'
 
@@ -56,6 +57,10 @@ require('packer').startup(function(use)
 	use 'williamboman/mason-lspconfig.nvim'
 	use 'b0o/schemastore.nvim'
 	use 'simrat39/rust-tools.nvim'
+	use 'Julian/lean.nvim'
+	use 'kristijanhusak/vim-dadbod'
+	use 'kristijanhusak/vim-dadbod-ui'
+	use 'kristijanhusak/vim-dadbod-completion'
 	use 'mfussenegger/nvim-jdtls'
 	use 'neovim/nvim-lspconfig'
 	use 'L3MON4D3/LuaSnip'
@@ -120,6 +125,7 @@ require 'plugins.lualine'
 require 'plugins.project'
 require 'plugins.vimtex'
 require 'plugins.arduino'
+require 'plugins.dadbod'
 require 'plugins.neorg'
 -- require 'plugins.git'
 require 'plugins.hop'

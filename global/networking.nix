@@ -18,7 +18,7 @@
     # Enable networking
     # wireless.enable = false;
     networkmanager = {
-      enable = false;
+      enable = true;
 
       wifi.scanRandMacAddress = false;
     };

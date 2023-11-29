@@ -34,6 +34,14 @@ vim.api.nvim_create_autocmd(
 	'BufWinEnter',
 	{ pattern = '*', group = group, command = 'silent! loadview' }
 )
+vim.api.nvim_create_autocmd(
+	'BufWinEnter',
+	{
+		pattern = '*.norg',
+		group = group,
+		command = 'setlocal wrap linebreak textwidth=80',
+	}
+)
 
 -- vim.api.nvim_create_autocmd(
 -- 	'CursorHold',

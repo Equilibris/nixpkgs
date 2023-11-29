@@ -1,4 +1,5 @@
 require 'lsp.langs.rust'
+require 'lsp.langs.lean'
 require 'lsp.langs.java'
 
 local trivial_lsps = {

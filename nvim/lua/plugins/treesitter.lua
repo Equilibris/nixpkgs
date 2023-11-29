@@ -7,6 +7,9 @@ require('nvim-treesitter.configs').setup {
 		'svelte',
 		'typescript',
 		'javascript',
+		'org',
+		'bash',
+		'rust',
 	},
 
 	-- Install parsers synchronously (only applied to `ensure_installed`)

@@ -98,6 +98,7 @@
             ./global/console.nix
             ./global/networking.nix
             /home/williams/.config/nixpkgs/global/wifi.nix
+            /home/williams/.config/nixpkgs/global/eduroam.nix
           ];
         in
         {

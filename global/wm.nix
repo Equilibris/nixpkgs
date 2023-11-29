@@ -156,7 +156,7 @@ in
     xwayland = {
       enable = true;
     };
-    enableNvidiaPatches = true;
+    # enableNvidiaPatches = true;
   };
 }) //
 (lib.attrsets.optionalAttrs enable-i3 {

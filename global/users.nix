@@ -5,7 +5,8 @@
   nixpkgs.config.allowUnfree = true;
 
   # Set your time zone.
-  time.timeZone = "Europe/Oslo";
+  # time.timeZone = "Europe/Oslo";
+  time.timeZone = "Europe/London";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_GB.utf8";
