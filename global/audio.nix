@@ -4,7 +4,7 @@
   services.blueman.enable = true;
   hardware.bluetooth.enable = true;
 
-  # programs.dconf.enable = true;
+  programs.dconf.enable = true;
 
   # hardware.pulseaudio.enable = true;
   # # Enable sound with pipewire.
