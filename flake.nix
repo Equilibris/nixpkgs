@@ -22,6 +22,9 @@
     extra-trusted-public-keys = "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=";
     extra-substituters = "https://devenv.cachix.org";
     allow-unfree = true;
+    permittedInsecurePackages = [
+      "electron-25.9.0"
+    ];
   };
 
   outputs =
@@ -97,8 +100,6 @@
             ./global/audio.nix
             ./global/console.nix
             ./global/networking.nix
-            /home/williams/.config/nixpkgs/global/wifi.nix
-            /home/williams/.config/nixpkgs/global/eduroam.nix
           ];
         in
         {
@@ -107,6 +108,34 @@
             modules = base_mods ++
               [
                 /home/williams/.config/nixpkgs/global/hardware-configuration/hardware-configuration.main-desktop.nix
+
+                ((import ./global/wm.nix) {
+                  enable-sway = true;
+                  enable-wayland = true;
+                })
+
+                {
+                  environment.systemPackages = [
+                    (import ./global/create-randr.nix [
+                      {
+                        output = "DP-1";
+                        x = 1920;
+                        y = 0;
+                      }
+                      {
+                        output = "HDMI-A-1";
+                        x = 3840;
+                        y = 0;
+                      }
+                      {
+                        output = "DP-2";
+                        x = 0;
+                        y = 0;
+                      }
+                    ]
+                      { })
+                  ];
+                }
 
                 ({ config, lib, pkgs, modulesPath, ... }: {
                   services.openssh = {
@@ -125,12 +154,12 @@
                     serviceConfig = {
                       Type = "forking";
                       ExecStart = pkgs.writeShellScript "auto ts"
-                      ''
-                      /run/current-system/sw/bin/tailscale up
-                      /run/current-system/sw/bin/tailscale up --ssh
-                      '';
+                        ''
+                          /run/current-system/sw/bin/tailscale up
+                          /run/current-system/sw/bin/tailscale up --ssh
+                        '';
                     };
-                    wantedBy = [ "default.target"];
+                    wantedBy = [ "default.target" ];
                   };
                 })
               ];
@@ -140,6 +169,8 @@
             modules = base_mods ++
               [
                 /home/williams/.config/nixpkgs/global/hardware-configuration/legion.nix
+                /home/williams/.config/nixpkgs/global/wifi.nix
+                /home/williams/.config/nixpkgs/global/eduroam.nix
                 # nixos-hardware.nixosModules.lenovo-legion-16ach6h-hybrid
                 ((import ./global/wm.nix) {
                   enable-sway = true;

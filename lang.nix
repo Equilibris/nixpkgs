@@ -27,4 +27,8 @@ in
 
     ++ lib.optionals docker [ pkgs.docker docker-compose ]
     ++ lib.optionals aws [ awscli2 ];
+
+  programs.zsh.initExtra = lib.optionalString eocaml ''
+    [[ ! -r /home/williams/.opam/opam-init/init.zsh ]] || source /home/williams/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
+  '';
 }

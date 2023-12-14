@@ -1,6 +1,11 @@
 { config, pkgs, ... }:
 
 {
+  #########################################################
+  ########## ANY AUDIO PROBLEMS?? TRY THIS FIRST ##########
+  #########################################################
+  environment.systemPackages = [ pkgs.pavucontrol ];
+
   services.blueman.enable = true;
   hardware.bluetooth.enable = true;
 
