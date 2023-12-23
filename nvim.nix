@@ -10,7 +10,6 @@ let
 in
 {
   home.packages = with pkgs; [
-    neovim
     statix
     stylua
     ripgrep

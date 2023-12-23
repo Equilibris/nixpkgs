@@ -5,10 +5,10 @@ let
 in
 if school then {
   home.packages = with pkgs; [
-    hunspell
-    hunspellDicts.nb-no
-    hunspellDicts.en-gb-ize
-    pandoc
+    # hunspell
+    # hunspellDicts.nb-no
+    # hunspellDicts.en-gb-ize
+    # pandoc
 
     screen
     libsecret
@@ -16,8 +16,8 @@ if school then {
     xorg.libX11
     xorg.libxkbfile
     clang-tools
-    electron
+    # electron
 
-    libsForQt5.okular
+    # libsForQt5.okular
   ];
 } else { }

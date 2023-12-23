@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 
 let
-  work = true;
+  work = false;
 
   python-deps = python-packages: with python-packages; [ boto3 ];
   python-with-deps = pkgs.python3.withPackages python-deps;

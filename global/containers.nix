@@ -3,7 +3,7 @@
   # virtualisation.docker.enable = true;
 
   services.postgresql = {
-    enable = true;
+    enable = false;
     package = pkgs.postgresql_14;
 
     authentication = pkgs.lib.mkOverride 10 ''

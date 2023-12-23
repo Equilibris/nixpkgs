@@ -1,16 +1,16 @@
 { config, pkgs, lib, fetchurl, ... }:
 
 let
-  java = true;
-  rust = true;
+  java = false;
+  rust = false;
   js = true;
-  julia = true;
+  julia = false;
   lean4 = true;
   eocaml = true;
 
-  docker = true;
+  docker = false;
 
-  aws = true;
+  aws = false;
 in
 {
   nixpkgs.config.allowBroken = true;

@@ -7,7 +7,6 @@
     xdg-utils
     xorg.xprop
 
-    thefuck
     unzip
     bat
     htop
@@ -15,9 +14,6 @@
     git
     gh
     git-secret
-    libreoffice
-
-    uair
 
     glib
 
@@ -27,18 +23,6 @@
     # stdenv.cc.cc.lib clang libcxx libcxxabi clang.bintools clang.bintools
 
     obsidian
-
-    # (import ./pkgs/battop.nix {})
-    # (import ./pkgs/spotify.nix {})
-
-    # (pkgs.callPackage (import "${spicetify}/package.nix") {
-    #   inherit pkgs;
-    #   theme = "Dribbblish";
-    #   colorScheme = "horizon";
-    #   enabledCustomApps = ["reddit"];
-    #   enabledExtensions = ["newRelease.js" "autoVolume.js"];
-    #   thirdParyExtensions = {};
-    # })
 
     (nerdfonts.override { fonts = [ "FiraCode" ]; })
   ];
@@ -78,22 +62,4 @@
       safe.directory = "*";
     };
   };
-
-  home.file.".config/uair/uair.toml".text = ''
-    [defaults]
-    format = "{time}\n"
-    time_format = "%H:%M:%S"
-
-    [[sessions]]
-    id = "work"
-    name = "Work"
-    duration = "25m"
-    command = "notify-send 'Work Done!'"
-
-    [[sessions]]
-    id = "rest"
-    name = "Rest"
-    duration = "5m"
-    command = "notify-send 'Rest Done!'"
-  '';
 }

@@ -13,7 +13,6 @@
   environment.systemPackages = with pkgs; [
     home-manager
     git
-    gh
     kitty
     neovim
     polkit
