@@ -19,7 +19,7 @@ require('packer').startup(function(use)
 	use 'wbthomason/packer.nvim'
 
 	use 'nvim-neorg/neorg'
-	-- use 'nvim-orgmode/orgmode'
+	use 'epwalsh/obsidian.nvim'
 
 	use 'folke/zen-mode.nvim'
 
@@ -114,6 +114,7 @@ require 'plugins.toggleterm'
 require 'plugins.treesitter'
 require 'plugins.autopairs'
 require 'plugins.nvim-tree'
+require 'plugins.obsidian'
 require 'plugins.cinnamon'
 require 'plugins.trouble'
 require 'plugins.worktree'
