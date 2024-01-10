@@ -101,6 +101,7 @@
             ./global/console.nix
             ./global/networking.nix
           ];
+          autologin = { services.getty.autologinUser = "williams"; };
         in
         {
           server = nixpkgs.lib.nixosSystem {
@@ -137,13 +138,14 @@
                   ];
                 }
 
+                autologin
+
                 ({ config, lib, pkgs, modulesPath, ... }: {
                   services.openssh = {
                     enable = true;
                     settings.PasswordAuthentication = false;
                     settings.KbdInteractiveAuthentication = false;
                   };
-                  services.getty.autologinUser = "williams";
                   users.users."williams".openssh.authorizedKeys.keys = [
                     "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCs/0iZDUAQ66/lmYFhdnBQZkq4i4Yh/FtJU0qRfr9FBZHwml5fe3yKnASrC3Ch3uMBALtFeR7i0HFEfjYNBfPyMXUmBUXkkwUbXa94U9kAy82LMrnwCwD65/wzc/ZhlcSWLijKp1J+/l7oSPGyHqgbJkedfvL7bGmZUP1r3g4BUwOolVvfqCb71H66uDCa2KYd3i27kGy9Z+edcahtbySodmOzvAcxGs6u1ncTSNpUs2ZTlypPCtInPCYJM3ww9IxldRiMlwVJ+qRdaQUPrwWHghwj3hOpsx0tMGa3x5kkTfEeiIbdu7m+WpU8Q9dG3LeJwnIgA7rs51eyGojtJMJkclddd42Lmd2wh29ztEBgV3janQx6eRbLdBG+3AbhnbpebnnyVEhbxwD/FjoPC01/xty5gXfi9LZDlqVOlR4fNSgVAKiTb8YItym3o+V1UQBxvSHxuiRGJqA7DGs3dQuMmSTvi4VxpcQ079ywuC/lx6NdyMezn6/bcAC3PkD4YYE= williams@nixos"
                   ];
@@ -161,6 +163,25 @@
                     };
                     wantedBy = [ "default.target" ];
                   };
+                })
+              ];
+          };
+          surface = nixpkgs.lib.nixosSystem {
+            system = "x86_64-linux";
+            modules = base_mods ++
+              [
+                /home/williams/.config/nixpkgs/global/hardware-configuration/surface.nix
+
+		autologin
+                nixos-hardware.microsoft.surface.surface-pro-intel
+
+                /home/williams/.config/nixpkgs/global/wifi.nix
+                /home/williams/.config/nixpkgs/global/eduroam.nix
+                # nixos-hardware.nixosModules.lenovo-legion-16ach6h-hybrid
+                ((import ./global/wm.nix) {
+                  enable-sway = true;
+                  enable-wayland = true;
+                  enable-hyprland = true;
                 })
               ];
           };
