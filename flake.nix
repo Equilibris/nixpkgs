@@ -74,8 +74,8 @@
               bacon
             ];
           }
+          ./gnome.nix
           ./home.nix
-          ./spotify.nix
           ./term.nix
           ./lang.nix
           ./nvim.nix
@@ -97,7 +97,6 @@
             ./global/containers.nix
             ./global/boot.nix
             ./global/users.nix
-            ./global/audio.nix
             ./global/console.nix
             ./global/networking.nix
           ];
@@ -172,16 +171,17 @@
               [
                 /home/williams/.config/nixpkgs/global/hardware-configuration/surface.nix
 
-		autologin
-                nixos-hardware.microsoft.surface.surface-pro-intel
+                autologin
+                nixos-hardware.nixosModules.microsoft-surface-pro-intel
 
-                /home/williams/.config/nixpkgs/global/wifi.nix
-                /home/williams/.config/nixpkgs/global/eduroam.nix
+                # /home/williams/.config/nixpkgs/global/wifi.nix
+                # /home/williams/.config/nixpkgs/global/eduroam.nix
                 # nixos-hardware.nixosModules.lenovo-legion-16ach6h-hybrid
+                { }
+
                 ((import ./global/wm.nix) {
-                  enable-sway = true;
+                  enable-gnome = true;
                   enable-wayland = true;
-                  enable-hyprland = true;
                 })
               ];
           };

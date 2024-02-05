@@ -7,6 +7,9 @@ let
   #     })
   #   ];
   # };
+
+  theming =
+    (import ./theming.nix) { inherit config; inherit pkgs; inherit lib; };
 in
 {
   home.packages = with pkgs; [
@@ -21,6 +24,7 @@ in
   ];
 
   # environment.variables.EDITOR = "nvim";
+  programs.zsh.initExtra = "export nvim_theme=${theming.nvim-name};";
   home.file = {
     ".config/nvim" = {
       source =

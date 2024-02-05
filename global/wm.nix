@@ -1,10 +1,14 @@
 { enable-i3 ? false
 , enable-sway ? false
+, enable-gnome ? false
 , enable-hyprland ? false
 , enable-wayland ? false
 ,
 }: { config, pkgs, lib, hyprland, unstable, ... }:
 let
+
+  theming =
+    (import ../theming.nix) { inherit config; inherit pkgs; inherit lib; };
   # bash script to let dbus know about important env variables and
   # propogate them to relevent services run at the end of sway config
   # see
@@ -63,13 +67,11 @@ in
     configure-gtk
     wayland
     glib # gsettings
-    nordic # gtk theme
-    gnome3.adwaita-icon-theme # default gnome cursors
-    mako # notification system developed by swaywm maintainer
+    (theming.gtk.package) # gtk theme
+    (theming.gtk.icons) # default gnome cursors
     xwayland
     gtk3
     gtk4
-    foot
   ];
 
   # xdg-desktop-portal works by exposing a series of D-Bus interfaces
@@ -107,6 +109,64 @@ in
     };
   }
 ) //
+(lib.attrsets.optionalAttrs enable-gnome
+  {
+    # Enable the X11 windowing system.
+    services.xserver = {
+      enable = true;
+
+      # Enable the GNOME Desktop Environment.
+      displayManager = {
+        gdm.enable = true;
+        # defaultSession = "gnome";
+        autoLogin = {
+          enable = false;
+          user = "williams";
+        };
+      };
+      desktopManager.gnome.enable = true;
+      desktopManager.gnome.extraGSettingsOverrides = ''
+        [org.gnome.desktop.peripherals.touchpad]
+        click-method='default'
+      '';
+
+      # Configure keymap in X11
+      layout = "no";
+      xkbVariant = "";
+    };
+
+
+    environment.gnome.excludePackages = (with pkgs; [
+      gnome-photos
+      gnome-tour
+    ]) ++ (with pkgs.gnome; [
+      cheese # webcam tool
+      gnome-music
+      gnome-terminal
+      gedit # text editor
+      epiphany # web browser
+      geary # email reader
+      evince # document viewer
+      gnome-characters
+      totem # video player
+      tali # poker game
+      iagno # go game
+      hitori # sudoku game
+      atomix # puzzle game
+    ]);
+
+    services.dbus.enable = true;
+
+    xdg.portal = {
+      enable = true;
+      wlr.enable = false;
+      # gtk portal needed to make gtk apps happy
+      extraPortals = [
+        pkgs.xdg-desktop-portal-gnome
+        pkgs.xdg-desktop-portal-wlr
+      ];
+    };
+  }) //
 (lib.attrsets.optionalAttrs enable-hyprland {
   # nixpkgs.overlays = [ waylandOverlay ];
   # environment.systemPackages = with pkgs; [ wlroots ];

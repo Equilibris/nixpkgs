@@ -25,6 +25,7 @@ require('packer').startup(function(use)
 
 	use 'ahmedkhalf/project.nvim'
 
+	use { 'catppuccin/nvim', as = 'catppuccin' }
 	use 'shaunsingh/nord.nvim'
 	use 'nvim-treesitter/nvim-treesitter'
 	use 'sirtaj/vim-openscad'
@@ -107,6 +108,7 @@ end)
 require 'sets'
 require 'maps'
 require 'commands'
+require 'theming'
 
 require 'plugins.telescope'
 

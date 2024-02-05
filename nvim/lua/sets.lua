@@ -30,5 +30,3 @@ vim.opt.mouse = ''
 -- vim.opt.listchars = "eol:¬,tab:->,trail:~,extends:>,precedes:<,space:⋅⋅"
 
 vim.opt.updatetime = 1000
-
-vim.cmd [[ colorscheme nord ]]

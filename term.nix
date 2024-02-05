@@ -1,11 +1,14 @@
 { config, pkgs, lib, ... }:
 
 let
+  theming =
+    (import ./theming.nix) { inherit config; inherit pkgs; inherit lib; };
+
   aliases = {
     cls = "clear";
     cfile = "copyq copy <";
     # hms = "export NIXPKGS_ALLOW_UNFREE=1 home-manager switch ";
-    hms = "export NIXPKGS_ALLOW_UNFREE=1; home-manager switch --impure --flake \"$HOME/.config/nixpkgs/flake.nix\"";
+    hms = "export NIXPKGS_ALLOW_INSECURE=1; export NIXPKGS_ALLOW_UNFREE=1; home-manager switch --impure --flake \"$HOME/.config/nixpkgs/flake.nix\"";
     ":hms" = "hms";
     ":q" = "exit";
 
@@ -31,19 +34,20 @@ let
     "b-connect-apple" = "bluetoothctl connect AC:1D:06:0E:7E:5F";
   };
 
-  aliasStr = lib.lists.fold (a: c: "${a}\n${c}") ""
-    (lib.attrsets.mapAttrsToList (k: v: "alias \"${k}\"=\"${v}\"") aliases);
+  aliasStr = lib.lists.fold (a: c: "${ a}\n${ c}") ""
+    (lib.attrsets.mapAttrsToList (k: v: "alias \"${ k}\"=\"${ v}\"") aliases);
 in
 {
-  home.packages = with pkgs; [
+  home. packages = with pkgs; [
     fzf
     thefuck
-    (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; })
+    (pkgs.nerdfonts.override {
+      fonts = [ "FiraCode" ];
+    })
     jq
     coreutils
     eza
-
-    foot
+    tmux
 
     (import ./pkgs/pixel-lock.nix { })
   ];
@@ -78,7 +82,7 @@ in
       screenshot () { grim  -g "$(slurp)" ~/Photos/$(date +'%H:%M:%S.png') }
       killPort   () { fp | grep $1 | echo }
 
-      if [[ "$(tty)" == "/dev/tty1" ]]; then;   sway; fi
+      # if [[ "$(tty)" == "/dev/tty1" ]]; then;   sway; fi
       # if [[ "$(tty)" == "/dev/tty1" ]]; then; hyp;  fi
     '';
 
@@ -143,10 +147,10 @@ in
     enable = true;
     font.name = "FiraCode Nerd Font";
 
-    extraConfig = builtins.readFile "${pkgs.fetchurl {
-        url = "https://raw.githubusercontent.com/connorholyday/nord-kitty/master/nord.conf";
-        sha256 = "4R5wNmrP2JkIW9t603AmJEcHJUQ/RYw7NwuvmrJhdrk=";
-    }}";
+    extraConfig = ''
+      ${theming.kitty}
+      linux_display_server x11
+    '';
   };
 
   home.file =

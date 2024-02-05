@@ -1,4 +1,9 @@
 { config, pkgs, lib, ... }:
+
+let
+  theming =
+    (import ./theming.nix) { inherit config; inherit pkgs; inherit lib; };
+in
 {
   nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
@@ -10,10 +15,13 @@
     unzip
     bat
     htop
+    spotify
     discord
     git
     gh
     git-secret
+
+    xournalpp
 
     glib
 
@@ -34,24 +42,27 @@
 
   # home.sessionPath = [ "$HOME/.npm-global/bin" ];
 
-  services.gammastep = {
-    enable = true;
-    provider = "manual";
-    latitude = 59.9;
-    longitude = 10.7;
-  };
+  # services.gammastep = {
+  #   enable = true;
+  #   provider = "manual";
+  #   latitude = 59.9;
+  #   longitude = 10.7;
+  # };
 
   fonts.fontconfig.enable = true;
+
 
   gtk = {
     enable = true;
 
-    theme.name = "Nordic";
-    theme.package = pkgs.nordic;
+    theme.name = theming.gtk.name;
+    theme.package = theming.gtk.package;
 
     gtk3.extraConfig.gtk-application-prefer-dark-theme = 1;
     gtk4.extraConfig.gtk-application-prefer-dark-theme = true;
+    # gtk4.extraCss = theming.gtk-css;
   };
+  home.file = theming.files;
 
   programs.git = {
     enable = false;

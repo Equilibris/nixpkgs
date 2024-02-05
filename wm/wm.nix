@@ -4,55 +4,53 @@
 , ...
 }:
 let
-  rofi-themes = import ../pkgs/rofi-themes.nix {
-    theme = "nord";
-    style = 15;
-    type = 1;
-  };
+  theming =
+    (import ./theming.nix) { inherit config; inherit pkgs; inherit lib; };
 in
 {
   home.packages = (with pkgs; [
     xorg.xhost
     polkit
 
-    mako
+    # TODO: make this depend on a wayland variable
 
-    rofi-themes
-    slurp
-    grim
-    wl-clipboard
-    copyq
-    tmux
-    fnott
-    libnotify
+    # mako
+
+    # rofi-themes
+    # slurp
+    # grim
+    # wl-clipboard
+    # copyq
+    # tmux
+    # libnotify
   ]);
 
   programs.rofi = {
-    enable = true;
+    enable = false;
     package = pkgs.rofi;
     configPath = ".config/rofi/config.rasi";
   };
 
   home.file = {
-    ".config/rofi/config.rasi" = {
-      source = "${rofi-themes}/config.rasi";
-    };
-    ".config/eww" = {
-      source = ../eww;
-      recursive = true;
-    };
+    # ".config/rofi/config.rasi" = {
+    #   source = "${rofi-themes}/config.rasi";
+    # };
+    # ".config/eww" = {
+    #   source = ../eww;
+    #   recursive = true;
+    # };
     ".config/electron-flags.conf" = {
       source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nixpkgs/wm/electron-flags.conf";
     };
-    ".config/sway/config" = {
-      source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nixpkgs/wm/sway.config";
-    };
-    ".swaylock/config" = {
-      source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nixpkgs/wm/swaylock.config";
-    };
-    ".config/hypr/hyprland.conf" = {
-      source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nixpkgs/wm/hyprland.conf";
-    };
+    # ".config/sway/config" = {
+    #   source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nixpkgs/wm/sway.config";
+    # };
+    # ".swaylock/config" = {
+    #   source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nixpkgs/wm/swaylock.config";
+    # };
+    # ".config/hypr/hyprland.conf" = {
+    #   source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nixpkgs/wm/hyprland.conf";
+    # };
     # ".config/rofi" = {
     #   source = rofi-themes;
     #   recursive = true;
