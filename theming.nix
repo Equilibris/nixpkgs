@@ -66,19 +66,19 @@ let
         let dir = "${gtk-pkg}/share/themes/${gtk-name}/gtk-4.0";
         in
         {
-          ".config/gtk-4.0/assets/" = {
-            source = config.lib.file.mkOutOfStoreSymlink "${dir}/assets/";
-            recursive = true;
-          };
-          ".config/gtk-4.0/gtk-dark.css" = {
-            source = config.lib.file.mkOutOfStoreSymlink "${dir}/gtk-dark.css";
-          };
-          ".config/gtk-4.0/gtk.css" = {
-            source = config.lib.file.mkOutOfStoreSymlink "${dir}/gtk-dark.css";
-          };
-          ".config/gtk-4.0/thumbnail.png" = {
-            source = config.lib.file.mkOutOfStoreSymlink "${dir}/thumbnail.png";
-          };
+          # ".config/gtk-4.0/assets/" = {
+          #   source = config.lib.file.mkOutOfStoreSymlink "${dir}/assets/";
+          #   recursive = true;
+          # };
+          # ".config/gtk-4.0/gtk-dark.css" = {
+          #   source = config.lib.file.mkOutOfStoreSymlink "${dir}/gtk-dark.css";
+          # };
+          # ".config/gtk-4.0/gtk.css" = {
+          #   source = config.lib.file.mkOutOfStoreSymlink "${dir}/gtk-dark.css";
+          # };
+          # ".config/gtk-4.0/thumbnail.png" = {
+          #   source = config.lib.file.mkOutOfStoreSymlink "${dir}/thumbnail.png";
+          # };
         };
     };
 in

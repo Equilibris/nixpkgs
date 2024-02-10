@@ -1,3 +1,5 @@
+vim.opt.conceallevel = 1
+
 require('obsidian').setup {
 	-- Each path should be the path to the vault root. If you use the Obsidian app,
 	-- the vault root is the parent directory of the `.obsidian` folder.
@@ -107,10 +109,15 @@ require('obsidian').setup {
 
 	-- Optional, alternatively you can customize the frontmatter data.
 	note_frontmatter_func = function(note)
-		-- This is equivalent to the default frontmatter function.
-		local out = { id = note.id, aliases = note.aliases, tags = note.tags }
-		-- `note.metadata` contains any manually added fields in the frontmatter.
-		-- So here we just make sure those fields are kept in the frontmatter.
+		local out = {}
+
+		if #note.tags > 0 then
+			out.tags = note.tags
+		end
+		if #note.aliases > 0 then
+			out['aliases'] = note.aliases
+		end
+
 		if note.metadata ~= nil and not vim.tbl_isempty(note.metadata) then
 			for k, v in pairs(note.metadata) do
 				out[k] = v
