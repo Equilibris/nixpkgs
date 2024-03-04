@@ -5,6 +5,8 @@ let
     (import ./theming.nix) { inherit config; inherit pkgs; inherit lib; };
 
   aliases = {
+    cd = "z";
+
     cls = "clear";
     cfile = "copyq copy <";
     # hms = "export NIXPKGS_ALLOW_UNFREE=1 home-manager switch ";
@@ -47,6 +49,8 @@ in
     jq
     coreutils
     eza
+    zoxide
+    atuin
     tmux
 
     (import ./pkgs/pixel-lock.nix { })
@@ -76,6 +80,8 @@ in
       ${aliasStr}
 
       eval $(thefuck --alias)
+      eval "$(zoxide init zsh)"
+      eval "$(atuin init zsh)"
 
       # xhost +SI:localuser:root > /dev/null
 
