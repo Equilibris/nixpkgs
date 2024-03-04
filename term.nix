@@ -6,6 +6,7 @@ let
 
   aliases = {
     cd = "z";
+    zm = "zellij attach -c main";
 
     cls = "clear";
     cfile = "copyq copy <";
@@ -157,6 +158,20 @@ in
       ${theming.kitty}
       linux_display_server x11
     '';
+  };
+
+  programs.zellij = {
+    enable = true;
+
+    settings = {
+      copy_command = "wl-copy";
+      ui.pane_frames.rounded_corners = true;
+      theme = "catppuccin-mocha";
+
+      pane_viewport_serialization = true;
+      session_serialization = true;
+      scrollback_lines_to_serialize = 1000;
+    };
   };
 
   home.file =
