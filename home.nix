@@ -21,16 +21,12 @@ in
     gh
     git-secret
 
-    xournalpp
-
     glib
 
     # teams
 
     gcc
     # stdenv.cc.cc.lib clang libcxx libcxxabi clang.bintools clang.bintools
-
-    obsidian
 
     (nerdfonts.override { fonts = [ "FiraCode" ]; })
   ];

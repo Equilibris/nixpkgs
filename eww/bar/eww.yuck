@@ -227,7 +227,7 @@
             :anchor "left center")
   :stacking "fg"
   :windowtype "dock"
-  :wm-ignore false
+  :wm-ignore true
   :exclusive true
   (box
     :orientation "v"

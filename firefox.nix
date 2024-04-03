@@ -16,6 +16,9 @@ in
     enable = true;
 
     # package = pkgs.firefox-wayland;
+    # preferences = {
+    #   "widget.use-xdg-desktop-portal.file-picker" = 1;
+    # };
 
     profiles."williams" = {
       id = 0;

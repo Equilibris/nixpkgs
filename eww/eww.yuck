@@ -1,1 +1,1 @@
-(include "../nixpkgs/eww/bar/eww.yuck")
+(include "./bar/eww.yuck")

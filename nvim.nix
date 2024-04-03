@@ -20,7 +20,10 @@ in
     wget
 
     nil
-    rnix-lsp
+
+    neovim-remote
+
+    # rnix-lsp
   ];
 
   # environment.variables.EDITOR = "nvim";

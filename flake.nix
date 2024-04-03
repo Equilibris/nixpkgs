@@ -7,6 +7,10 @@
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    eww = {
+      url = "github:elkowar/eww";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -31,6 +35,7 @@
     { self
     , nixpkgs
     , hyprland
+    , eww
     , home-manager
     , nur
     , nixos-hardware
@@ -59,7 +64,7 @@
           }
           {
             home.packages = with pkgs; [
-              # (eww.packages.${system}.eww-wayland)
+              (eww.packages.${system}.eww-wayland)
               (fenix-pkgs.withComponents [
                 "cargo"
                 "clippy"
@@ -83,6 +88,7 @@
           ./wm/wm.nix
           ./school.nix
           ./firefox.nix
+          ./obsidian.nix
         ];
       };
       nixosConfigurations =
@@ -174,13 +180,28 @@
                 autologin
                 nixos-hardware.nixosModules.microsoft-surface-pro-intel
 
-                # /home/williams/.config/nixpkgs/global/wifi.nix
+                /home/williams/.config/nixpkgs/global/audio.nix
                 # /home/williams/.config/nixpkgs/global/eduroam.nix
                 # nixos-hardware.nixosModules.lenovo-legion-16ach6h-hybrid
-                { }
+                {
+                  nix.buildMachines = [{
+                    hostName = "2.tcp.eu.ngrok.io:13177";
+                    system = "x86_64-linux";
+                    protocol = "ssh-ng";
+                    # if the builder supports building for multiple architectures, 
+                    # replace the previous line by, e.g.
+                    # systems = ["x86_64-linux" "aarch64-linux"];
+                    maxJobs = 1;
+                    speedFactor = 2;
+                    supportedFeatures = [ "nixos-test" "benchmark" "big-parallel" "kvm" ];
+                    mandatoryFeatures = [ ];
+                  }];
+                  nix.distributedBuilds = true;
+                }
+
 
                 ((import ./global/wm.nix) {
-                  enable-gnome = true;
+                  enable-hyprland = true;
                   enable-wayland = true;
                 })
               ];

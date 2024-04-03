@@ -37,8 +37,12 @@
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
   };
 
-  environment.variables.EDITOR = "nvim";
-  environment.variables.GDK_BACKEND = "x11";
+  environment.variables = {
+    EDITOR = "nvim";
+    GDK_BACKEND = "x11";
+    MOZ_ENABLE_WAYLAND = "1";
+    NEO4J_CONF="/var/lib/neo4j/conf/";
+  };
 
   # programs.home-manager.enable = true;
 
@@ -54,11 +58,25 @@
     }
   ];
 
+  services.neo4j = {
+    enable = true;
+
+    bolt.enable = true;
+    bolt.sslPolicy = "legacy";
+    bolt.tlsLevel = "DISABLED";
+
+    directories.home = "/var/lib/neo4j";
+    http.listenAddress = ":7474";
+    https.enable = false;
+  };
+
   # programs.gnugp.agent.enable = true;
   # services.gpg-agent.enable = true;
   services.pcscd.enable = true;
   services.fwupd.enable = true;
-  security.polkit.enable = true;
+  security.polkit = {
+    enable = true;
+  };
   services.qemuGuest.enable = true;
   services.usbmuxd =
     {
@@ -67,7 +85,8 @@
     };
   programs.gnupg.agent = {
     enable = true;
-    pinentryFlavor = "curses";
+    # pinentryFlavor = "curses";
+    pinentryPackage = pkgs.pinentry-curses;
     enableSSHSupport = true;
   };
 

@@ -69,7 +69,7 @@ in
     glib # gsettings
     (theming.gtk.package) # gtk theme
     (theming.gtk.icons) # default gnome cursors
-    xwayland
+    # xwayland
     gtk3
     gtk4
   ];
@@ -83,16 +83,6 @@ in
   # environment.variables.GTK_USE_PORTAL = "1";
   environment.variables.GDK_BACKEND = "x11";
   services.dbus.enable = true;
-  xdg.portal = {
-    enable = true;
-    wlr.enable = true;
-    # gtk portal needed to make gtk apps happy
-    extraPortals = [
-      pkgs.xdg-desktop-portal-gtk
-      # pkgs.xdg-desktop-portal-wlr
-    ];
-  };
-
 
   location.provider = "geoclue2";
 }) //
@@ -106,6 +96,15 @@ in
     programs.sway = {
       enable = true;
       wrapperFeatures.gtk = true;
+    };
+    xdg.portal = {
+      enable = true;
+      wlr.enable = true;
+      # gtk portal needed to make gtk apps happy
+      extraPortals = [
+        # pkgs.xdg-desktop-portal-gtk
+        # pkgs.xdg-desktop-portal-wlr
+      ];
     };
   }
 ) //
@@ -131,8 +130,10 @@ in
       '';
 
       # Configure keymap in X11
-      layout = "no";
-      xkbVariant = "";
+      xkb = {
+        layout = "no";
+        variant = "";
+      };
     };
 
 
@@ -163,7 +164,6 @@ in
       # gtk portal needed to make gtk apps happy
       extraPortals = [
         pkgs.xdg-desktop-portal-gnome
-        pkgs.xdg-desktop-portal-wlr
       ];
     };
   }) //
@@ -174,9 +174,7 @@ in
   programs.hyprland = {
     enable = true;
 
-    xwayland = {
-      enable = true;
-    };
+    xwayland.enable = true;
     # enableNvidiaPatches = true;
   };
 }) //
