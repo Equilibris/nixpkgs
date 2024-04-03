@@ -198,6 +198,19 @@
                   enable-wayland = true;
                   enable-hyprland = true;
                 })
+
+                ({ config, lib, pkgs, modulesPath, ... }: {
+                  environment.systemPackages = [ pkgs.ngrok ];
+
+                  services.openssh = {
+                    enable = true;
+                    settings.PasswordAuthentication = false;
+                    settings.KbdInteractiveAuthentication = false;
+                  };
+                  users.users."williams".openssh.authorizedKeys.keys = [
+                    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFb/I7aNw8aZJI43YYlkKDCUdtoKty5xDRMiNhjEoz+p williams@nixos"
+                  ];
+                })
               ];
           };
           family = nixpkgs.lib.nixosSystem
