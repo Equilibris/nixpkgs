@@ -21,5 +21,6 @@
     isNormalUser = true;
     description = "William Sørensen";
     extraGroups = [ "networkmanager" "wheel" "docker" ];
+    createHome = true;
   };
 }
