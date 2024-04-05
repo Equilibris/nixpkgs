@@ -105,6 +105,7 @@
             ./global/users.nix
             ./global/console.nix
             ./global/networking.nix
+            ./global/syncthing.nix
           ];
           autologin = { services.getty.autologinUser = "williams"; };
         in
@@ -113,10 +114,11 @@
             system = "x86_64-linux";
             modules = base_mods ++
               [
-                /home/williams/.config/nixpkgs/global/hardware-configuration/hardware-configuration.main-desktop.nix
+                ./global/hardware-configuration/hardware-configuration.main-desktop.nix
+                ./global/audio.nix
 
                 ((import ./global/wm.nix) {
-                  enable-sway = true;
+                  enable-hyprland = true;
                   enable-wayland = true;
                 })
 

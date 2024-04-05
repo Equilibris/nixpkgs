@@ -6,10 +6,19 @@
     # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
     # networking.networkmanager.enable = true;  # Enables wireless support via wpa_supplicant.
 
-    firewall.enable = false;
-    firewall.allowedTCPPortRanges = [
-      { from = 18999; to = 19003; }
+    firewall.enable = true;
+    firewall.allowedTCPPorts = [
+      # Syncthing
+      8384
+      22000
     ];
+    firewall.allowedUDPPorts = [
+      22000
+      21027
+    ];
+    # firewall.allowedTCPPortRanges = [
+    #   { from = 18999; to = 19003; }
+    # ];
 
     # Configure network proxy if necessary
     # networking.proxy.default = "http://user:password@proxy:port/";
