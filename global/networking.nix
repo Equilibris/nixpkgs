@@ -8,9 +8,8 @@
 
     firewall.enable = true;
     firewall.allowedTCPPorts = [
-      # Syncthing
-      8384
-      22000
+      # 8384 # Syncthing UI DO NOT ENABLE
+      22000 # Syncthing sync
     ];
     firewall.allowedUDPPorts = [
       22000
