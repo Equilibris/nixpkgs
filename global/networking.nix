@@ -10,10 +10,12 @@
     firewall.allowedTCPPorts = [
       # 8384 # Syncthing UI DO NOT ENABLE
       22000 # Syncthing sync
+      25565 # Minecraft
     ];
     firewall.allowedUDPPorts = [
       22000
       21027
+      25565 # Minecraft
     ];
     # firewall.allowedTCPPortRanges = [
     #   { from = 18999; to = 19003; }

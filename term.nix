@@ -86,6 +86,8 @@ in
 
       # xhost +SI:localuser:root > /dev/null
 
+      [[ ! -r /home/williams/.opam/opam-init/init.zsh ]] || source /home/williams/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
+
       screenshot () { grim  -g "$(slurp)" ~/Photos/$(date +'%H:%M:%S.png') }
       killPort   () { fp | grep $1 | echo }
 

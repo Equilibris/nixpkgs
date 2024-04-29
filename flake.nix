@@ -3,6 +3,12 @@
     nixpkgs.url = "github:NixOS/nixpkgs";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nur.url = "github:nix-community/NUR";
+
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     fenix = {
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -12,11 +18,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    home-manager = {
-      url = "github:nix-community/home-manager";
+    spicetify-nix = {
+      url = "github:the-argus/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
     devenv.url = "github:cachix/devenv";
     typst.url = "github:typst/typst";
     hyprland.url = "github:hyprwm/Hyprland";
@@ -42,6 +47,7 @@
     , typst
     , fenix
     , devenv
+    , spicetify-nix
     }:
     let
       system = "x86_64-linux";
@@ -51,6 +57,8 @@
     {
       homeConfigurations.williams = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
+
+        extraSpecialArgs = { inherit spicetify-nix; };
 
         # Specify your home configuration modules here, for example,
         # the path to your home.nix.
@@ -80,6 +88,7 @@
             ];
           }
           ./gnome.nix
+          ./spotify-spice.nix
           ./home.nix
           ./term.nix
           ./lang.nix
@@ -186,6 +195,10 @@
                 # /home/williams/.config/nixpkgs/global/eduroam.nix
                 # nixos-hardware.nixosModules.lenovo-legion-16ach6h-hybrid
                 {
+                  environment.variables = {
+                    GDK_SCALE = "2";
+                  };
+
                   nix.buildMachines = [{
                     hostName = "2.tcp.eu.ngrok.io:13177";
                     system = "x86_64-linux";
@@ -212,9 +225,10 @@
             system = "x86_64-linux";
             modules = base_mods ++
               [
-                /home/williams/.config/nixpkgs/global/hardware-configuration/legion.nix
-                /home/williams/.config/nixpkgs/global/wifi.nix
-                /home/williams/.config/nixpkgs/global/eduroam.nix
+                ./global/hardware-configuration/legion.nix
+                # ./global/wifi.nix
+                # ./global/eduroam.nix
+                ./global/audio.nix
                 # nixos-hardware.nixosModules.lenovo-legion-16ach6h-hybrid
                 ((import ./global/wm.nix) {
                   enable-sway = true;

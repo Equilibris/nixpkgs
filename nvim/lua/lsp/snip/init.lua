@@ -86,6 +86,11 @@ ls.add_snippets('nix', {
 		}, '$PARENT_INDENT  '),
 		t { '', '};' },
 	}),
+	s('python', {
+		t '(python3.withPackages (p: with p; [ ',
+		i(1),
+		t ' ]))',
+	}),
 	s('unstable-channel', {
 		t 'unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };',
 	}),
@@ -93,6 +98,7 @@ ls.add_snippets('nix', {
 		t 'unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };',
 	}),
 })
+
 ls.add_snippets('toml', {
 	postfix('.feat', {
 		f(function(_, parent)

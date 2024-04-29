@@ -76,7 +76,6 @@ cmp.setup {
 		{ name = 'luasnip' }, -- For luasnip users.
 		{ name = 'luasnip_choice' },
 		{ name = 'orgmode' },
-		{ name = 'neorg' },
 		-- { name = 'cmp_tabnine' },
 		-- { name = 'vsnip' }, -- For vsnip users.
 		--

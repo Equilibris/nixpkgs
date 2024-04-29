@@ -15,7 +15,6 @@ in
     unzip
     bat
     htop
-    spotify
     discord
     git
     gh
