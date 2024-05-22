@@ -196,7 +196,8 @@
                 # nixos-hardware.nixosModules.lenovo-legion-16ach6h-hybrid
                 {
                   environment.variables = {
-                    GDK_SCALE = "2";
+                    WS_GDK_SCALE = "2";
+                    # GDK_SCALE = "2";
                   };
 
                   nix.buildMachines = [{
@@ -218,6 +219,7 @@
                 ((import ./global/wm.nix) {
                   enable-hyprland = true;
                   enable-wayland = true;
+                  enable-gnome = true;
                 })
               ];
           };

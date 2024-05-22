@@ -110,6 +110,7 @@ in
 ) //
 (lib.attrsets.optionalAttrs enable-gnome
   {
+
     # Enable the X11 windowing system.
     services.xserver = {
       enable = true;
@@ -118,10 +119,10 @@ in
       displayManager = {
         gdm.enable = true;
         # defaultSession = "gnome";
-        autoLogin = {
-          enable = false;
-          user = "williams";
-        };
+        # autoLogin = {
+        #   enable = false;
+        #   user = "williams";
+        # };
       };
       desktopManager.gnome.enable = true;
       desktopManager.gnome.extraGSettingsOverrides = ''

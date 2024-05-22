@@ -1,6 +1,7 @@
 require 'lsp.langs.rust'
 require 'lsp.langs.lean'
 require 'lsp.langs.java'
+require 'lsp.langs.ts'
 
 local trivial_lsps = {
 	lua_ls = {
@@ -59,33 +60,33 @@ local trivial_lsps = {
 			client.resolved_capabilities.document_range_formatting = false
 		end,
 	},
-	tsserver = {
-		cmd = {
-			'typescript-language-server',
-			'--stdio',
-			'--tsserver-path',
-			'~/.npm-global/lib/node_modules/typescript/lib',
-		},
-		on_attach = function(client, bufnr)
-			client.resolved_capabilities.document_formatting = false
-			client.resolved_capabilities.document_range_formatting = false
-		end,
-		settings = {
-			['vtsls.experimental.completion.enableServerSideFuzzyMatch'] = true,
-			['vtsls.experimental.completion.entriesLimit'] = 10,
-			['typescript.preferences.includePackageJsonAutoImports'] = 'off',
-			['typescript.tsserver.useSyntaxServer'] = 'never',
-			['typescript.tsserver.experimental.enableProjectDiagnostics'] = 'off',
-			['typescript.tsserver.trace'] = 'verbose',
-			['typescript.tsserver.maxTsServerMemory'] = '16GB',
-		},
-	},
+	-- tsserver = {
+	-- 	cmd = {
+	-- 		'typescript-language-server',
+	-- 		'--stdio',
+	-- 		-- '--tsserver-path',
+	-- 		-- '~/.npm-global/lib/node_modules/typescript/lib',
+	-- 	},
+	-- 	on_attach = function(client, bufnr)
+	-- 		client.resolved_capabilities.document_formatting = false
+	-- 		client.resolved_capabilities.document_range_formatting = false
+	-- 	end,
+	-- 	settings = {
+	-- 		['vtsls.experimental.completion.enableServerSideFuzzyMatch'] = true,
+	-- 		['vtsls.experimental.completion.entriesLimit'] = 10,
+	-- 		['typescript.preferences.includePackageJsonAutoImports'] = 'off',
+	-- 		['typescript.tsserver.useSyntaxServer'] = 'never',
+	-- 		['typescript.tsserver.experimental.enableProjectDiagnostics'] = 'off',
+	-- 		['typescript.tsserver.trace'] = 'verbose',
+	-- 		['typescript.tsserver.maxTsServerMemory'] = '16GB',
+	-- 	},
+	-- },
 	emmet_ls = {
 		filetypes = {
 			'svelte',
 			'html',
-			'typescriptreact',
-			'javascriptreact',
+			-- 'typescriptreact',
+			-- 'javascriptreact',
 			'css',
 			'sass',
 			'scss',

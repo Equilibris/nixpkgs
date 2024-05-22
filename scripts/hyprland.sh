@@ -7,6 +7,7 @@ gnome_schema=org.gnome.desktop.interface
 gsettings set $gnome_schema gtk-theme 'Nordic'
 
 export MOZ_ENABLE_WAYLAND=1
+export GDK_SCALE="$WS_GDK_SCALE"
 
 # Log WLR errors and logs to the hyprland log. Recommended
 export HYPRLAND_LOG_WLR=1

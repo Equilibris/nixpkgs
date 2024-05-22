@@ -92,7 +92,7 @@ in
       killPort   () { fp | grep $1 | echo }
 
       # if [[ "$(tty)" == "/dev/tty1" ]]; then;   sway; fi
-      if [[ "$(tty)" == "/dev/tty1" ]]; then; hyp;  fi
+      # if [[ "$(tty)" == "/dev/tty1" ]]; then; hyp;  fi
     '';
 
     plugins = [

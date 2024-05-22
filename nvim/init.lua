@@ -55,6 +55,7 @@ require('packer').startup(function(use)
 
 	use 'lewis6991/hover.nvim'
 	use 'williamboman/mason.nvim'
+	use 'pmizio/typescript-tools.nvim'
 	use 'yioneko/nvim-vtsls'
 	use 'williamboman/mason-lspconfig.nvim'
 	use 'b0o/schemastore.nvim'

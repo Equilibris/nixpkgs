@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 
 {
-  home.packages = with pkgs; [ gnomeExtensions.force-show-osk ];
+  # home.packages = with pkgs; [ gnomeExtensions.force-show-osk ];
   dconf = {
     enable = true;
     settings = {
