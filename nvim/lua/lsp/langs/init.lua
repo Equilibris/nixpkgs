@@ -2,6 +2,7 @@ require 'lsp.langs.rust'
 require 'lsp.langs.lean'
 require 'lsp.langs.java'
 require 'lsp.langs.ts'
+require 'lsp.langs.wgsl'
 
 local trivial_lsps = {
 	lua_ls = {
@@ -101,6 +102,7 @@ local trivial_lsps = {
 			},
 		},
 	},
+	wgsl_analyzer = {},
 	clangd = {},
 	cssls = {},
 	rnix = {},

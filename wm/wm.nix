@@ -65,6 +65,24 @@ in
       source = rofi-themes;
       recursive = true;
     };
+    "walls/catppuccin/train.jpg" = {
+      source = pkgs.fetchurl {
+        url = "https://github.com/flick0/dotfiles/blob/bc82ade2759ab172d15bcb506fe269f8f2adc435/config/hypr/wallpapers/train.jpg?raw=true";
+        sha256 = "sha256-ICp9qB68PF73rOLaK5JkyqwvBZEG+ccH2ULngWKNBlk=";
+      };
+    };
+    "walls/catppuccin/totoro.png" = {
+      source = pkgs.fetchurl {
+        url = "https://github.com/flick0/dotfiles/blob/bc82ade2759ab172d15bcb506fe269f8f2adc435/config/hypr/wallpapers/totoro.png?raw=true";
+        sha256 = "sha256-L+WbPPYWWAlHfXV7UUDZpY7pNRQL/AhzNgXEMTaPf90=";
+      };
+    };
+    "walls/catppuccin/flower.jpg" = {
+      source = pkgs.fetchurl {
+        url = "https://github.com/flick0/dotfiles/blob/bc82ade2759ab172d15bcb506fe269f8f2adc435/config/hypr/wallpapers/flower.jpg?raw=true";
+        sha256 = "sha256-oAIYmdSsepcwh8NWhdwP3DnbOBo9EuJh1uOlTCCK49U=";
+      };
+    };
     "walls/nordic/nixos.png" = {
       source = pkgs.fetchurl {
         url = "https://raw.githubusercontent.com/linuxdotexe/nordic-wallpapers/master/wallpapers/nixos.png";

@@ -70,6 +70,11 @@ vim.api.nvim_set_keymap('i', '<A-F>', '<cmd>Format<cr>', nore)
 
 vim.api.nvim_set_keymap('n', '<Leader>z', 'zfaB', nore)
 
+vim.api.nvim_set_keymap('n', '<Left>', '<cmd>vertical resize +5<cr>', nore)
+vim.api.nvim_set_keymap('n', '<Right>', '<cmd>vertical resize -5<cr>', nore)
+vim.api.nvim_set_keymap('n', '<Up>', '<cmd>resize -5<cr>', nore)
+vim.api.nvim_set_keymap('n', '<Down>', '<cmd>resize +5<cr>', nore)
+
 -- vim.api.nvim_set_keymap(
 -- 	'n',
 -- 	'f',
