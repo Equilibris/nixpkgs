@@ -12,6 +12,9 @@ if school then {
 
     screen
     libsecret
+    libreoffice
+    blender
+    remnote
     pkg-config
     xorg.libX11
     xorg.libxkbfile
