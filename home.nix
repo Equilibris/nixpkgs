@@ -27,6 +27,8 @@ in
     gcc
     # stdenv.cc.cc.lib clang libcxx libcxxabi clang.bintools clang.bintools
 
+    prismlauncher
+
     (nerdfonts.override { fonts = [ "FiraCode" ]; })
   ];
 
