@@ -46,26 +46,26 @@
       fsType = "vfat";
     };
 
-  sound.extraConfig =
-    ''
-      @hooks [
-          {
-              func load
-              files [
-                  "~/.asoundrc"
-              ]
-              errors false
-          }
-      ]
-      pcm.!default {
-        type hw
-        card "Wireless"
-      }
-      ctl.!default {
-        type hw
-        card "Wireless"
-      }
-    '';
+  # sound.extraConfig =
+  #   ''
+  #     @hooks [
+  #         {
+  #             func load
+  #             files [
+  #                 "~/.asoundrc"
+  #             ]
+  #             errors false
+  #         }
+  #     ]
+  #     pcm.!default {
+  #       type hw
+  #       card "Wireless"
+  #     }
+  #     ctl.!default {
+  #       type hw
+  #       card "Wireless"
+  #     }
+  #   '';
 
   swapDevices = [ ];
 

@@ -71,7 +71,6 @@
     # shell_on_fail = true;
 
   };
-  # boot.kernelPackages = unstable.linuxPackages_5_10;
   # boot.kernelPackages = unstable.linuxPackages_latest;
   # boot.extraModulePackages = [ config.boot.kernelPackages.rtl8812au ];
   # boot.initrd.kernelModules = [ "8812au" ];

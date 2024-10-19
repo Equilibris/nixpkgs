@@ -1,7 +1,18 @@
 { config, pkgs, lib, ... }: {
   home.packages = with pkgs; [
     obsidian
-    python312
+    (python3.withPackages (p: with p; [ 
+      pynvim
+      jupyter_client
+      ueberzug
+      cairosvg
+      pnglatex
+      plotly # python312Packages.kaleido
+      pyperclip
+
+      numpy
+      matplotlib
+    ]))
 
     xournalpp
     neo4j-desktop

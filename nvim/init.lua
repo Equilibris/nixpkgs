@@ -57,6 +57,7 @@ require('packer').startup(function(use)
 	use 'williamboman/mason.nvim'
 	use 'pmizio/typescript-tools.nvim'
 	use 'yioneko/nvim-vtsls'
+	use { 'dccsillag/magma-nvim', run = ':UpdateRemotePlugins' }
 	use 'williamboman/mason-lspconfig.nvim'
 	use 'b0o/schemastore.nvim'
 	use 'simrat39/rust-tools.nvim'

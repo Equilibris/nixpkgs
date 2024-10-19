@@ -113,6 +113,10 @@ local trivial_lsps = {
 	svelte = {},
 	arduino_language_server = {},
 	ocamllsp = {},
+	prolog_ls = {},
+	verible = {
+		cmd = { 'verible-verilog-ls', '--rules_config_search' },
+	},
 }
 
 local lspconfig = require 'lspconfig'

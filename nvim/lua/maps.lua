@@ -9,8 +9,18 @@ vim.api.nvim_set_keymap('i', '<C-H>', '<C-W>', {})
 vim.api.nvim_set_keymap('n', '<C-B>', '<cmd>silent NvimTreeToggle<CR>', nore)
 vim.api.nvim_set_keymap('i', '<C-B>', '<cmd>silent NvimTreeToggle<CR>', nore)
 
-vim.api.nvim_set_keymap('i', '<C-N>', '<cmd>silent TroubleToggle<CR>', nore)
-vim.api.nvim_set_keymap('n', '<C-N>', '<cmd>silent TroubleToggle<CR>', nore)
+vim.api.nvim_set_keymap(
+	'i',
+	'<C-N>',
+	'<cmd>silent Trouble diagnostics toggle<CR>',
+	nore
+)
+vim.api.nvim_set_keymap(
+	'n',
+	'<C-N>',
+	'<cmd>silent Trouble diagnostics toggle<CR>',
+	nore
+)
 
 -- vim.api.nvim_set_keymap('n', '<C-B>', '<cmd>silent TroubleToggle<CR>', nore)
 -- vim.api.nvim_set_keymap('i', '<C-B>', '<cmd>silent TroubleToggle<CR>', nore)

@@ -59,7 +59,7 @@
   ];
 
   services.neo4j = {
-    enable = true;
+    enable = false;
 
     bolt.enable = true;
     bolt.sslPolicy = "legacy";

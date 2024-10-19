@@ -72,7 +72,7 @@
           }
           {
             home.packages = with pkgs; [
-              (eww.packages.${system}.eww-wayland)
+              (eww.packages.${system}.eww)
               (fenix-pkgs.withComponents [
                 "cargo"
                 "clippy"
@@ -217,7 +217,7 @@
 
 
                 ((import ./global/wm.nix) {
-                  enable-hyprland = true;
+                  enable-hyprland = false;
                   enable-wayland = true;
                   enable-gnome = true;
                 })

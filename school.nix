@@ -10,6 +10,7 @@ if school then {
     # hunspellDicts.en-gb-ize
     # pandoc
 
+    swiProlog
     screen
     libsecret
     libreoffice

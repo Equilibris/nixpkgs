@@ -13,6 +13,12 @@ local group = vim.api.nvim_create_augroup('WilliamS', {
 -- 	command = 'silent luafile init.lua',
 -- })
 
+-- vim.api.nvim_create_autocmd(
+-- 	'BufWritePost',
+-- 	{ pattern = '*.v', callback = function(c)
+--         vim.lsp.buf.
+--     end, group = group }
+-- )
 vim.api.nvim_create_autocmd(
 	'BufWritePost',
 	{ pattern = '*.lua', command = 'silent luafile %', group = group }
@@ -34,14 +40,11 @@ vim.api.nvim_create_autocmd(
 	'BufWinEnter',
 	{ pattern = '*', group = group, command = 'silent! loadview' }
 )
-vim.api.nvim_create_autocmd(
-	'BufWinEnter',
-	{
-		pattern = '*.norg',
-		group = group,
-		command = 'setlocal wrap linebreak textwidth=80',
-	}
-)
+vim.api.nvim_create_autocmd('BufWinEnter', {
+	pattern = '*.norg',
+	group = group,
+	command = 'setlocal wrap linebreak textwidth=80',
+})
 
 -- vim.api.nvim_create_autocmd(
 -- 	'CursorHold',

@@ -3,13 +3,15 @@ let
   spicePkgs = spicetify-nix.packages.${pkgs.system}.default;
 in
 {
+  home.packages = [pkgs.spotify];
+
   # import the flake's module for your system
   imports = [ spicetify-nix.homeManagerModule ];
 
   # configure spicetify :)
   programs.spicetify =
     {
-      enable = true;
+      enable = false;
       # theme = spicePkgs.themes.Dribbblish;
       theme = spicePkgs.themes.catppuccin;
       colorScheme = "mocha";

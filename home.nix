@@ -19,6 +19,7 @@ in
     git
     gh
     git-secret
+    git-lfs
 
     glib
 

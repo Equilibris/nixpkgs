@@ -139,22 +139,21 @@ in
 
 
     environment.gnome.excludePackages = (with pkgs; [
-      gnome-photos
-      gnome-tour
-      gedit
-    ]) ++ (with pkgs.gnome; [
-      cheese # webcam tool
-      gnome-music
-      gnome-terminal
-      epiphany # web browser
-      geary # email reader
-      evince # document viewer
-      gnome-characters
-      totem # video player
-      tali # poker game
-      iagno # go game
-      hitori # sudoku game
-      atomix # puzzle game
+      # gnome-photos
+      # gnome-tour
+      # gedit
+      # cheese # webcam tool
+      # gnome-terminal
+      # epiphany # web browser
+      # evince # document viewer
+      # totem # video player
+      # geary # email reader
+      # gnome-music
+      # gnome-characters
+      # tali # poker game
+      # iagno # go game
+      # hitori # sudoku game
+      # atomix # puzzle game
     ]);
 
     services.dbus.enable = true;
@@ -164,7 +163,7 @@ in
       wlr.enable = false;
       # gtk portal needed to make gtk apps happy
       extraPortals = [
-        pkgs.xdg-desktop-portal-gnome
+        # pkgs.xdg-desktop-portal-gnome
       ];
     };
   }) //
