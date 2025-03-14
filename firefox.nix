@@ -1,15 +1,17 @@
-{ config, pkgs, lib, nur, ... }:
+{ config, pkgs, lib, 
+  # nur,
+  ... }:
 
 let
-  unstable = import <nixos-unstable> {
-    config.allowUnfree = true;
+  # unstable = import <nixos-unstable> {
+  #   config.allowUnfree = true;
 
-    config.packageOverrides = pkgs: {
-      nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
-        inherit pkgs;
-      };
-    };
-  };
+  #   config.packageOverrides = pkgs: {
+  #     nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
+  #       inherit pkgs;
+  #     };
+  #   };
+  # };
   profile-path = ".mozilla/firefox/williams/";
   chrome-path = ".mozilla/firefox/williams/chrome";
 in

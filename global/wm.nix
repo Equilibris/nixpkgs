@@ -139,13 +139,13 @@ in
 
 
     environment.gnome.excludePackages = (with pkgs; [
-      # gnome-photos
-      # gnome-tour
-      # gedit
+      gnome-photos
+      gnome-tour
+      gedit
       # cheese # webcam tool
       # gnome-terminal
-      # epiphany # web browser
-      # evince # document viewer
+      epiphany # web browser
+      evince # document viewer
       # totem # video player
       # geary # email reader
       # gnome-music

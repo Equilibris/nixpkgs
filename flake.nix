@@ -2,7 +2,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-    nur.url = "github:nix-community/NUR";
+    # nur.url = "github:nix-community/NUR";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -42,7 +42,7 @@
     , hyprland
     , eww
     , home-manager
-    , nur
+    # , nur
     , nixos-hardware
     , typst
     , fenix
@@ -63,7 +63,7 @@
         # Specify your home configuration modules here, for example,
         # the path to your home.nix.
         modules = [
-          nur.nixosModules.nur
+          # nur.hmModules
           {
             home.stateVersion = "22.11";
             home.username = "williams";
@@ -105,7 +105,7 @@
           base_mods = [
             hyprland.nixosModules.default
             home-manager.nixosModules.home-manager
-            nur.nixosModules.nur
+            # nur.nixosModules.nur
             ./global/nix-conf.nix
             ./cachix.nix
             ./global/configuration.nix
@@ -233,9 +233,9 @@
                 ./global/audio.nix
                 # nixos-hardware.nixosModules.lenovo-legion-16ach6h-hybrid
                 ((import ./global/wm.nix) {
-                  enable-sway = true;
+                  enable-hyprland = false;
                   enable-wayland = true;
-                  enable-hyprland = true;
+                  enable-gnome = true;
                 })
 
                 ({ config, lib, pkgs, modulesPath, ... }: {
