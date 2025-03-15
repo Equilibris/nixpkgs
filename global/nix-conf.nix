@@ -9,6 +9,8 @@
   nixpkgs.config.permittedInsecurePackages = [
     "electron-25.9.0"
   ];
+  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowBroken = true;
 
   nix.settings = {
     experimental-features = [ "nix-command" "flakes" ];

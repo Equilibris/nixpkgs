@@ -18,10 +18,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    spicetify-nix = {
-      url = "github:the-argus/spicetify-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # spicetify-nix = {
+    #   url = "github:the-argus/spicetify-nix";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
     devenv.url = "github:cachix/devenv";
     typst.url = "github:typst/typst";
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
@@ -47,7 +47,7 @@
     , typst
     , fenix
     , devenv
-    , spicetify-nix
+    # , spicetify-nix
     }:
     let
       system = "x86_64-linux";
@@ -58,7 +58,7 @@
       homeConfigurations.williams = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
 
-        extraSpecialArgs = { inherit spicetify-nix; };
+        # extraSpecialArgs = { inherit spicetify-nix; };
 
         # Specify your home configuration modules here, for example,
         # the path to your home.nix.
@@ -71,24 +71,11 @@
             home.packages = [ typst.packages.${system}.default devenv.packages.${system}.default ];
           }
           {
-            home.packages = with pkgs; [
-              (eww.packages.${system}.eww)
-              (fenix-pkgs.withComponents [
-                "cargo"
-                "clippy"
-                "rust-src"
-                "rustc"
-                "rustfmt"
-                "miri"
-                "rust-analyzer"
-              ])
-              cargo-insta
-              sqlx-cli
-              bacon
-            ];
+            # home.packages = with pkgs; [
+            # ];
           }
           ./gnome.nix
-          ./spotify-spice.nix
+          # ./spotify-spice.nix
           ./home.nix
           ./term.nix
           ./lang.nix

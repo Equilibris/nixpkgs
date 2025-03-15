@@ -1,9 +1,6 @@
 { config, pkgs, ... }:
 
 {
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
   # Set your time zone.
   # time.timeZone = "Europe/Oslo";
   time.timeZone = "Europe/London";

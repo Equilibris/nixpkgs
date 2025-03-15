@@ -41,12 +41,11 @@ let
     (lib.attrsets.mapAttrsToList (k: v: "alias \"${ k}\"=\"${ v}\"") aliases);
 in
 {
-  home. packages = with pkgs; [
+  home.packages = with pkgs; [
     fzf
     thefuck
-    (pkgs.nerdfonts.override {
-      fonts = [ "FiraCode" ];
-    })
+    # (nerd-fonts.fira-code)
+    (nerdfonts.override { fonts = [ "FiraCode" ]; })
     jq
     coreutils
     eza

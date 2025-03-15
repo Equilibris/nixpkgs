@@ -23,14 +23,13 @@
 
     openssl
 
-    libimobiledevice
-    ifuse
-
     pinentry-curses
 
-    qemu
+    # emulation
+    # qemu
 
-    bubblewrap # needed for steam
+    # needed for steam
+    # bubblewrap 
   ];
 
   services.printing.enable = true;
@@ -41,7 +40,7 @@
   };
 
   programs.steam = {
-    enable = true;
+    enable = false;
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
   };

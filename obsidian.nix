@@ -15,6 +15,5 @@
     ]))
 
     xournalpp
-    neo4j-desktop
   ];
 }
