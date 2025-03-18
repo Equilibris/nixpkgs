@@ -44,8 +44,6 @@ in
   home.packages = with pkgs; [
     fzf
     thefuck
-    # (nerd-fonts.fira-code)
-    (nerdfonts.override { fonts = [ "FiraCode" ]; })
     jq
     coreutils
     eza
@@ -162,7 +160,7 @@ in
   };
 
   programs.zellij = {
-    enable = true;
+    enable = false;
 
     settings = {
       copy_command = "wl-copy";

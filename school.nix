@@ -10,7 +10,6 @@ if school then {
     libsecret
     libreoffice
     # blender
-    remnote
     pkg-config
     xorg.libX11
     xorg.libxkbfile

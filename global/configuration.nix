@@ -32,6 +32,10 @@
     # bubblewrap 
   ];
 
+  fonts.packages = [
+    pkgs.nerd-fonts.fira-code
+  ];
+
   services.printing.enable = true;
   services.avahi = {
     enable = true;
